@@ -90,12 +90,14 @@
             this.mnuDeleteBook.Name = "mnuDeleteBook";
             this.mnuDeleteBook.Size = new System.Drawing.Size(180, 22);
             this.mnuDeleteBook.Text = "Delete Book";
+            this.mnuDeleteBook.Click += new System.EventHandler(this.mnuDeleteBook_Click);
             // 
             // mnuUpdateBook
             // 
             this.mnuUpdateBook.Name = "mnuUpdateBook";
             this.mnuUpdateBook.Size = new System.Drawing.Size(180, 22);
             this.mnuUpdateBook.Text = "Update Book";
+            this.mnuUpdateBook.Click += new System.EventHandler(this.mnuUpdateBook_Click);
             // 
             // mnuViewBook
             // 

@@ -28,5 +28,19 @@ namespace LibrarySYS
             frmAddBook addBookForm = new frmAddBook(this);
             addBookForm.Show();
         }
+
+        private void mnuDeleteBook_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmDeleteBook deleteBookForm = new frmDeleteBook(this);
+            deleteBookForm.Show();
+        }
+
+        private void mnuUpdateBook_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmUpdateBook updateBookForm = new frmUpdateBook(this);
+            updateBookForm.Show();
+        }
     }
 }

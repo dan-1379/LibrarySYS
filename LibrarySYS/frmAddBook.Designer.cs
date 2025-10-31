@@ -242,6 +242,7 @@
             this.Name = "frmAddBook";
             this.Text = "Books - [Add Book]";
             this.Load += new System.EventHandler(this.frmAddBook_Load);
+            this.Shown += new System.EventHandler(this.frmAddBook_Shown);
             this.mnuAddBook.ResumeLayout(false);
             this.mnuAddBook.PerformLayout();
             this.grpAddBook.ResumeLayout(false);
