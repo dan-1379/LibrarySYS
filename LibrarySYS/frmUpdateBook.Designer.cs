@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mnuUpdateBook = new System.Windows.Forms.MenuStrip();
             this.mnuUpdateBookExit = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUpdateBookISBN = new System.Windows.Forms.Label();
             this.txtUpdateBookISBN = new System.Windows.Forms.TextBox();
             this.btnUpdateBookSearch = new System.Windows.Forms.Button();
             this.grpUpdateBook = new System.Windows.Forms.GroupBox();
+            this.dtpUpdateBookPublication = new System.Windows.Forms.DateTimePicker();
             this.txtUpdateBookPublisher = new System.Windows.Forms.TextBox();
             this.cboUpdateBookGenre = new System.Windows.Forms.ComboBox();
             this.txtUpdateBookDescription = new System.Windows.Forms.TextBox();
@@ -46,7 +48,7 @@
             this.lblUpdateBookDescription = new System.Windows.Forms.Label();
             this.lblUpdateBookAuthor = new System.Windows.Forms.Label();
             this.lblUpdateBookTitle = new System.Windows.Forms.Label();
-            this.dtpUpdateBookPublication = new System.Windows.Forms.DateTimePicker();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuUpdateBook.SuspendLayout();
             this.grpUpdateBook.SuspendLayout();
             this.SuspendLayout();
@@ -116,6 +118,13 @@
             this.grpUpdateBook.TabIndex = 4;
             this.grpUpdateBook.TabStop = false;
             this.grpUpdateBook.Text = "Update Book";
+            // 
+            // dtpUpdateBookPublication
+            // 
+            this.dtpUpdateBookPublication.Location = new System.Drawing.Point(79, 270);
+            this.dtpUpdateBookPublication.Name = "dtpUpdateBookPublication";
+            this.dtpUpdateBookPublication.Size = new System.Drawing.Size(200, 20);
+            this.dtpUpdateBookPublication.TabIndex = 12;
             // 
             // txtUpdateBookPublisher
             // 
@@ -230,12 +239,10 @@
             this.lblUpdateBookTitle.TabIndex = 0;
             this.lblUpdateBookTitle.Text = "Title:";
             // 
-            // dtpUpdateBookPublication
+            // contextMenuStrip1
             // 
-            this.dtpUpdateBookPublication.Location = new System.Drawing.Point(79, 270);
-            this.dtpUpdateBookPublication.Name = "dtpUpdateBookPublication";
-            this.dtpUpdateBookPublication.Size = new System.Drawing.Size(200, 20);
-            this.dtpUpdateBookPublication.TabIndex = 12;
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // frmUpdateBook
             // 
@@ -281,5 +288,6 @@
         private System.Windows.Forms.TextBox txtUpdateBookAuthor;
         private System.Windows.Forms.TextBox txtUpdateBookTitle;
         private System.Windows.Forms.DateTimePicker dtpUpdateBookPublication;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

@@ -81,29 +81,30 @@
             // mnuAddBook
             // 
             this.mnuAddBook.Name = "mnuAddBook";
-            this.mnuAddBook.Size = new System.Drawing.Size(180, 22);
+            this.mnuAddBook.Size = new System.Drawing.Size(142, 22);
             this.mnuAddBook.Text = "Add Book";
             this.mnuAddBook.Click += new System.EventHandler(this.mnuAddBook_Click);
             // 
             // mnuDeleteBook
             // 
             this.mnuDeleteBook.Name = "mnuDeleteBook";
-            this.mnuDeleteBook.Size = new System.Drawing.Size(180, 22);
+            this.mnuDeleteBook.Size = new System.Drawing.Size(142, 22);
             this.mnuDeleteBook.Text = "Delete Book";
             this.mnuDeleteBook.Click += new System.EventHandler(this.mnuDeleteBook_Click);
             // 
             // mnuUpdateBook
             // 
             this.mnuUpdateBook.Name = "mnuUpdateBook";
-            this.mnuUpdateBook.Size = new System.Drawing.Size(180, 22);
+            this.mnuUpdateBook.Size = new System.Drawing.Size(142, 22);
             this.mnuUpdateBook.Text = "Update Book";
             this.mnuUpdateBook.Click += new System.EventHandler(this.mnuUpdateBook_Click);
             // 
             // mnuViewBook
             // 
             this.mnuViewBook.Name = "mnuViewBook";
-            this.mnuViewBook.Size = new System.Drawing.Size(180, 22);
+            this.mnuViewBook.Size = new System.Drawing.Size(142, 22);
             this.mnuViewBook.Text = "View Book";
+            this.mnuViewBook.Click += new System.EventHandler(this.mnuViewBook_Click);
             // 
             // mnuMembers
             // 
@@ -188,6 +189,7 @@
             this.mnuExit.Name = "mnuExit";
             this.mnuExit.Size = new System.Drawing.Size(37, 20);
             this.mnuExit.Text = "Exit";
+            this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
             // pictureBox1
             // 
@@ -208,6 +210,8 @@
             this.MainMenuStrip = this.mnuMainMenu;
             this.Name = "frmMainMenu";
             this.Text = "LibrarySYS - [Main Menu]";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainMenu_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMainMenu_FormClosed);
             this.Load += new System.EventHandler(this.frmMainMenu_Load);
             this.mnuMainMenu.ResumeLayout(false);
             this.mnuMainMenu.PerformLayout();

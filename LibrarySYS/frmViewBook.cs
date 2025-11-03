@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace LibrarySYS
+{
+    public partial class frmViewBook : Form
+    {
+        frmMainMenu parent;
+
+        public String[] dummyData = {"B001", "The Hunger Games", "Suzanne Collins", "The Hunger Games book 1 written by Suzanne Collins",
+                                "Science Fiction", "Scholastic Press", "14/09/2008", "A"};
+
+
+        public frmViewBook()
+        {
+            InitializeComponent();
+        }
+        public frmViewBook(frmMainMenu Parent)
+        {
+            InitializeComponent();
+            this.parent = Parent;
+        }
+
+        private void frmViewBook_Load(object sender, EventArgs e)
+        {
+            grpViewBook.Visible = false;
+            dtpViewBookPublication.Enabled = false;
+            cboViewBookStatus.Enabled = false;
+            cboViewBookGenre.Enabled = false;
+        }
+
+        private void mnuViewBookExit_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+
+            if (confirmExit == DialogResult.Yes)
+            {
+                parent.Visible = true;
+                this.Close();
+            }
+        }
+
+        private void btnViewBookSearch_Click(object sender, EventArgs e)
+        {
+            grpViewBook.Visible = true;
+
+            txtViewBookTitle.Text = dummyData[1];
+            txtViewBookAuthor.Text = dummyData[2];
+            txtViewBookDescription.Text = dummyData[3];
+            cboViewBookGenre.Text = dummyData[4];
+            txtViewBookPublisher.Text = dummyData[5];
+            dtpViewBookPublication.Text = dummyData[6];
+            cboViewBookStatus.Text = dummyData[7];
+        }
+    }
+}
