@@ -46,11 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAddMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddMember.Designer.cs">
+      <DependentUpon>frmAddMember.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDeleteBook.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDeleteBook.Designer.cs">
       <DependentUpon>frmDeleteBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeleteMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeleteMember.Designer.cs">
+      <DependentUpon>frmDeleteMember.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMainMenu.cs">
       <SubType>Form</SubType>
@@ -78,8 +90,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddMember.resx">
+      <DependentUpon>frmAddMember.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDeleteBook.resx">
       <DependentUpon>frmDeleteBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeleteMember.resx">
+      <DependentUpon>frmDeleteMember.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainMenu.resx">
       <DependentUpon>frmMainMenu.cs</DependentUpon>

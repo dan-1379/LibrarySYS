@@ -75,5 +75,19 @@ namespace LibrarySYS
                 e.Cancel = true;
             }
         }
+
+        private void mnuAddMember_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmAddMember addMemberForm = new frmAddMember(this);
+            addMemberForm.Show();
+        }
+
+        private void mnuDeleteMember_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmDeleteMember deleteMemberForm = new frmDeleteMember(this);
+            deleteMemberForm.Show();
+        }
     }
 }

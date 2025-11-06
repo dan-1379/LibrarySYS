@@ -81,28 +81,28 @@
             // mnuAddBook
             // 
             this.mnuAddBook.Name = "mnuAddBook";
-            this.mnuAddBook.Size = new System.Drawing.Size(142, 22);
+            this.mnuAddBook.Size = new System.Drawing.Size(180, 22);
             this.mnuAddBook.Text = "Add Book";
             this.mnuAddBook.Click += new System.EventHandler(this.mnuAddBook_Click);
             // 
             // mnuDeleteBook
             // 
             this.mnuDeleteBook.Name = "mnuDeleteBook";
-            this.mnuDeleteBook.Size = new System.Drawing.Size(142, 22);
+            this.mnuDeleteBook.Size = new System.Drawing.Size(180, 22);
             this.mnuDeleteBook.Text = "Delete Book";
             this.mnuDeleteBook.Click += new System.EventHandler(this.mnuDeleteBook_Click);
             // 
             // mnuUpdateBook
             // 
             this.mnuUpdateBook.Name = "mnuUpdateBook";
-            this.mnuUpdateBook.Size = new System.Drawing.Size(142, 22);
+            this.mnuUpdateBook.Size = new System.Drawing.Size(180, 22);
             this.mnuUpdateBook.Text = "Update Book";
             this.mnuUpdateBook.Click += new System.EventHandler(this.mnuUpdateBook_Click);
             // 
             // mnuViewBook
             // 
             this.mnuViewBook.Name = "mnuViewBook";
-            this.mnuViewBook.Size = new System.Drawing.Size(142, 22);
+            this.mnuViewBook.Size = new System.Drawing.Size(180, 22);
             this.mnuViewBook.Text = "View Book";
             this.mnuViewBook.Click += new System.EventHandler(this.mnuViewBook_Click);
             // 
@@ -120,25 +120,27 @@
             // mnuAddMember
             // 
             this.mnuAddMember.Name = "mnuAddMember";
-            this.mnuAddMember.Size = new System.Drawing.Size(160, 22);
+            this.mnuAddMember.Size = new System.Drawing.Size(180, 22);
             this.mnuAddMember.Text = "Add Member";
+            this.mnuAddMember.Click += new System.EventHandler(this.mnuAddMember_Click);
             // 
             // mnuDeleteMember
             // 
             this.mnuDeleteMember.Name = "mnuDeleteMember";
-            this.mnuDeleteMember.Size = new System.Drawing.Size(160, 22);
+            this.mnuDeleteMember.Size = new System.Drawing.Size(180, 22);
             this.mnuDeleteMember.Text = "Delete Member";
+            this.mnuDeleteMember.Click += new System.EventHandler(this.mnuDeleteMember_Click);
             // 
             // mnuUpdateMember
             // 
             this.mnuUpdateMember.Name = "mnuUpdateMember";
-            this.mnuUpdateMember.Size = new System.Drawing.Size(160, 22);
+            this.mnuUpdateMember.Size = new System.Drawing.Size(180, 22);
             this.mnuUpdateMember.Text = "Update Member";
             // 
             // mnuViewMember
             // 
             this.mnuViewMember.Name = "mnuViewMember";
-            this.mnuViewMember.Size = new System.Drawing.Size(160, 22);
+            this.mnuViewMember.Size = new System.Drawing.Size(180, 22);
             this.mnuViewMember.Text = "View Member";
             // 
             // mnuLoans
