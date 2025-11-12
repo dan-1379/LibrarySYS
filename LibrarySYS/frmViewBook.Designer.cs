@@ -41,6 +41,8 @@
             this.lblViewBookISBN = new System.Windows.Forms.Label();
             this.lblViewBookTitle = new System.Windows.Forms.Label();
             this.grpViewBook = new System.Windows.Forms.GroupBox();
+            this.cboViewBookStatus = new System.Windows.Forms.ComboBox();
+            this.lblViewBookStatus = new System.Windows.Forms.Label();
             this.lblViewBookPublication = new System.Windows.Forms.Label();
             this.lblViewBookPublisher = new System.Windows.Forms.Label();
             this.lblViewBookGenre = new System.Windows.Forms.Label();
@@ -48,9 +50,7 @@
             this.lblViewBookAuthor = new System.Windows.Forms.Label();
             this.btnViewBookSearch = new System.Windows.Forms.Button();
             this.txtViewBookISBN = new System.Windows.Forms.TextBox();
-            this.lblViewBookStatus = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.cboViewBookStatus = new System.Windows.Forms.ComboBox();
             this.mnuViewBook.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.grpViewBook.SuspendLayout();
@@ -175,6 +175,30 @@
             this.grpViewBook.TabStop = false;
             this.grpViewBook.Text = "View Book";
             // 
+            // cboViewBookStatus
+            // 
+            this.cboViewBookStatus.FormattingEnabled = true;
+            this.cboViewBookStatus.Items.AddRange(new object[] {
+            "A",
+            "C",
+            "H",
+            "T",
+            "D",
+            "S"});
+            this.cboViewBookStatus.Location = new System.Drawing.Point(78, 309);
+            this.cboViewBookStatus.Name = "cboViewBookStatus";
+            this.cboViewBookStatus.Size = new System.Drawing.Size(201, 21);
+            this.cboViewBookStatus.TabIndex = 14;
+            // 
+            // lblViewBookStatus
+            // 
+            this.lblViewBookStatus.AutoSize = true;
+            this.lblViewBookStatus.Location = new System.Drawing.Point(13, 312);
+            this.lblViewBookStatus.Name = "lblViewBookStatus";
+            this.lblViewBookStatus.Size = new System.Drawing.Size(40, 13);
+            this.lblViewBookStatus.TabIndex = 13;
+            this.lblViewBookStatus.Text = "Status:";
+            // 
             // lblViewBookPublication
             // 
             this.lblViewBookPublication.AutoSize = true;
@@ -237,30 +261,6 @@
             this.txtViewBookISBN.Size = new System.Drawing.Size(131, 20);
             this.txtViewBookISBN.TabIndex = 6;
             // 
-            // lblViewBookStatus
-            // 
-            this.lblViewBookStatus.AutoSize = true;
-            this.lblViewBookStatus.Location = new System.Drawing.Point(13, 312);
-            this.lblViewBookStatus.Name = "lblViewBookStatus";
-            this.lblViewBookStatus.Size = new System.Drawing.Size(40, 13);
-            this.lblViewBookStatus.TabIndex = 13;
-            this.lblViewBookStatus.Text = "Status:";
-            // 
-            // cboViewBookStatus
-            // 
-            this.cboViewBookStatus.FormattingEnabled = true;
-            this.cboViewBookStatus.Items.AddRange(new object[] {
-            "A",
-            "C",
-            "H",
-            "T",
-            "D",
-            "S"});
-            this.cboViewBookStatus.Location = new System.Drawing.Point(78, 309);
-            this.cboViewBookStatus.Name = "cboViewBookStatus";
-            this.cboViewBookStatus.Size = new System.Drawing.Size(201, 21);
-            this.cboViewBookStatus.TabIndex = 14;
-            // 
             // frmViewBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,7 +273,7 @@
             this.Controls.Add(this.mnuViewBook);
             this.MainMenuStrip = this.mnuViewBook;
             this.Name = "frmViewBook";
-            this.Text = "frmViewBook";
+            this.Text = "Books - [View Book]";
             this.Load += new System.EventHandler(this.frmViewBook_Load);
             this.mnuViewBook.ResumeLayout(false);
             this.mnuViewBook.PerformLayout();

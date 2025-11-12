@@ -31,27 +31,27 @@
             this.mnuAddMember = new System.Windows.Forms.MenuStrip();
             this.mnuAddMemberExit = new System.Windows.Forms.ToolStripMenuItem();
             this.grpAddMember = new System.Windows.Forms.GroupBox();
-            this.lblAddMemberFName = new System.Windows.Forms.Label();
-            this.lblAddMemberLName = new System.Windows.Forms.Label();
-            this.lblAddMemberDOB = new System.Windows.Forms.Label();
-            this.lblAddMemberPhone = new System.Windows.Forms.Label();
-            this.lblAddMemberEmail = new System.Windows.Forms.Label();
-            this.lblAddMemberAddress1 = new System.Windows.Forms.Label();
-            this.lblAddMemberAddress2 = new System.Windows.Forms.Label();
-            this.lblAddMemberTown = new System.Windows.Forms.Label();
-            this.lblAddMemberCounty = new System.Windows.Forms.Label();
-            this.lblAddMemberEircode = new System.Windows.Forms.Label();
-            this.btnAddMember = new System.Windows.Forms.Button();
-            this.txtAddMemberFName = new System.Windows.Forms.TextBox();
-            this.txtAddMemberLName = new System.Windows.Forms.TextBox();
-            this.txtAddMemberDOB = new System.Windows.Forms.TextBox();
-            this.txtAddMemberPhone = new System.Windows.Forms.TextBox();
-            this.txtAddMemberEmail = new System.Windows.Forms.TextBox();
-            this.txtAddMemberAddress1 = new System.Windows.Forms.TextBox();
-            this.txtAddMemberAddress2 = new System.Windows.Forms.TextBox();
-            this.txtAddMemberTown = new System.Windows.Forms.TextBox();
-            this.txtAddMemberCounty = new System.Windows.Forms.TextBox();
             this.txtAddMemberEircode = new System.Windows.Forms.TextBox();
+            this.txtAddMemberCounty = new System.Windows.Forms.TextBox();
+            this.txtAddMemberTown = new System.Windows.Forms.TextBox();
+            this.txtAddMemberAddress2 = new System.Windows.Forms.TextBox();
+            this.txtAddMemberAddress1 = new System.Windows.Forms.TextBox();
+            this.txtAddMemberEmail = new System.Windows.Forms.TextBox();
+            this.txtAddMemberPhone = new System.Windows.Forms.TextBox();
+            this.txtAddMemberDOB = new System.Windows.Forms.TextBox();
+            this.txtAddMemberLName = new System.Windows.Forms.TextBox();
+            this.txtAddMemberFName = new System.Windows.Forms.TextBox();
+            this.btnAddMember = new System.Windows.Forms.Button();
+            this.lblAddMemberEircode = new System.Windows.Forms.Label();
+            this.lblAddMemberCounty = new System.Windows.Forms.Label();
+            this.lblAddMemberTown = new System.Windows.Forms.Label();
+            this.lblAddMemberAddress2 = new System.Windows.Forms.Label();
+            this.lblAddMemberAddress1 = new System.Windows.Forms.Label();
+            this.lblAddMemberEmail = new System.Windows.Forms.Label();
+            this.lblAddMemberPhone = new System.Windows.Forms.Label();
+            this.lblAddMemberDOB = new System.Windows.Forms.Label();
+            this.lblAddMemberLName = new System.Windows.Forms.Label();
+            this.lblAddMemberFName = new System.Windows.Forms.Label();
             this.mnuAddMember.SuspendLayout();
             this.grpAddMember.SuspendLayout();
             this.SuspendLayout();
@@ -106,95 +106,75 @@
             this.grpAddMember.TabStop = false;
             this.grpAddMember.Text = "Add Member";
             // 
-            // lblAddMemberFName
+            // txtAddMemberEircode
             // 
-            this.lblAddMemberFName.AutoSize = true;
-            this.lblAddMemberFName.Location = new System.Drawing.Point(7, 33);
-            this.lblAddMemberFName.Name = "lblAddMemberFName";
-            this.lblAddMemberFName.Size = new System.Drawing.Size(60, 13);
-            this.lblAddMemberFName.TabIndex = 0;
-            this.lblAddMemberFName.Text = "First Name:";
+            this.txtAddMemberEircode.Location = new System.Drawing.Point(107, 364);
+            this.txtAddMemberEircode.Name = "txtAddMemberEircode";
+            this.txtAddMemberEircode.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberEircode.TabIndex = 20;
             // 
-            // lblAddMemberLName
+            // txtAddMemberCounty
             // 
-            this.lblAddMemberLName.AutoSize = true;
-            this.lblAddMemberLName.Location = new System.Drawing.Point(6, 71);
-            this.lblAddMemberLName.Name = "lblAddMemberLName";
-            this.lblAddMemberLName.Size = new System.Drawing.Size(61, 13);
-            this.lblAddMemberLName.TabIndex = 1;
-            this.lblAddMemberLName.Text = "Last Name:";
+            this.txtAddMemberCounty.Location = new System.Drawing.Point(107, 324);
+            this.txtAddMemberCounty.Name = "txtAddMemberCounty";
+            this.txtAddMemberCounty.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberCounty.TabIndex = 19;
             // 
-            // lblAddMemberDOB
+            // txtAddMemberTown
             // 
-            this.lblAddMemberDOB.AutoSize = true;
-            this.lblAddMemberDOB.Location = new System.Drawing.Point(4, 102);
-            this.lblAddMemberDOB.Name = "lblAddMemberDOB";
-            this.lblAddMemberDOB.Size = new System.Drawing.Size(39, 13);
-            this.lblAddMemberDOB.TabIndex = 2;
-            this.lblAddMemberDOB.Text = "D.O.B:";
+            this.txtAddMemberTown.Location = new System.Drawing.Point(107, 280);
+            this.txtAddMemberTown.Name = "txtAddMemberTown";
+            this.txtAddMemberTown.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberTown.TabIndex = 18;
             // 
-            // lblAddMemberPhone
+            // txtAddMemberAddress2
             // 
-            this.lblAddMemberPhone.AutoSize = true;
-            this.lblAddMemberPhone.Location = new System.Drawing.Point(6, 134);
-            this.lblAddMemberPhone.Name = "lblAddMemberPhone";
-            this.lblAddMemberPhone.Size = new System.Drawing.Size(41, 13);
-            this.lblAddMemberPhone.TabIndex = 3;
-            this.lblAddMemberPhone.Text = "Phone:";
+            this.txtAddMemberAddress2.Location = new System.Drawing.Point(107, 243);
+            this.txtAddMemberAddress2.Name = "txtAddMemberAddress2";
+            this.txtAddMemberAddress2.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberAddress2.TabIndex = 17;
             // 
-            // lblAddMemberEmail
+            // txtAddMemberAddress1
             // 
-            this.lblAddMemberEmail.AutoSize = true;
-            this.lblAddMemberEmail.Location = new System.Drawing.Point(6, 174);
-            this.lblAddMemberEmail.Name = "lblAddMemberEmail";
-            this.lblAddMemberEmail.Size = new System.Drawing.Size(35, 13);
-            this.lblAddMemberEmail.TabIndex = 4;
-            this.lblAddMemberEmail.Text = "Email:";
+            this.txtAddMemberAddress1.Location = new System.Drawing.Point(107, 206);
+            this.txtAddMemberAddress1.Name = "txtAddMemberAddress1";
+            this.txtAddMemberAddress1.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberAddress1.TabIndex = 16;
             // 
-            // lblAddMemberAddress1
+            // txtAddMemberEmail
             // 
-            this.lblAddMemberAddress1.AutoSize = true;
-            this.lblAddMemberAddress1.Location = new System.Drawing.Point(6, 209);
-            this.lblAddMemberAddress1.Name = "lblAddMemberAddress1";
-            this.lblAddMemberAddress1.Size = new System.Drawing.Size(80, 13);
-            this.lblAddMemberAddress1.TabIndex = 5;
-            this.lblAddMemberAddress1.Text = "Address Line 1:";
+            this.txtAddMemberEmail.Location = new System.Drawing.Point(107, 171);
+            this.txtAddMemberEmail.Name = "txtAddMemberEmail";
+            this.txtAddMemberEmail.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberEmail.TabIndex = 15;
             // 
-            // lblAddMemberAddress2
+            // txtAddMemberPhone
             // 
-            this.lblAddMemberAddress2.AutoSize = true;
-            this.lblAddMemberAddress2.Location = new System.Drawing.Point(6, 246);
-            this.lblAddMemberAddress2.Name = "lblAddMemberAddress2";
-            this.lblAddMemberAddress2.Size = new System.Drawing.Size(80, 13);
-            this.lblAddMemberAddress2.TabIndex = 6;
-            this.lblAddMemberAddress2.Text = "Address Line 2:";
+            this.txtAddMemberPhone.Location = new System.Drawing.Point(107, 131);
+            this.txtAddMemberPhone.Name = "txtAddMemberPhone";
+            this.txtAddMemberPhone.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberPhone.TabIndex = 14;
             // 
-            // lblAddMemberTown
+            // txtAddMemberDOB
             // 
-            this.lblAddMemberTown.AutoSize = true;
-            this.lblAddMemberTown.Location = new System.Drawing.Point(6, 283);
-            this.lblAddMemberTown.Name = "lblAddMemberTown";
-            this.lblAddMemberTown.Size = new System.Drawing.Size(65, 13);
-            this.lblAddMemberTown.TabIndex = 7;
-            this.lblAddMemberTown.Text = "Town / City:";
+            this.txtAddMemberDOB.Location = new System.Drawing.Point(107, 99);
+            this.txtAddMemberDOB.Name = "txtAddMemberDOB";
+            this.txtAddMemberDOB.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberDOB.TabIndex = 13;
             // 
-            // lblAddMemberCounty
+            // txtAddMemberLName
             // 
-            this.lblAddMemberCounty.AutoSize = true;
-            this.lblAddMemberCounty.Location = new System.Drawing.Point(4, 327);
-            this.lblAddMemberCounty.Name = "lblAddMemberCounty";
-            this.lblAddMemberCounty.Size = new System.Drawing.Size(43, 13);
-            this.lblAddMemberCounty.TabIndex = 8;
-            this.lblAddMemberCounty.Text = "County:";
+            this.txtAddMemberLName.Location = new System.Drawing.Point(107, 68);
+            this.txtAddMemberLName.Name = "txtAddMemberLName";
+            this.txtAddMemberLName.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberLName.TabIndex = 12;
             // 
-            // lblAddMemberEircode
+            // txtAddMemberFName
             // 
-            this.lblAddMemberEircode.AutoSize = true;
-            this.lblAddMemberEircode.Location = new System.Drawing.Point(6, 367);
-            this.lblAddMemberEircode.Name = "lblAddMemberEircode";
-            this.lblAddMemberEircode.Size = new System.Drawing.Size(46, 13);
-            this.lblAddMemberEircode.TabIndex = 9;
-            this.lblAddMemberEircode.Text = "Eircode:";
+            this.txtAddMemberFName.Location = new System.Drawing.Point(107, 30);
+            this.txtAddMemberFName.Name = "txtAddMemberFName";
+            this.txtAddMemberFName.Size = new System.Drawing.Size(190, 20);
+            this.txtAddMemberFName.TabIndex = 11;
             // 
             // btnAddMember
             // 
@@ -206,75 +186,95 @@
             this.btnAddMember.UseVisualStyleBackColor = true;
             this.btnAddMember.Click += new System.EventHandler(this.btnAddMember_Click);
             // 
-            // txtAddMemberFName
+            // lblAddMemberEircode
             // 
-            this.txtAddMemberFName.Location = new System.Drawing.Point(107, 30);
-            this.txtAddMemberFName.Name = "txtAddMemberFName";
-            this.txtAddMemberFName.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberFName.TabIndex = 11;
+            this.lblAddMemberEircode.AutoSize = true;
+            this.lblAddMemberEircode.Location = new System.Drawing.Point(6, 367);
+            this.lblAddMemberEircode.Name = "lblAddMemberEircode";
+            this.lblAddMemberEircode.Size = new System.Drawing.Size(46, 13);
+            this.lblAddMemberEircode.TabIndex = 9;
+            this.lblAddMemberEircode.Text = "Eircode:";
             // 
-            // txtAddMemberLName
+            // lblAddMemberCounty
             // 
-            this.txtAddMemberLName.Location = new System.Drawing.Point(107, 68);
-            this.txtAddMemberLName.Name = "txtAddMemberLName";
-            this.txtAddMemberLName.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberLName.TabIndex = 12;
+            this.lblAddMemberCounty.AutoSize = true;
+            this.lblAddMemberCounty.Location = new System.Drawing.Point(4, 327);
+            this.lblAddMemberCounty.Name = "lblAddMemberCounty";
+            this.lblAddMemberCounty.Size = new System.Drawing.Size(43, 13);
+            this.lblAddMemberCounty.TabIndex = 8;
+            this.lblAddMemberCounty.Text = "County:";
             // 
-            // txtAddMemberDOB
+            // lblAddMemberTown
             // 
-            this.txtAddMemberDOB.Location = new System.Drawing.Point(107, 99);
-            this.txtAddMemberDOB.Name = "txtAddMemberDOB";
-            this.txtAddMemberDOB.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberDOB.TabIndex = 13;
+            this.lblAddMemberTown.AutoSize = true;
+            this.lblAddMemberTown.Location = new System.Drawing.Point(6, 283);
+            this.lblAddMemberTown.Name = "lblAddMemberTown";
+            this.lblAddMemberTown.Size = new System.Drawing.Size(65, 13);
+            this.lblAddMemberTown.TabIndex = 7;
+            this.lblAddMemberTown.Text = "Town / City:";
             // 
-            // txtAddMemberPhone
+            // lblAddMemberAddress2
             // 
-            this.txtAddMemberPhone.Location = new System.Drawing.Point(107, 131);
-            this.txtAddMemberPhone.Name = "txtAddMemberPhone";
-            this.txtAddMemberPhone.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberPhone.TabIndex = 14;
+            this.lblAddMemberAddress2.AutoSize = true;
+            this.lblAddMemberAddress2.Location = new System.Drawing.Point(6, 246);
+            this.lblAddMemberAddress2.Name = "lblAddMemberAddress2";
+            this.lblAddMemberAddress2.Size = new System.Drawing.Size(80, 13);
+            this.lblAddMemberAddress2.TabIndex = 6;
+            this.lblAddMemberAddress2.Text = "Address Line 2:";
             // 
-            // txtAddMemberEmail
+            // lblAddMemberAddress1
             // 
-            this.txtAddMemberEmail.Location = new System.Drawing.Point(107, 171);
-            this.txtAddMemberEmail.Name = "txtAddMemberEmail";
-            this.txtAddMemberEmail.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberEmail.TabIndex = 15;
+            this.lblAddMemberAddress1.AutoSize = true;
+            this.lblAddMemberAddress1.Location = new System.Drawing.Point(6, 209);
+            this.lblAddMemberAddress1.Name = "lblAddMemberAddress1";
+            this.lblAddMemberAddress1.Size = new System.Drawing.Size(80, 13);
+            this.lblAddMemberAddress1.TabIndex = 5;
+            this.lblAddMemberAddress1.Text = "Address Line 1:";
             // 
-            // txtAddMemberAddress1
+            // lblAddMemberEmail
             // 
-            this.txtAddMemberAddress1.Location = new System.Drawing.Point(107, 206);
-            this.txtAddMemberAddress1.Name = "txtAddMemberAddress1";
-            this.txtAddMemberAddress1.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberAddress1.TabIndex = 16;
+            this.lblAddMemberEmail.AutoSize = true;
+            this.lblAddMemberEmail.Location = new System.Drawing.Point(6, 174);
+            this.lblAddMemberEmail.Name = "lblAddMemberEmail";
+            this.lblAddMemberEmail.Size = new System.Drawing.Size(35, 13);
+            this.lblAddMemberEmail.TabIndex = 4;
+            this.lblAddMemberEmail.Text = "Email:";
             // 
-            // txtAddMemberAddress2
+            // lblAddMemberPhone
             // 
-            this.txtAddMemberAddress2.Location = new System.Drawing.Point(107, 243);
-            this.txtAddMemberAddress2.Name = "txtAddMemberAddress2";
-            this.txtAddMemberAddress2.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberAddress2.TabIndex = 17;
+            this.lblAddMemberPhone.AutoSize = true;
+            this.lblAddMemberPhone.Location = new System.Drawing.Point(6, 134);
+            this.lblAddMemberPhone.Name = "lblAddMemberPhone";
+            this.lblAddMemberPhone.Size = new System.Drawing.Size(41, 13);
+            this.lblAddMemberPhone.TabIndex = 3;
+            this.lblAddMemberPhone.Text = "Phone:";
             // 
-            // txtAddMemberTown
+            // lblAddMemberDOB
             // 
-            this.txtAddMemberTown.Location = new System.Drawing.Point(107, 280);
-            this.txtAddMemberTown.Name = "txtAddMemberTown";
-            this.txtAddMemberTown.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberTown.TabIndex = 18;
+            this.lblAddMemberDOB.AutoSize = true;
+            this.lblAddMemberDOB.Location = new System.Drawing.Point(4, 102);
+            this.lblAddMemberDOB.Name = "lblAddMemberDOB";
+            this.lblAddMemberDOB.Size = new System.Drawing.Size(39, 13);
+            this.lblAddMemberDOB.TabIndex = 2;
+            this.lblAddMemberDOB.Text = "D.O.B:";
             // 
-            // txtAddMemberCounty
+            // lblAddMemberLName
             // 
-            this.txtAddMemberCounty.Location = new System.Drawing.Point(107, 324);
-            this.txtAddMemberCounty.Name = "txtAddMemberCounty";
-            this.txtAddMemberCounty.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberCounty.TabIndex = 19;
+            this.lblAddMemberLName.AutoSize = true;
+            this.lblAddMemberLName.Location = new System.Drawing.Point(6, 71);
+            this.lblAddMemberLName.Name = "lblAddMemberLName";
+            this.lblAddMemberLName.Size = new System.Drawing.Size(61, 13);
+            this.lblAddMemberLName.TabIndex = 1;
+            this.lblAddMemberLName.Text = "Last Name:";
             // 
-            // txtAddMemberEircode
+            // lblAddMemberFName
             // 
-            this.txtAddMemberEircode.Location = new System.Drawing.Point(107, 364);
-            this.txtAddMemberEircode.Name = "txtAddMemberEircode";
-            this.txtAddMemberEircode.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberEircode.TabIndex = 20;
+            this.lblAddMemberFName.AutoSize = true;
+            this.lblAddMemberFName.Location = new System.Drawing.Point(7, 33);
+            this.lblAddMemberFName.Name = "lblAddMemberFName";
+            this.lblAddMemberFName.Size = new System.Drawing.Size(60, 13);
+            this.lblAddMemberFName.TabIndex = 0;
+            this.lblAddMemberFName.Text = "First Name:";
             // 
             // frmAddMember
             // 
@@ -285,7 +285,7 @@
             this.Controls.Add(this.mnuAddMember);
             this.MainMenuStrip = this.mnuAddMember;
             this.Name = "frmAddMember";
-            this.Text = "frmAddMember";
+            this.Text = "Members - [Add Member]";
             this.Load += new System.EventHandler(this.frmAddMember_Load);
             this.Shown += new System.EventHandler(this.frmAddMember_Shown);
             this.mnuAddMember.ResumeLayout(false);

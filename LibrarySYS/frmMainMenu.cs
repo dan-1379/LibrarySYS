@@ -89,5 +89,19 @@ namespace LibrarySYS
             frmDeleteMember deleteMemberForm = new frmDeleteMember(this);
             deleteMemberForm.Show();
         }
+
+        private void mnuUpdateMember_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmUpdateMember updateMemberForm = new frmUpdateMember(this);
+            updateMemberForm.Show();
+        }
+
+        private void mnuViewMember_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmViewMember viewMemberForm = new frmViewMember(this);
+            viewMemberForm.Show();
+        }
     }
 }
