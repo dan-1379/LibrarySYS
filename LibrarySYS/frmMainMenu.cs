@@ -103,5 +103,12 @@ namespace LibrarySYS
             frmViewMember viewMemberForm = new frmViewMember(this);
             viewMemberForm.Show();
         }
+
+        private void mnuProcessLoan_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmProcessLoan processLoanForm = new frmProcessLoan(this);
+            processLoanForm.Show();
+        }
     }
 }

@@ -76,6 +76,12 @@
     <Compile Include="frmAddBook.Designer.cs">
       <DependentUpon>frmAddBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProcessLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProcessLoan.Designer.cs">
+      <DependentUpon>frmProcessLoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUpdateBook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddBook.resx">
       <DependentUpon>frmAddBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProcessLoan.resx">
+      <DependentUpon>frmProcessLoan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateBook.resx">
       <DependentUpon>frmUpdateBook.cs</DependentUpon>

@@ -120,28 +120,28 @@
             // mnuAddMember
             // 
             this.mnuAddMember.Name = "mnuAddMember";
-            this.mnuAddMember.Size = new System.Drawing.Size(180, 22);
+            this.mnuAddMember.Size = new System.Drawing.Size(160, 22);
             this.mnuAddMember.Text = "Add Member";
             this.mnuAddMember.Click += new System.EventHandler(this.mnuAddMember_Click);
             // 
             // mnuDeleteMember
             // 
             this.mnuDeleteMember.Name = "mnuDeleteMember";
-            this.mnuDeleteMember.Size = new System.Drawing.Size(180, 22);
+            this.mnuDeleteMember.Size = new System.Drawing.Size(160, 22);
             this.mnuDeleteMember.Text = "Delete Member";
             this.mnuDeleteMember.Click += new System.EventHandler(this.mnuDeleteMember_Click);
             // 
             // mnuUpdateMember
             // 
             this.mnuUpdateMember.Name = "mnuUpdateMember";
-            this.mnuUpdateMember.Size = new System.Drawing.Size(180, 22);
+            this.mnuUpdateMember.Size = new System.Drawing.Size(160, 22);
             this.mnuUpdateMember.Text = "Update Member";
             this.mnuUpdateMember.Click += new System.EventHandler(this.mnuUpdateMember_Click);
             // 
             // mnuViewMember
             // 
             this.mnuViewMember.Name = "mnuViewMember";
-            this.mnuViewMember.Size = new System.Drawing.Size(180, 22);
+            this.mnuViewMember.Size = new System.Drawing.Size(160, 22);
             this.mnuViewMember.Text = "View Member";
             this.mnuViewMember.Click += new System.EventHandler(this.mnuViewMember_Click);
             // 
@@ -157,13 +157,14 @@
             // mnuProcessLoan
             // 
             this.mnuProcessLoan.Name = "mnuProcessLoan";
-            this.mnuProcessLoan.Size = new System.Drawing.Size(152, 22);
+            this.mnuProcessLoan.Size = new System.Drawing.Size(180, 22);
             this.mnuProcessLoan.Text = "Process Loan";
+            this.mnuProcessLoan.Click += new System.EventHandler(this.mnuProcessLoan_Click);
             // 
             // mnuProcessReturn
             // 
             this.mnuProcessReturn.Name = "mnuProcessReturn";
-            this.mnuProcessReturn.Size = new System.Drawing.Size(152, 22);
+            this.mnuProcessReturn.Size = new System.Drawing.Size(180, 22);
             this.mnuProcessReturn.Text = "Process Return";
             // 
             // mnuAdmin
