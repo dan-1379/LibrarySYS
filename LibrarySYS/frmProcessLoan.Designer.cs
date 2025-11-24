@@ -93,6 +93,7 @@
             this.txtProcessLoanMemberID.Name = "txtProcessLoanMemberID";
             this.txtProcessLoanMemberID.Size = new System.Drawing.Size(129, 20);
             this.txtProcessLoanMemberID.TabIndex = 2;
+            this.txtProcessLoanMemberID.TextChanged += new System.EventHandler(this.txtProcessLoanMemberID_TextChanged);
             // 
             // btnProcessLoanSearchID
             // 
@@ -130,16 +131,16 @@
             this.grpProcessLoan.Controls.Add(this.lblProcessLoanTitle);
             this.grpProcessLoan.Location = new System.Drawing.Point(15, 81);
             this.grpProcessLoan.Name = "grpProcessLoan";
-            this.grpProcessLoan.Size = new System.Drawing.Size(773, 463);
+            this.grpProcessLoan.Size = new System.Drawing.Size(773, 427);
             this.grpProcessLoan.TabIndex = 4;
             this.grpProcessLoan.TabStop = false;
             this.grpProcessLoan.Text = "Process Loan";
             // 
             // btnProcessLoanLoanBooks
             // 
-            this.btnProcessLoanLoanBooks.Location = new System.Drawing.Point(637, 362);
+            this.btnProcessLoanLoanBooks.Location = new System.Drawing.Point(574, 362);
             this.btnProcessLoanLoanBooks.Name = "btnProcessLoanLoanBooks";
-            this.btnProcessLoanLoanBooks.Size = new System.Drawing.Size(118, 37);
+            this.btnProcessLoanLoanBooks.Size = new System.Drawing.Size(181, 37);
             this.btnProcessLoanLoanBooks.TabIndex = 21;
             this.btnProcessLoanLoanBooks.Text = "Loan Books";
             this.btnProcessLoanLoanBooks.UseVisualStyleBackColor = true;
@@ -147,9 +148,9 @@
             // 
             // btnProcessLoanRemove
             // 
-            this.btnProcessLoanRemove.Location = new System.Drawing.Point(560, 362);
+            this.btnProcessLoanRemove.Location = new System.Drawing.Point(495, 362);
             this.btnProcessLoanRemove.Name = "btnProcessLoanRemove";
-            this.btnProcessLoanRemove.Size = new System.Drawing.Size(60, 37);
+            this.btnProcessLoanRemove.Size = new System.Drawing.Size(73, 37);
             this.btnProcessLoanRemove.TabIndex = 20;
             this.btnProcessLoanRemove.Text = "Remove";
             this.btnProcessLoanRemove.UseVisualStyleBackColor = true;
@@ -184,7 +185,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(557, 35);
+            this.label1.Location = new System.Drawing.Point(492, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 16;
@@ -193,9 +194,9 @@
             // clbProcessLoan
             // 
             this.clbProcessLoan.FormattingEnabled = true;
-            this.clbProcessLoan.Location = new System.Drawing.Point(560, 51);
+            this.clbProcessLoan.Location = new System.Drawing.Point(495, 51);
             this.clbProcessLoan.Name = "clbProcessLoan";
-            this.clbProcessLoan.Size = new System.Drawing.Size(195, 289);
+            this.clbProcessLoan.Size = new System.Drawing.Size(260, 289);
             this.clbProcessLoan.TabIndex = 15;
             this.clbProcessLoan.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -334,7 +335,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 556);
+            this.ClientSize = new System.Drawing.Size(800, 526);
             this.Controls.Add(this.grpProcessLoan);
             this.Controls.Add(this.btnProcessLoanSearchID);
             this.Controls.Add(this.txtProcessLoanMemberID);

@@ -63,6 +63,12 @@ namespace LibrarySYS
 
             for (int i = 0; i < dummyBookDetails.Length; i++)
             {
+                if (ISBN == "")
+                {
+                    MessageBox.Show("Please enter an ISBN to search.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                };
+
                 if (dummyBookDetails[i, 0] == ISBN)
                 {
                     txtProcessLoanTitle.Text = dummyBookDetails[i, 1];
@@ -125,6 +131,19 @@ namespace LibrarySYS
             {
                 parent.Visible = true;
                 this.Close();
+            }
+        }
+
+        private void txtProcessLoanMemberID_TextChanged(object sender, EventArgs e)
+        {
+            DialogResult confirmExit = MessageBox.Show("This member has €12.70 in active fines. Pay the fines?", 
+                "Active Fines", MessageBoxButtons.YesNo);
+
+            if (confirmExit == DialogResult.Yes)
+            {
+                frmPayFines payFinesForm = new frmPayFines(this);
+                payFinesForm.Show();
+                this.Hide();
             }
         }
     }
