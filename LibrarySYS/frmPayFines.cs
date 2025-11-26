@@ -12,13 +12,13 @@ namespace LibrarySYS
 {
     public partial class frmPayFines : Form
     {
-        frmProcessLoan parent;
+        Form parent;
         public frmPayFines()
         {
             InitializeComponent();
         }
 
-        public frmPayFines(frmProcessLoan Parent)
+        public frmPayFines(Form Parent)
         {
             InitializeComponent();
             parent = Parent;

@@ -166,6 +166,7 @@
             this.mnuProcessReturn.Name = "mnuProcessReturn";
             this.mnuProcessReturn.Size = new System.Drawing.Size(180, 22);
             this.mnuProcessReturn.Text = "Process Return";
+            this.mnuProcessReturn.Click += new System.EventHandler(this.mnuProcessReturn_Click);
             // 
             // mnuAdmin
             // 

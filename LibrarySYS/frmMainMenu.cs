@@ -110,5 +110,12 @@ namespace LibrarySYS
             frmProcessLoan processLoanForm = new frmProcessLoan(this);
             processLoanForm.Show();
         }
+
+        private void mnuProcessReturn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmProcessReturn processReturnForm = new frmProcessReturn(this);
+            processReturnForm.Show();
+        }
     }
 }

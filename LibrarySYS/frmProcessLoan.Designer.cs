@@ -39,7 +39,7 @@
             this.btnProcessLoanSearchISBN = new System.Windows.Forms.Button();
             this.txtProcessLoanISBN = new System.Windows.Forms.TextBox();
             this.lblProcessLoanISBN = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblProcessLoanCart = new System.Windows.Forms.Label();
             this.clbProcessLoan = new System.Windows.Forms.CheckedListBox();
             this.btnProcessLoanAdd = new System.Windows.Forms.Button();
             this.dtpProcessLoanPublication = new System.Windows.Forms.DateTimePicker();
@@ -112,7 +112,7 @@
             this.grpProcessLoan.Controls.Add(this.btnProcessLoanSearchISBN);
             this.grpProcessLoan.Controls.Add(this.txtProcessLoanISBN);
             this.grpProcessLoan.Controls.Add(this.lblProcessLoanISBN);
-            this.grpProcessLoan.Controls.Add(this.label1);
+            this.grpProcessLoan.Controls.Add(this.lblProcessLoanCart);
             this.grpProcessLoan.Controls.Add(this.clbProcessLoan);
             this.grpProcessLoan.Controls.Add(this.btnProcessLoanAdd);
             this.grpProcessLoan.Controls.Add(this.dtpProcessLoanPublication);
@@ -182,14 +182,14 @@
             this.lblProcessLoanISBN.TabIndex = 17;
             this.lblProcessLoanISBN.Text = "ISBN:";
             // 
-            // label1
+            // lblProcessLoanCart
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(492, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Current Cart";
+            this.lblProcessLoanCart.AutoSize = true;
+            this.lblProcessLoanCart.Location = new System.Drawing.Point(492, 31);
+            this.lblProcessLoanCart.Name = "lblProcessLoanCart";
+            this.lblProcessLoanCart.Size = new System.Drawing.Size(63, 13);
+            this.lblProcessLoanCart.TabIndex = 16;
+            this.lblProcessLoanCart.Text = "Current Cart";
             // 
             // clbProcessLoan
             // 
@@ -379,7 +379,7 @@
         private System.Windows.Forms.Button btnProcessLoanAdd;
         private System.Windows.Forms.CheckedListBox clbProcessLoan;
         private System.Windows.Forms.Label lblProcessLoanISBN;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblProcessLoanCart;
         private System.Windows.Forms.Button btnProcessLoanLoanBooks;
         private System.Windows.Forms.Button btnProcessLoanRemove;
         private System.Windows.Forms.Button btnProcessLoanSearchISBN;
