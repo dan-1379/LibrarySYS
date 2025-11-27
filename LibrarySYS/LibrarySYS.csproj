@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -94,6 +95,18 @@
     <Compile Include="frmProcessReturn.Designer.cs">
       <DependentUpon>frmProcessReturn.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProduceYearlyFineReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProduceYearlyFineReport.Designer.cs">
+      <DependentUpon>frmProduceYearlyFineReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProduceYearlyGenreReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProduceYearlyGenreReport.Designer.cs">
+      <DependentUpon>frmProduceYearlyGenreReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUpdateBook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +156,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmProcessReturn.resx">
       <DependentUpon>frmProcessReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProduceYearlyFineReport.resx">
+      <DependentUpon>frmProduceYearlyFineReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProduceYearlyGenreReport.resx">
+      <DependentUpon>frmProduceYearlyGenreReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateBook.resx">
       <DependentUpon>frmUpdateBook.cs</DependentUpon>

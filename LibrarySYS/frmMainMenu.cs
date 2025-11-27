@@ -117,5 +117,19 @@ namespace LibrarySYS
             frmProcessReturn processReturnForm = new frmProcessReturn(this);
             processReturnForm.Show();
         }
+
+        private void mnuProduceFineReport_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmProduceYearlyFineReport produceYearlyFineReportForm = new frmProduceYearlyFineReport(this);
+            produceYearlyFineReportForm.Show();
+        }
+
+        private void mnuProduceGenreReport_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmProduceYearlyGenreReport produceYearlyGenreReportForm = new frmProduceYearlyGenreReport(this);
+            produceYearlyGenreReportForm.Show();
+        }
     }
 }

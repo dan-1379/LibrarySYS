@@ -157,14 +157,14 @@
             // mnuProcessLoan
             // 
             this.mnuProcessLoan.Name = "mnuProcessLoan";
-            this.mnuProcessLoan.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcessLoan.Size = new System.Drawing.Size(152, 22);
             this.mnuProcessLoan.Text = "Process Loan";
             this.mnuProcessLoan.Click += new System.EventHandler(this.mnuProcessLoan_Click);
             // 
             // mnuProcessReturn
             // 
             this.mnuProcessReturn.Name = "mnuProcessReturn";
-            this.mnuProcessReturn.Size = new System.Drawing.Size(180, 22);
+            this.mnuProcessReturn.Size = new System.Drawing.Size(152, 22);
             this.mnuProcessReturn.Text = "Process Return";
             this.mnuProcessReturn.Click += new System.EventHandler(this.mnuProcessReturn_Click);
             // 
@@ -182,12 +182,14 @@
             this.mnuProduceFineReport.Name = "mnuProduceFineReport";
             this.mnuProduceFineReport.Size = new System.Drawing.Size(190, 22);
             this.mnuProduceFineReport.Text = "Produce Fine Report";
+            this.mnuProduceFineReport.Click += new System.EventHandler(this.mnuProduceFineReport_Click);
             // 
             // mnuProduceGenreReport
             // 
             this.mnuProduceGenreReport.Name = "mnuProduceGenreReport";
             this.mnuProduceGenreReport.Size = new System.Drawing.Size(190, 22);
             this.mnuProduceGenreReport.Text = "Produce Genre Report";
+            this.mnuProduceGenreReport.Click += new System.EventHandler(this.mnuProduceGenreReport_Click);
             // 
             // mnuExit
             // 

@@ -56,6 +56,8 @@
             this.btnProcessReturnSearchID = new System.Windows.Forms.Button();
             this.txtProcessReturnMemberID = new System.Windows.Forms.TextBox();
             this.lblProcessReturnMemberID = new System.Windows.Forms.Label();
+            this.lblProcessReturnCheckout = new System.Windows.Forms.Label();
+            this.dtpProcessReturnCheckout = new System.Windows.Forms.DateTimePicker();
             this.mnuProcessReturn.SuspendLayout();
             this.grpProcessReturn.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +82,8 @@
             // 
             // grpProcessReturn
             // 
+            this.grpProcessReturn.Controls.Add(this.dtpProcessReturnCheckout);
+            this.grpProcessReturn.Controls.Add(this.lblProcessReturnCheckout);
             this.grpProcessReturn.Controls.Add(this.btnProcessLoanReturnBooks);
             this.grpProcessReturn.Controls.Add(this.btnProcessReturnRemove);
             this.grpProcessReturn.Controls.Add(this.btnProcessLoanReturnISBN);
@@ -104,7 +108,7 @@
             this.grpProcessReturn.Controls.Add(this.lblProcessReturnTitle);
             this.grpProcessReturn.Location = new System.Drawing.Point(14, 50);
             this.grpProcessReturn.Name = "grpProcessReturn";
-            this.grpProcessReturn.Size = new System.Drawing.Size(773, 427);
+            this.grpProcessReturn.Size = new System.Drawing.Size(773, 460);
             this.grpProcessReturn.TabIndex = 5;
             this.grpProcessReturn.TabStop = false;
             this.grpProcessReturn.Text = "Process Loan";
@@ -175,7 +179,7 @@
             // 
             // btnProcessReturnAdd
             // 
-            this.btnProcessReturnAdd.Location = new System.Drawing.Point(96, 362);
+            this.btnProcessReturnAdd.Location = new System.Drawing.Point(96, 409);
             this.btnProcessReturnAdd.Name = "btnProcessReturnAdd";
             this.btnProcessReturnAdd.Size = new System.Drawing.Size(200, 37);
             this.btnProcessReturnAdd.TabIndex = 14;
@@ -331,11 +335,28 @@
             this.lblProcessReturnMemberID.TabIndex = 22;
             this.lblProcessReturnMemberID.Text = "Member ID:";
             // 
+            // lblProcessReturnCheckout
+            // 
+            this.lblProcessReturnCheckout.AutoSize = true;
+            this.lblProcessReturnCheckout.Location = new System.Drawing.Point(11, 362);
+            this.lblProcessReturnCheckout.Name = "lblProcessReturnCheckout";
+            this.lblProcessReturnCheckout.Size = new System.Drawing.Size(82, 13);
+            this.lblProcessReturnCheckout.TabIndex = 22;
+            this.lblProcessReturnCheckout.Text = "Checkout Date:";
+            // 
+            // dtpProcessReturnCheckout
+            // 
+            this.dtpProcessReturnCheckout.Enabled = false;
+            this.dtpProcessReturnCheckout.Location = new System.Drawing.Point(96, 356);
+            this.dtpProcessReturnCheckout.Name = "dtpProcessReturnCheckout";
+            this.dtpProcessReturnCheckout.Size = new System.Drawing.Size(200, 20);
+            this.dtpProcessReturnCheckout.TabIndex = 23;
+            // 
             // frmProcessReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 526);
+            this.ClientSize = new System.Drawing.Size(800, 529);
             this.Controls.Add(this.btnProcessReturnSearchID);
             this.Controls.Add(this.grpProcessReturn);
             this.Controls.Add(this.txtProcessReturnMemberID);
@@ -383,5 +404,7 @@
         private System.Windows.Forms.Button btnProcessReturnSearchID;
         private System.Windows.Forms.TextBox txtProcessReturnMemberID;
         private System.Windows.Forms.Label lblProcessReturnMemberID;
+        private System.Windows.Forms.DateTimePicker dtpProcessReturnCheckout;
+        private System.Windows.Forms.Label lblProcessReturnCheckout;
     }
 }
