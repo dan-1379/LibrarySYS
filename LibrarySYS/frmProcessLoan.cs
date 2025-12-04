@@ -25,11 +25,11 @@ namespace LibrarySYS
             Status
          */
         String[,] dummyBookDetails = {
-            {"978-0-439-02352-8", "The Hunger Games", "Suzanne Collins", "Dystopian Novel", "Young Adult", "Scholastic Press", "14/09/2008", "A" },
-            {"978-0-385-73794-4", "The Maze Runner", "James Dashner", "Dystopian Novel", "Young Adult", "Delacorte Press", "06/10/2009", "A"},
-            {"978-0-7432-7356-5", "Angels & Demons", "Dan Brown", "Thriller", "Fiction", "Pocket Books", "01/05/2000", "A"},
-            {"978-0-316-76948-0", "The Silent Patient", "Alex Michaelides", "Psychological Thriller", "Fiction", "Celadon Books", "05/02/2019", "A"},
-            {"978-1-250-03096-2", "Where the Crawdads Sing", "Delia Owens", "Mystery/Drama", "Fiction", "G.P. Putnam's Sons", "14/08/2018", "A"  }
+            {"1", "The Hunger Games", "Suzanne Collins", "Dystopian Novel", "Young Adult", "Scholastic Press", "14/09/2008", "A" },
+            {"2", "The Maze Runner", "James Dashner", "Dystopian Novel", "Young Adult", "Delacorte Press", "06/10/2009", "A"},
+            {"3", "Angels & Demons", "Dan Brown", "Thriller", "Fiction", "Pocket Books", "01/05/2000", "A"},
+            {"4", "The Silent Patient", "Alex Michaelides", "Psychological Thriller", "Fiction", "Celadon Books", "05/02/2019", "A"},
+            {"5", "Where the Crawdads Sing", "Delia Owens", "Mystery/Drama", "Fiction", "G.P. Putnam's Sons", "14/08/2018", "A"  }
         };
         public frmProcessLoan()
         {
@@ -144,6 +144,9 @@ namespace LibrarySYS
                 frmPayFines payFinesForm = new frmPayFines(this);
                 payFinesForm.Show();
                 this.Hide();
+            } else
+            {
+                MessageBox.Show("Cannot process loan with active fines.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

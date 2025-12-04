@@ -17,11 +17,11 @@ namespace LibrarySYS
         Form parent;
 
         String[,] dummyBookDetails = {
-            {"978-0-439-02352-8", "The Hunger Games", "Suzanne Collins", "Dystopian Novel", "Young Adult", "Scholastic Press", "14/09/2008", "A", "20/11/2025", "1.30"},
-            {"978-0-385-73794-4", "The Maze Runner", "James Dashner", "Dystopian Novel", "Young Adult", "Delacorte Press", "06/10/2009", "A", "20/11/2025", "1.30"},
-            {"978-0-7432-7356-5", "Angels & Demons", "Dan Brown", "Thriller", "Fiction", "Pocket Books", "01/05/2000", "A", "24/11/25", "0.00"},
-            {"978-0-316-76948-0", "The Silent Patient", "Alex Michaelides", "Psychological Thriller", "Fiction", "Celadon Books", "05/02/2019", "A", "24/11/2025", "0.00"},
-            {"978-1-250-03096-2", "Where the Crawdads Sing", "Delia Owens", "Mystery/Drama", "Fiction", "G.P. Putnam's Sons", "14/08/2018", "A",  "24/11/2025", "0.00"}
+            {"1", "The Hunger Games", "Suzanne Collins", "Dystopian Novel", "Young Adult", "Scholastic Press", "14/09/2008", "A", "20/11/2025", "1.30"},
+            {"2", "The Maze Runner", "James Dashner", "Dystopian Novel", "Young Adult", "Delacorte Press", "06/10/2009", "A", "20/11/2025", "1.30"},
+            {"3", "Angels & Demons", "Dan Brown", "Thriller", "Fiction", "Pocket Books", "01/05/2000", "A", "24/11/25", "0.00"},
+            {"4", "The Silent Patient", "Alex Michaelides", "Psychological Thriller", "Fiction", "Celadon Books", "05/02/2019", "A", "24/11/2025", "0.00"},
+            {"5", "Where the Crawdads Sing", "Delia Owens", "Mystery/Drama", "Fiction", "G.P. Putnam's Sons", "14/08/2018", "A",  "24/11/2025", "0.00"}
         };
         public frmProcessReturn()
         {
