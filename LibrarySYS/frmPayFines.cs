@@ -26,7 +26,8 @@ namespace LibrarySYS
 
         private void frmPayFines_Load(object sender, EventArgs e)
         {
-
+            txtPayFinesMemberID.Text = "M001";
+            txtPayFinesTotalAmount.Text = "25.00";
         }
 
         private void txtPayFinesCVV_TextChanged(object sender, EventArgs e)
@@ -49,7 +50,7 @@ namespace LibrarySYS
         {
             MessageBox.Show("Fines Paid Successfully!", "Payment Confirmation");
             this.Close();
-            parent.Visible = true;
+            parent.Show();
         }
     }
 }

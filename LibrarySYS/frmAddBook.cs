@@ -74,6 +74,20 @@ namespace LibrarySYS
                 dateOnly = publicationDate.ToString("dd/MM/yyyy");
             }
 
+            if (title == "")
+            {
+                MessageBox.Show("No data has been entered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtAddBookTitle.Focus();
+                return;
+            }
+
+            if (title == "1")
+            {
+                MessageBox.Show("Invalid data entered:\nPlease enter a book title", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtAddBookTitle.Focus();
+                return;
+            }
+
             MessageBox.Show("BOOK ADDED SUCCESSFULLY\n\n" +
                 $"\nBook_ID: \n{bookID}" +
                 $"\n\nTITLE: \n{title}" +

@@ -44,6 +44,19 @@ namespace LibrarySYS
         {
             String[] testData = {"The Hunger Games", "Suzanne Collins", "The Hunger Games book 1 written by Suzanne Collins", 
                                 "Science Fiction", "Scholastic Press", "14/09/2008", "A", "978-0-439-02352-8"};
+
+            String ISBN = txtDeleteBookISBN.Text;
+            if (ISBN == "")
+            {
+                MessageBox.Show("Invalid ISBN entered. Please try again.", "Invalid Input");
+                return;
+            }
+
+            if (ISBN == "1")
+            {
+                MessageBox.Show("ISBN " + ISBN + " not located. Please try again.", "Book Not Found");
+                return;
+            }
             
             grpDeleteBookDetails.Visible = true;
 

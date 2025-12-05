@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.crtProduceYearlyGenreReportChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblProduceYearlyGenreReportYear = new System.Windows.Forms.Label();
             this.cboProduceYearlyGenreReportYear = new System.Windows.Forms.ComboBox();
@@ -42,16 +42,17 @@
             // 
             // crtProduceYearlyGenreReportChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.crtProduceYearlyGenreReportChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.crtProduceYearlyGenreReportChart.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.crtProduceYearlyGenreReportChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.crtProduceYearlyGenreReportChart.Legends.Add(legend1);
             this.crtProduceYearlyGenreReportChart.Location = new System.Drawing.Point(15, 111);
             this.crtProduceYearlyGenreReportChart.Name = "crtProduceYearlyGenreReportChart";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.crtProduceYearlyGenreReportChart.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.crtProduceYearlyGenreReportChart.Series.Add(series1);
             this.crtProduceYearlyGenreReportChart.Size = new System.Drawing.Size(691, 313);
             this.crtProduceYearlyGenreReportChart.TabIndex = 8;
             this.crtProduceYearlyGenreReportChart.Text = "Fine Report";

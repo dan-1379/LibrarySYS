@@ -77,6 +77,7 @@
             // 
             this.txtPayFinesMemberID.Location = new System.Drawing.Point(94, 36);
             this.txtPayFinesMemberID.Name = "txtPayFinesMemberID";
+            this.txtPayFinesMemberID.ReadOnly = true;
             this.txtPayFinesMemberID.Size = new System.Drawing.Size(140, 20);
             this.txtPayFinesMemberID.TabIndex = 2;
             // 
@@ -93,6 +94,7 @@
             // 
             this.txtPayFinesTotalAmount.Location = new System.Drawing.Point(365, 36);
             this.txtPayFinesTotalAmount.Name = "txtPayFinesTotalAmount";
+            this.txtPayFinesTotalAmount.ReadOnly = true;
             this.txtPayFinesTotalAmount.Size = new System.Drawing.Size(134, 20);
             this.txtPayFinesTotalAmount.TabIndex = 4;
             // 

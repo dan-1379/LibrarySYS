@@ -37,20 +37,16 @@ namespace LibrarySYS
             crtProduceYearlyGenreReportChart.Series.Clear();
             crtProduceYearlyGenreReportChart.Series.Add("Genre Popularity");
 
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
 
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("January", 250);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Febuary", 350);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("March", 160);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("April", 180);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("May", 450);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("June", 500);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("July", 700);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("August", 900);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("September", 1250);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("October", 400);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("November", 300);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("December", 100);
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Young Adult", 250);
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Fantasy", 350);
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Horror", 160);
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Mystery", 180);
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Thriller", 450);
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Science Fiction", 500);
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Action", 400);
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Historical", 500);
 
             crtProduceYearlyGenreReportChart.ChartAreas[0].AxisX.Interval = 1;
             crtProduceYearlyGenreReportChart.ChartAreas[0].AxisX.Title = "Month";

@@ -117,9 +117,10 @@ namespace LibrarySYS
 
             if (confirmExit == DialogResult.Yes)
             {
+                this.Hide();
                 frmPayFines payFinesForm = new frmPayFines(this);
                 payFinesForm.ShowDialog();
-                this.Hide();
+                this.Show();
             } else
             {
                 MessageBox.Show("Please pay outstanding fines before returning books.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -131,20 +132,19 @@ namespace LibrarySYS
             if (clbProcessReturn.Items.Count == 0)
             {
                 MessageBox.Show("No books selected for loan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                DialogResult dr = MessageBox.Show("Are you sure you want to return the selected books?", "Confirm Loan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+           
+            DialogResult dr = MessageBox.Show("Are you sure you want to return the selected books?", "Confirm Loan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (dr == DialogResult.Yes)
-                {
-                    MessageBox.Show("Books returned successfully!", "Return Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    clbProcessReturn.Items.Clear();
-                    grpProcessReturn.Visible = false;
-                } else
-                {
-                    MessageBox.Show("Books not returned!", "Return not Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+            if (dr == DialogResult.Yes)
+            {
+                MessageBox.Show("Books returned successfully!", "Return Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clbProcessReturn.Items.Clear();
+                grpProcessReturn.Visible = false;
+            } else
+            {
+                MessageBox.Show("Books not returned!", "Return not Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
