@@ -49,15 +49,20 @@ namespace LibrarySYS
 
         private void btnViewBookSearch_Click(object sender, EventArgs e)
         {
+            Books books= new Books();
+            DataSet ds = Books.GetAllBooks(txtViewBookISBN.Text);
+
+            DataRow row = ds.Tables[0].Rows[0];
+
             grpViewBook.Visible = true;
 
-            txtViewBookTitle.Text = dummyData[1];
-            txtViewBookAuthor.Text = dummyData[2];
-            txtViewBookDescription.Text = dummyData[3];
-            cboViewBookGenre.Text = dummyData[4];
-            txtViewBookPublisher.Text = dummyData[5];
-            dtpViewBookPublication.Text = dummyData[6];
-            cboViewBookStatus.Text = dummyData[7];
+            txtViewBookTitle.Text = row["Title"].ToString();
+            txtViewBookAuthor.Text = row["Author"].ToString();
+            txtViewBookDescription.Text = row["Description"].ToString();
+            cboViewBookGenre.Text = row["Genre"].ToString();
+            txtViewBookPublisher.Text = row["Publisher"].ToString();
+            dtpViewBookPublication.Text = row["Publication_Date"].ToString();
+            cboViewBookStatus.Text = row["Status"].ToString();
         }
     }
 }
