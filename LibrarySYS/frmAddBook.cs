@@ -60,7 +60,49 @@ namespace LibrarySYS
             string genre = cboAddBookGenre.SelectedItem?.ToString();
             string publisher = txtAddBookPublisher.Text.Trim();
             DateTime publicationDate = dtpAddBookPublication.Value;
-            string dateOnly = publicationDate.ToString("dd/MM/yyyy");
+            string dateOnly = publicationDate.ToString("yyyy-MM-dd");
+
+            if (!BookValidator.IsValidTitle(title))
+            {
+                MessageBox.Show("Invalid Title. Please enter a valid title.", "Error");
+                return;
+            }
+
+            if (!BookValidator.IsValidAuthor(author))
+            {
+                MessageBox.Show("Invalid Author. Please enter a valid author.", "Error");
+                return;
+            }
+
+            if (!BookValidator.IsValidDescription(description))
+            {
+                MessageBox.Show("Invalid Description. Please enter a valid description.", "Error");
+                return;
+            }
+
+            if (!BookValidator.IsValidISBN(isbn))
+            {
+                MessageBox.Show("Invalid ISBN. Please enter a valid ISBN.", "Error");
+                return;
+            }
+
+            if (!BookValidator.IsValidGenre(genre))
+            {
+                MessageBox.Show("Invalid Genre. Please enter a valid genre.", "Error");
+                return;
+            }
+
+            if (!BookValidator.IsValidPublisher(publisher))
+            {
+                MessageBox.Show("Invalid Publisher. Please enter a valid publisher.", "Error");
+                return;
+            }
+
+            if (!BookValidator.IsValidPublicationDate(publicationDate))
+            {
+                MessageBox.Show("Invalid Publication Date. Please enter a valid publication date.", "Error");
+                return;
+            }
 
             int bookID = Book.GetNextBookID();
             char status = 'A';
@@ -68,17 +110,21 @@ namespace LibrarySYS
             Book newBook = new Book(bookID, title, author, description, isbn, genre, publisher, publicationDate, status);
             newBook.AddBook();
 
-            MessageBox.Show("BOOK ADDED SUCCESSFULLY\n\n" +
-                $"\nBook_ID: \n{bookID}" +
-                $"\n\nTITLE: \n{title}" +
-                $"\n\nAUTHOR: \n{author}" +
-                $"\n\nDESCRIPTION: \n{description}" +
-                $"\n\nISBN: \n{isbn}" +
-                $"\n\nGENRE: \n{genre}" +
-                $"\n\nPUBLISHER: \n{publisher}" +
-                $"\n\nPUBLICATION DATE: \n{dateOnly}" +
-                $"\n\nStatus: {status}", 
-                "Success");
+
+            //MessageBox.Show("BOOK ADDED SUCCESSFULLY\n\n" +
+            //    $"\nBook_ID: \n{bookID}" +
+            //    $"\n\nTITLE: \n{title}" +
+            //    $"\n\nAUTHOR: \n{author}" +
+            //    $"\n\nDESCRIPTION: \n{description}" +
+            //    $"\n\nISBN: \n{isbn}" +
+            //    $"\n\nGENRE: \n{genre}" +
+            //    $"\n\nPUBLISHER: \n{publisher}" +
+            //    $"\n\nPUBLICATION DATE: \n{dateOnly}" +
+            //    $"\n\nStatus: {status}", 
+            //    "Success");
+
+            MessageBox.Show("Book added successfully!\n" +
+                $"{title} written by {author}", "Success");
 
             txtAddBookTitle.Clear();
             txtAddBookAuthor.Clear();

@@ -19,7 +19,7 @@ namespace LibrarySYS
         public string ISBN { get; set; }
         public string Genre { get; set; }
         public string Publisher { get; set; }
-        public DateTime Publication { get; set; }
+        DateTime Publication { get; set; }
         public char Status { get; set; }
 
         public Book(int bookID, string title, string author, string description,
@@ -46,7 +46,7 @@ namespace LibrarySYS
                     ", ISBN: " + ISBN +
                     ", Genre: " + Genre +
                     ", Publisher: " + Publisher +
-                    ", Publication: " + Publication.ToShortDateString() +
+                    ", Publication: " + Publication +
                     ", Status: " + Status;
         }
 
@@ -84,9 +84,9 @@ namespace LibrarySYS
             Database.ExecuteNonQuery(sqlQuery);
         }
 
-        public static DataSet GetAllBooks(string ISBN)
+        public static DataSet GetBook(string ISBN)
         {
-            string sqlQuery = "SELECT * FROM Books WHERE ISBN = " + ISBN;
+            string sqlQuery = "SELECT * FROM Books WHERE ISBN = '" + ISBN + "'";
             return Database.ExecuteMultiRowQuery(sqlQuery);
         }
     }

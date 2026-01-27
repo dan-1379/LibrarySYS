@@ -49,7 +49,7 @@ namespace LibrarySYS
 
         private void btnViewBookSearch_Click(object sender, EventArgs e)
         { 
-            DataSet ds = Book.GetAllBooks(txtViewBookISBN.Text);
+            DataSet ds = Book.GetBook(txtViewBookISBN.Text);
 
             DataRow row = ds.Tables[0].Rows[0];
 
