@@ -84,7 +84,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Books.cs" />
+    <Compile Include="Book.cs" />
+    <Compile Include="BookValidator.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="frmAddMember.cs">
       <SubType>Form</SubType>

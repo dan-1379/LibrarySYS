@@ -48,9 +48,8 @@ namespace LibrarySYS
         }
 
         private void btnViewBookSearch_Click(object sender, EventArgs e)
-        {
-            Books books= new Books();
-            DataSet ds = Books.GetAllBooks(txtViewBookISBN.Text);
+        { 
+            DataSet ds = Book.GetAllBooks(txtViewBookISBN.Text);
 
             DataRow row = ds.Tables[0].Rows[0];
 

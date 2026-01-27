@@ -60,33 +60,13 @@ namespace LibrarySYS
             string genre = cboAddBookGenre.SelectedItem?.ToString();
             string publisher = txtAddBookPublisher.Text.Trim();
             DateTime publicationDate = dtpAddBookPublication.Value;
-            string dateOnly;
+            string dateOnly = publicationDate.ToString("dd/MM/yyyy");
 
-            // Book_ID and Status variables created for testing purposes
-            String bookID = "B001";
+            int bookID = Book.GetNextBookID();
             char status = 'A';
 
-            if (publicationDate == DateTime.Now)
-            {
-                dateOnly = "";
-            } else
-            {
-                dateOnly = publicationDate.ToString("dd/MM/yyyy");
-            }
-
-            if (title == "")
-            {
-                MessageBox.Show("No data has been entered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtAddBookTitle.Focus();
-                return;
-            }
-
-            if (title == "1")
-            {
-                MessageBox.Show("Invalid data entered:\nPlease enter a book title", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtAddBookTitle.Focus();
-                return;
-            }
+            Book newBook = new Book(bookID, title, author, description, isbn, genre, publisher, publicationDate, status);
+            newBook.AddBook();
 
             MessageBox.Show("BOOK ADDED SUCCESSFULLY\n\n" +
                 $"\nBook_ID: \n{bookID}" +

@@ -1,13 +1,16 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LibrarySYS
 {
-    public class Books
+    public class Book
     {
         public int BookID { get; set; }
         public string Title { get; set; }
@@ -19,9 +22,7 @@ namespace LibrarySYS
         public DateTime Publication { get; set; }
         public char Status { get; set; }
 
-        public Books() : this(0, "", "", "", "", "", "", DateTime.Now, 'A') { }
-
-        public Books(int bookID, string title, string author, string description,
+        public Book(int bookID, string title, string author, string description,
                      string isbn, string genre, string publisher,
                      DateTime publication, char status)
         {
@@ -47,6 +48,40 @@ namespace LibrarySYS
                     ", Publisher: " + Publisher +
                     ", Publication: " + Publication.ToShortDateString() +
                     ", Status: " + Status;
+        }
+
+        public static int GetNextBookID()
+        {
+            string sqlQuery = "SELECT MAX(Book_ID) FROM Books";
+            OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
+
+            int nextId;
+            dr.Read();
+
+            if (dr.IsDBNull(0))
+            {
+                nextId = 1;
+            }
+            else
+            {
+                nextId = Convert.ToInt32(dr.GetDecimal(0) + 1);
+            }
+
+            dr.Close();
+            return nextId;
+        }
+
+        public void AddBook()
+        {
+            Debug.WriteLine("Adding book: " + this);
+
+            string sqlQuery =
+                "INSERT INTO Books (Book_ID, Title, Author, Description, ISBN, Genre, Publisher, Publication_Date, Status) " +
+                "VALUES (" + BookID + ", '" + Title + "', '" + Author + "', '" + Description + "', '" + ISBN + "', '" + Genre + "', '" + 
+                        Publisher + "', TO_DATE('" + Publication.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), '" + Status + "')";
+
+
+            Database.ExecuteNonQuery(sqlQuery);
         }
 
         public static DataSet GetAllBooks(string ISBN)
