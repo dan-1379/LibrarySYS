@@ -80,9 +80,9 @@ namespace LibrarySYS
                 return;
             }
 
-            if (!BookValidator.IsValidISBN(isbn))
+            if (BookValidator.IsValidISBN(isbn) != "Valid ISBN")
             {
-                MessageBox.Show("Invalid ISBN. Please enter a valid ISBN.", "Error");
+                MessageBox.Show("Invalid ISBN: " + BookValidator.IsValidISBN(isbn), "Error");
                 return;
             }
 

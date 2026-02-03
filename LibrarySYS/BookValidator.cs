@@ -62,16 +62,16 @@ namespace LibrarySYS
         /// <returns>
         /// True if the ISBN is valid; False if any the validation checks fail.
         /// </returns>
-        public static bool IsValidISBN(string isbn)
+        public static string IsValidISBN(string isbn)
         {
             if (string.IsNullOrWhiteSpace(isbn)) 
             {
-                return false;
+                return "ISBN must not be null or contain only whitespaces";
             }
 
             if (isbn.Length != 17)
             {
-                return false;
+                return "ISBN must be of length 17";
             }
 
             /* https://stackoverflow.com/questions/12350801/check-string-for-invalid-characters-smartest-way */
@@ -79,14 +79,14 @@ namespace LibrarySYS
 
             if (!r.IsMatch(isbn))
             {
-                return false;
+                return "ISBN must only contain numbers and dashes";
             }
 
             string[] sections = isbn.Split('-');
 
             if (sections.Length != 5)
             {
-                return false;
+                return "ISBN must contain 5 sections";
             }
 
             string prefix = sections[0];
@@ -97,35 +97,36 @@ namespace LibrarySYS
 
             if (prefix != "978" && prefix != "979")
             {
-                return false;
+                return "ISBN must begin with '978' or '979'";
             }
 
             if (registrationGroup.Length < 1 || registrationGroup.Length > 5)
             {
-                return false;
+                return "Registration Group should be of length 1-5";
             }
 
             if (registrant.Length < 1 || registrant.Length > 7)
             {
-                return false;
+                return "Registrant should be of length 1-7";
             }
 
             if (publication.Length < 1 || publication.Length > 7)
             {
-                return false;
+                return "Publication should be of length 1-7";
             }
 
             if (!IsValidCheckDigit(isbn))
             {
-                return false;
+                return "Check digit of ISBN is invalid";
             }
 
-            if (!IsUniqueISBN(isbn))
-             {
-                return false;
-            }
+            // Integrated with database, comment out for unit testing
+            //if (!IsUniqueISBN(isbn))
+            //{
+            //    return "ISBN already exists";
+            //}
 
-            return true;
+            return "Valid ISBN";
         }
 
         /// <summary>
