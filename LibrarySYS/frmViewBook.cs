@@ -48,7 +48,15 @@ namespace LibrarySYS
         }
 
         private void btnViewBookSearch_Click(object sender, EventArgs e)
-        { 
+        {
+            string isbn = txtViewBookISBN.Text;
+            string isValidISBN = BookValidator.IsValidISBN(isbn);
+
+            if (isValidISBN != "Valid ISBN") { 
+                MessageBox.Show(isValidISBN, "Invalid ISBN");
+                return;
+            }
+
             DataSet ds = Book.GetBook(txtViewBookISBN.Text);
 
             DataRow row = ds.Tables[0].Rows[0];

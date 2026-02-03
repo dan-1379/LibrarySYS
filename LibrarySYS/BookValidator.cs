@@ -119,13 +119,6 @@ namespace LibrarySYS
             {
                 return "Check digit of ISBN is invalid";
             }
-
-            // Integrated with database, comment out for unit testing
-            //if (!IsUniqueISBN(isbn))
-            //{
-            //    return "ISBN already exists";
-            //}
-
             return "Valid ISBN";
         }
 

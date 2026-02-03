@@ -86,6 +86,12 @@ namespace LibrarySYS
                 return;
             }
 
+            if (!BookValidator.IsUniqueISBN(isbn))
+            {
+                MessageBox.Show("ISBN already exists. Please enter a unique ISBN.", "Error");
+                return;
+            }
+
             if (!BookValidator.IsValidGenre(genre))
             {
                 MessageBox.Show("Invalid Genre. Please enter a valid genre.", "Error");

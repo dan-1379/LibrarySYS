@@ -50,7 +50,7 @@
         [DataRow("978-3-16-14@410-0", "ISBN must only contain numbers and dashes")]
 
         // Hyphen placement
-        [DataRow("9783161484100", "ISBN must contain 5 sections")]
+        [DataRow("97831614841001245", "ISBN must contain 5 sections")]
         [DataRow("978-3-16-148-41-0", "ISBN must contain 5 sections")]
 
         // Prefix
@@ -62,13 +62,13 @@
         [DataRow("978-123456-1-10-0", "Registration Group should be of length 1-5")]
 
         [DataRow("978-3--148410-0", "Registrant should be of length 1-7")]
-        [DataRow("978-3-12345678-148410-0", "Registrant should be of length 1-7")]
+        [DataRow("978-3-12345678-1-0", "Registrant should be of length 1-7")]
 
         [DataRow("978-63256-1769--0", "Publication should be of length 1-7")]
         [DataRow("978-3-6-12345678-0", "Publication should be of length 1-7")]
 
         [DataRow("978-3-16-148410-0", "Valid ISBN")]
-        [DataRow("978-3-16-148410-1", "Invalid Check Digit")]
+        [DataRow("978-3-16-148410-1", "Check digit of ISBN is invalid")]
 
         // Valid ISBN
         [DataRow("978-0-306-40615-7", "Valid ISBN")]
