@@ -13,6 +13,7 @@ namespace LibrarySYS
     public partial class frmDeleteBook : Form
     {
         frmMainMenu parent;
+        private string selectedISBN;
         public frmDeleteBook()
         {
             InitializeComponent();
@@ -42,35 +43,50 @@ namespace LibrarySYS
 
         private void btnDeleteBookSearch_Click(object sender, EventArgs e)
         {
-            String[] testData = {"The Hunger Games", "Suzanne Collins", "The Hunger Games book 1 written by Suzanne Collins", 
-                                "Science Fiction", "Scholastic Press", "14/09/2008", "A", "978-0-439-02352-8"};
 
-            String ISBN = txtDeleteBookISBN.Text;
-            if (ISBN == "")
+            selectedISBN = txtDeleteBookISBN.Text;
+            string isValidISBN = BookValidator.IsValidISBN(selectedISBN);
+
+            if (isValidISBN != "Valid ISBN")
             {
-                MessageBox.Show("Invalid ISBN entered. Please try again.", "Invalid Input");
+                MessageBox.Show(isValidISBN, "Invalid ISBN");
                 return;
             }
 
-            if (ISBN == "1")
+            DataSet ds = Book.GetBook(txtDeleteBookISBN.Text);
+
+            if (ds == null || ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
             {
-                MessageBox.Show("ISBN " + ISBN + " not located. Please try again.", "Book Not Found");
+                MessageBox.Show("No book found with the provided ISBN.", "Book Not Found");
+                grpDeleteBookDetails.Visible = false;
                 return;
             }
-            
+
+            DataRow row = ds.Tables[0].Rows[0];
+
             grpDeleteBookDetails.Visible = true;
+            txtDeleteBookISBN.ReadOnly = true;
 
-            txtDeleteBookTitle.Text = testData[0];
-            txtDeleteBookAuthor.Text = testData[1];
-            txtDeleteBookDescription.Text = testData[2];
-            txtDeleteBookGenre.Text = testData[3];
-            txtDeleteBookPublisher.Text = testData[4];
-            txtDeleteBookPublication.Text = testData[5];
-            txtDeleteBookStatus.Text = testData[6];
+            string status = row["Status"].ToString();
+            MessageBox.Show("Book Status: " + status);
+
+            txtDeleteBookTitle.Text = row["Title"].ToString();
+            txtDeleteBookAuthor.Text = row["Author"].ToString();
+            txtDeleteBookDescription.Text = row["Description"].ToString();
+            txtDeleteBookGenre.Text = row["Genre"].ToString();
+            txtDeleteBookPublisher.Text = row["Publisher"].ToString();
+            txtDeleteBookPublication.Text = row["Publication_Date"].ToString();
+            txtDeleteBookStatus.Text = row["Status"].ToString();
         }
 
         private void btnDeleteBookDelete_Click(object sender, EventArgs e)
         {
+            if (txtDeleteBookStatus.Text != "A")
+            {
+                MessageBox.Show("This book is currently on loan and must be returned to delete.", "Deletion Error");
+                return;
+            }
+
             DialogResult confirmDelete = MessageBox.Show(
                 $"Are you sure you wish to delete: {txtDeleteBookTitle.Text} by {txtDeleteBookAuthor.Text}?", 
                 "Confirm Deletion", MessageBoxButtons.YesNo
@@ -78,10 +94,16 @@ namespace LibrarySYS
 
             if (confirmDelete == DialogResult.Yes)
             {
+                Book.DeleteBook(selectedISBN);
+
                 MessageBox.Show("Book deleted successfully.", "Deletion Successful");
                 grpDeleteBookDetails.Visible = false;
+                txtDeleteBookISBN.ReadOnly = false;
+            
                 txtDeleteBookISBN.Clear();
                 txtDeleteBookISBN.Focus();
+
+                selectedISBN = null;
             }
         }
     }

@@ -14,10 +14,6 @@ namespace LibrarySYS
     {
         frmMainMenu parent;
 
-        public String[] dummyData = {"B001", "The Hunger Games", "Suzanne Collins", "The Hunger Games book 1 written by Suzanne Collins",
-                                "Science Fiction", "Scholastic Press", "14/09/2008", "A"};
-
-
         public frmViewBook()
         {
             InitializeComponent();
@@ -52,15 +48,22 @@ namespace LibrarySYS
             string isbn = txtViewBookISBN.Text;
             string isValidISBN = BookValidator.IsValidISBN(isbn);
 
-            if (isValidISBN != "Valid ISBN") { 
+            if (isValidISBN != "Valid ISBN")
+            {
                 MessageBox.Show(isValidISBN, "Invalid ISBN");
                 return;
             }
 
             DataSet ds = Book.GetBook(txtViewBookISBN.Text);
 
-            DataRow row = ds.Tables[0].Rows[0];
+            if (ds == null || ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            {
+                MessageBox.Show("Book not found.", "Error");
+                grpViewBook.Visible = false;
+                return;
+            }
 
+            DataRow row = ds.Tables[0].Rows[0];
             grpViewBook.Visible = true;
 
             txtViewBookTitle.Text = row["Title"].ToString();

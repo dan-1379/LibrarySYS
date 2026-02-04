@@ -19,7 +19,7 @@ namespace LibrarySYS
         public string ISBN { get; set; }
         public string Genre { get; set; }
         public string Publisher { get; set; }
-        DateTime Publication { get; set; }
+        public DateTime Publication { get; set; }
         public char Status { get; set; }
 
         public Book(int bookID, string title, string author, string description,
@@ -81,6 +81,28 @@ namespace LibrarySYS
                         Publisher + "', TO_DATE('" + Publication.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), '" + Status + "')";
 
 
+            Database.ExecuteNonQuery(sqlQuery);
+        }
+
+        public static void DeleteBook(string ISBN)
+        {
+            string sqlQuery = "DELETE FROM Books WHERE ISBN = '" + ISBN + "'";
+            Database.ExecuteNonQuery(sqlQuery);
+        }
+
+        public void UpdateBook(string isbn)
+        {
+            string sqlQuery =
+                "UPDATE Books SET " +
+                "Title = '" + Title + "', " +
+                "Author = '" + Author + "', " +
+                "Description = '" + Description + "', " +
+                "ISBN = '" + ISBN + "', " +
+                "Genre = '" + Genre + "', " +
+                "Publisher = '" + Publisher + "', " +
+                "Publication_Date = TO_DATE('" + Publication.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), " +
+                "Status = '" + Status + "' " +
+                "WHERE ISBN = " + isbn;
             Database.ExecuteNonQuery(sqlQuery);
         }
 
