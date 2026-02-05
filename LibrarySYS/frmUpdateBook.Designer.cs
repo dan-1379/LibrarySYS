@@ -35,6 +35,8 @@
             this.txtUpdateBookISBN = new System.Windows.Forms.TextBox();
             this.btnUpdateBookSearch = new System.Windows.Forms.Button();
             this.grpUpdateBook = new System.Windows.Forms.GroupBox();
+            this.cboUpdateBookStatus = new System.Windows.Forms.ComboBox();
+            this.lblUpdateBookStatus = new System.Windows.Forms.Label();
             this.dtpUpdateBookPublication = new System.Windows.Forms.DateTimePicker();
             this.txtUpdateBookPublisher = new System.Windows.Forms.TextBox();
             this.cboUpdateBookGenre = new System.Windows.Forms.ComboBox();
@@ -49,6 +51,7 @@
             this.lblUpdateBookAuthor = new System.Windows.Forms.Label();
             this.lblUpdateBookTitle = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuUpdateBook.SuspendLayout();
             this.grpUpdateBook.SuspendLayout();
             this.SuspendLayout();
@@ -99,6 +102,8 @@
             // 
             // grpUpdateBook
             // 
+            this.grpUpdateBook.Controls.Add(this.cboUpdateBookStatus);
+            this.grpUpdateBook.Controls.Add(this.lblUpdateBookStatus);
             this.grpUpdateBook.Controls.Add(this.dtpUpdateBookPublication);
             this.grpUpdateBook.Controls.Add(this.txtUpdateBookPublisher);
             this.grpUpdateBook.Controls.Add(this.cboUpdateBookGenre);
@@ -114,10 +119,33 @@
             this.grpUpdateBook.Controls.Add(this.lblUpdateBookTitle);
             this.grpUpdateBook.Location = new System.Drawing.Point(15, 73);
             this.grpUpdateBook.Name = "grpUpdateBook";
-            this.grpUpdateBook.Size = new System.Drawing.Size(306, 376);
+            this.grpUpdateBook.Size = new System.Drawing.Size(306, 405);
             this.grpUpdateBook.TabIndex = 4;
             this.grpUpdateBook.TabStop = false;
             this.grpUpdateBook.Text = "Update Book";
+            // 
+            // cboUpdateBookStatus
+            // 
+            this.cboUpdateBookStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUpdateBookStatus.FormattingEnabled = true;
+            this.cboUpdateBookStatus.Items.AddRange(new object[] {
+            "A",
+            "U",
+            "L",
+            "R"});
+            this.cboUpdateBookStatus.Location = new System.Drawing.Point(78, 314);
+            this.cboUpdateBookStatus.Name = "cboUpdateBookStatus";
+            this.cboUpdateBookStatus.Size = new System.Drawing.Size(201, 21);
+            this.cboUpdateBookStatus.TabIndex = 14;
+            // 
+            // lblUpdateBookStatus
+            // 
+            this.lblUpdateBookStatus.AutoSize = true;
+            this.lblUpdateBookStatus.Location = new System.Drawing.Point(10, 314);
+            this.lblUpdateBookStatus.Name = "lblUpdateBookStatus";
+            this.lblUpdateBookStatus.Size = new System.Drawing.Size(40, 13);
+            this.lblUpdateBookStatus.TabIndex = 13;
+            this.lblUpdateBookStatus.Text = "Status:";
             // 
             // dtpUpdateBookPublication
             // 
@@ -176,7 +204,7 @@
             // 
             // btnUpdateBookUpdate
             // 
-            this.btnUpdateBookUpdate.Location = new System.Drawing.Point(10, 321);
+            this.btnUpdateBookUpdate.Location = new System.Drawing.Point(13, 349);
             this.btnUpdateBookUpdate.Name = "btnUpdateBookUpdate";
             this.btnUpdateBookUpdate.Size = new System.Drawing.Size(269, 33);
             this.btnUpdateBookUpdate.TabIndex = 6;
@@ -244,11 +272,16 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
             // frmUpdateBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(345, 468);
+            this.ClientSize = new System.Drawing.Size(345, 499);
             this.Controls.Add(this.grpUpdateBook);
             this.Controls.Add(this.btnUpdateBookSearch);
             this.Controls.Add(this.txtUpdateBookISBN);
@@ -289,5 +322,8 @@
         private System.Windows.Forms.TextBox txtUpdateBookTitle;
         private System.Windows.Forms.DateTimePicker dtpUpdateBookPublication;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ComboBox cboUpdateBookStatus;
+        private System.Windows.Forms.Label lblUpdateBookStatus;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
     }
 }

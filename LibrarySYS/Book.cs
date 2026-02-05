@@ -97,12 +97,11 @@ namespace LibrarySYS
                 "Title = '" + Title + "', " +
                 "Author = '" + Author + "', " +
                 "Description = '" + Description + "', " +
-                "ISBN = '" + ISBN + "', " +
                 "Genre = '" + Genre + "', " +
                 "Publisher = '" + Publisher + "', " +
                 "Publication_Date = TO_DATE('" + Publication.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), " +
                 "Status = '" + Status + "' " +
-                "WHERE ISBN = " + isbn;
+                "WHERE ISBN = '" + isbn + "'";
             Database.ExecuteNonQuery(sqlQuery);
         }
 

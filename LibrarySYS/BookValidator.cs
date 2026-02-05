@@ -214,5 +214,22 @@ namespace LibrarySYS
         {
             return publicationDate <= DateTime.Today;
         }
+
+        /// <summary>
+        /// Determines if the provided status is valid.
+        /// </summary>
+        /// <param name="status">The status of the book.</param>
+        /// <returns>
+        /// True if the status is:
+        ///     A (Available)
+        ///     U (Unavailable)
+        ///     L (Lost)
+        ///     R (Repair)
+        /// ; otherwise false.
+        /// </returns>
+        public static bool IsValidStatus(char status)
+        {
+            return status == 'A' || status == 'U' || status == 'L' || status == 'R';
+        }
     }
 }

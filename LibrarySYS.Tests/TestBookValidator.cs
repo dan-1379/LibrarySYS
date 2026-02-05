@@ -1,4 +1,8 @@
-﻿namespace LibrarySYS.Tests
+﻿/*
+    TESTING LEARNED: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-csharp-with-mstest
+*/
+
+namespace LibrarySYS.Tests
 {
     [TestClass]
     public class TestBookValidator
@@ -120,6 +124,21 @@
         {
             DateTime publicationDate = DateTime.Parse(publication);
             bool result = BookValidator.IsValidPublicationDate(publicationDate);
+            Assert.AreEqual(expected, result);
+        }
+
+        [DataTestMethod]
+        [DataRow('a', false)]
+        [DataRow('q', false)]
+        [DataRow('f', false)]
+        [DataRow('x', false)]
+        [DataRow('A', true)]
+        [DataRow('U', true)]
+        [DataRow('L', true)]
+        [DataRow('R', true)]
+        public void TestValidStatus(char status, bool expected)
+        {
+            bool result = BookValidator.IsValidStatus(status);
             Assert.AreEqual(expected, result);
         }
     }

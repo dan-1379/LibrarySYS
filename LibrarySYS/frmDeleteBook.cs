@@ -49,15 +49,15 @@ namespace LibrarySYS
 
             if (isValidISBN != "Valid ISBN")
             {
-                MessageBox.Show(isValidISBN, "Invalid ISBN");
+                MessageBox.Show(isValidISBN, "Invalid ISBN", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            DataSet ds = Book.GetBook(txtDeleteBookISBN.Text);
+            DataSet ds = Book.GetBook(selectedISBN);
 
             if (ds == null || ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
             {
-                MessageBox.Show("No book found with the provided ISBN.", "Book Not Found");
+                MessageBox.Show("No book found with the provided ISBN.", "Book Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 grpDeleteBookDetails.Visible = false;
                 return;
             }
@@ -67,15 +67,12 @@ namespace LibrarySYS
             grpDeleteBookDetails.Visible = true;
             txtDeleteBookISBN.ReadOnly = true;
 
-            string status = row["Status"].ToString();
-            MessageBox.Show("Book Status: " + status);
-
             txtDeleteBookTitle.Text = row["Title"].ToString();
             txtDeleteBookAuthor.Text = row["Author"].ToString();
             txtDeleteBookDescription.Text = row["Description"].ToString();
             txtDeleteBookGenre.Text = row["Genre"].ToString();
             txtDeleteBookPublisher.Text = row["Publisher"].ToString();
-            txtDeleteBookPublication.Text = row["Publication_Date"].ToString();
+            txtDeleteBookPublication.Text = Convert.ToDateTime(row["Publication_Date"]).ToString("dd-MM-yyyy");
             txtDeleteBookStatus.Text = row["Status"].ToString();
         }
 
@@ -83,7 +80,7 @@ namespace LibrarySYS
         {
             if (txtDeleteBookStatus.Text != "A")
             {
-                MessageBox.Show("This book is currently on loan and must be returned to delete.", "Deletion Error");
+                MessageBox.Show("This book is currently on loan and must be returned to delete.", "Deletion Error" , MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -96,7 +93,7 @@ namespace LibrarySYS
             {
                 Book.DeleteBook(selectedISBN);
 
-                MessageBox.Show("Book deleted successfully.", "Deletion Successful");
+                MessageBox.Show("Book deleted successfully.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 grpDeleteBookDetails.Visible = false;
                 txtDeleteBookISBN.ReadOnly = false;
             

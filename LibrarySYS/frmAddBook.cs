@@ -31,7 +31,7 @@ namespace LibrarySYS
 
         private void mnuExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {
@@ -64,49 +64,49 @@ namespace LibrarySYS
 
             if (!BookValidator.IsValidTitle(title))
             {
-                MessageBox.Show("Invalid Title. Please enter a valid title.", "Error");
+                MessageBox.Show("Invalid Title. Please enter a valid title.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!BookValidator.IsValidAuthor(author))
             {
-                MessageBox.Show("Invalid Author. Please enter a valid author.", "Error");
+                MessageBox.Show("Invalid Author. Please enter a valid author.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!BookValidator.IsValidDescription(description))
             {
-                MessageBox.Show("Invalid Description. Please enter a valid description.", "Error");
+                MessageBox.Show("Invalid Description. Please enter a valid description.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (BookValidator.IsValidISBN(isbn) != "Valid ISBN")
             {
-                MessageBox.Show("Invalid ISBN: " + BookValidator.IsValidISBN(isbn), "Error");
+                MessageBox.Show("Invalid ISBN: " + BookValidator.IsValidISBN(isbn), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!BookValidator.IsUniqueISBN(isbn))
             {
-                MessageBox.Show("ISBN already exists. Please enter a unique ISBN.", "Error");
+                MessageBox.Show("ISBN already exists. Please enter a unique ISBN.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!BookValidator.IsValidGenre(genre))
             {
-                MessageBox.Show("Invalid Genre. Please enter a valid genre.", "Error");
+                MessageBox.Show("Invalid Genre. Please enter a valid genre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!BookValidator.IsValidPublisher(publisher))
             {
-                MessageBox.Show("Invalid Publisher. Please enter a valid publisher.", "Error");
+                MessageBox.Show("Invalid Publisher. Please enter a valid publisher.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!BookValidator.IsValidPublicationDate(publicationDate))
             {
-                MessageBox.Show("Invalid Publication Date. Please enter a valid publication date.", "Error");
+                MessageBox.Show("Invalid Publication Date. Please enter a valid publication date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -130,7 +130,7 @@ namespace LibrarySYS
             //    "Success");
 
             MessageBox.Show("Book added successfully!\n" +
-                $"{title} written by {author}", "Success");
+                $"{title} written by {author}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             txtAddBookTitle.Clear();
             txtAddBookAuthor.Clear();
