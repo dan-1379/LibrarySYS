@@ -65,11 +65,11 @@ namespace LibrarySYS.Tests
         [DataRow("978--167-148410-0", "Registration Group should be of length 1-5")]
         [DataRow("978-123456-1-10-0", "Registration Group should be of length 1-5")]
 
-        [DataRow("978-3--148410-0", "Registrant should be of length 1-7")]
-        [DataRow("978-3-12345678-1-0", "Registrant should be of length 1-7")]
+        [DataRow("978-324--148410-0", "Registrant should be of length 1-7")]
+        [DataRow("978-3-12345678--0", "Registrant should be of length 1-7")]
 
         [DataRow("978-63256-1769--0", "Publication should be of length 1-7")]
-        [DataRow("978-3-6-12345678-0", "Publication should be of length 1-7")]
+        [DataRow("978-3-6-12345678-", "Publication should be of length 1-7")]
 
         [DataRow("978-3-16-148410-0", "Valid ISBN")]
         [DataRow("978-3-16-148410-1", "Check digit of ISBN is invalid")]

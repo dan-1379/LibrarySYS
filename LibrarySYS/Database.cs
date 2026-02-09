@@ -15,16 +15,28 @@ namespace LibrarySYS
 
         private static string LoadConnectionString()
         {
-            
-            string userProfilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            string filePath = Path.Combine(userProfilePath + "\\OneDrive - Munster Technological University", "Documents", "OracleConnectionStringMTU.txt");
-
-            if (!File.Exists(filePath))
+            try
             {
-                throw new FileNotFoundException($"Connection string file not found: {filePath}");
-            }
+                string userProfilePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                string filePath = Path.Combine(userProfilePath + "\\OneDrive - Munster Technological University", "Documents", "OracleConnectionStringMTU.txt");
 
-            return File.ReadAllText(filePath).Trim();
+                if (!File.Exists(filePath))
+                {
+                    throw new FileNotFoundException($"Connection string file not found: {filePath}");
+                }
+
+                string connectionString = File.ReadAllText(filePath).Trim();
+
+                if (string.IsNullOrWhiteSpace(connectionString))
+                {
+                    throw new InvalidDataException("Oracle connection string file is empty");
+                }
+
+                return connectionString;
+            } catch (Exception ex)
+            {
+                throw new Exception("Failed to load oracle connection string from user profile", ex);
+            }
         }
 
         public static OracleConnection OpenConnection()
@@ -71,9 +83,6 @@ namespace LibrarySYS
 
         public static void ExecuteNonQuery(string query)
         {
-            Console.WriteLine("EXECUTING SQL:");
-            Console.WriteLine(query);
-
             OracleConnection conn = OpenConnection();
             OracleCommand cmd = new OracleCommand(query, conn);
 
