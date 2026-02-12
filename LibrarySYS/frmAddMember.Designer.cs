@@ -38,7 +38,6 @@
             this.txtAddMemberAddress1 = new System.Windows.Forms.TextBox();
             this.txtAddMemberEmail = new System.Windows.Forms.TextBox();
             this.txtAddMemberPhone = new System.Windows.Forms.TextBox();
-            this.txtAddMemberDOB = new System.Windows.Forms.TextBox();
             this.txtAddMemberLName = new System.Windows.Forms.TextBox();
             this.txtAddMemberFName = new System.Windows.Forms.TextBox();
             this.btnAddMember = new System.Windows.Forms.Button();
@@ -52,6 +51,7 @@
             this.lblAddMemberDOB = new System.Windows.Forms.Label();
             this.lblAddMemberLName = new System.Windows.Forms.Label();
             this.lblAddMemberFName = new System.Windows.Forms.Label();
+            this.dtpAddMemberDOB = new System.Windows.Forms.DateTimePicker();
             this.mnuAddMember.SuspendLayout();
             this.grpAddMember.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +78,7 @@
             // 
             // grpAddMember
             // 
+            this.grpAddMember.Controls.Add(this.dtpAddMemberDOB);
             this.grpAddMember.Controls.Add(this.txtAddMemberEircode);
             this.grpAddMember.Controls.Add(this.txtAddMemberCounty);
             this.grpAddMember.Controls.Add(this.txtAddMemberTown);
@@ -85,7 +86,6 @@
             this.grpAddMember.Controls.Add(this.txtAddMemberAddress1);
             this.grpAddMember.Controls.Add(this.txtAddMemberEmail);
             this.grpAddMember.Controls.Add(this.txtAddMemberPhone);
-            this.grpAddMember.Controls.Add(this.txtAddMemberDOB);
             this.grpAddMember.Controls.Add(this.txtAddMemberLName);
             this.grpAddMember.Controls.Add(this.txtAddMemberFName);
             this.grpAddMember.Controls.Add(this.btnAddMember);
@@ -154,13 +154,6 @@
             this.txtAddMemberPhone.Name = "txtAddMemberPhone";
             this.txtAddMemberPhone.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberPhone.TabIndex = 14;
-            // 
-            // txtAddMemberDOB
-            // 
-            this.txtAddMemberDOB.Location = new System.Drawing.Point(107, 99);
-            this.txtAddMemberDOB.Name = "txtAddMemberDOB";
-            this.txtAddMemberDOB.Size = new System.Drawing.Size(190, 20);
-            this.txtAddMemberDOB.TabIndex = 13;
             // 
             // txtAddMemberLName
             // 
@@ -276,6 +269,13 @@
             this.lblAddMemberFName.TabIndex = 0;
             this.lblAddMemberFName.Text = "First Name:";
             // 
+            // dtpAddMemberDOB
+            // 
+            this.dtpAddMemberDOB.Location = new System.Drawing.Point(107, 102);
+            this.dtpAddMemberDOB.Name = "dtpAddMemberDOB";
+            this.dtpAddMemberDOB.Size = new System.Drawing.Size(190, 20);
+            this.dtpAddMemberDOB.TabIndex = 21;
+            // 
             // frmAddMember
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,8 +320,8 @@
         private System.Windows.Forms.TextBox txtAddMemberAddress1;
         private System.Windows.Forms.TextBox txtAddMemberEmail;
         private System.Windows.Forms.TextBox txtAddMemberPhone;
-        private System.Windows.Forms.TextBox txtAddMemberDOB;
         private System.Windows.Forms.TextBox txtAddMemberLName;
         private System.Windows.Forms.TextBox txtAddMemberFName;
+        private System.Windows.Forms.DateTimePicker dtpAddMemberDOB;
     }
 }

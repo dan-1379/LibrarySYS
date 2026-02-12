@@ -171,6 +171,8 @@
     <Compile Include="frmViewMember.Designer.cs">
       <DependentUpon>frmViewMember.cs</DependentUpon>
     </Compile>
+    <Compile Include="Member.cs" />
+    <Compile Include="MemberValidator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddMember.resx">

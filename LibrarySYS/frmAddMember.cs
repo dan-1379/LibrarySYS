@@ -9,6 +9,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace LibrarySYS
@@ -46,37 +47,28 @@ namespace LibrarySYS
 
         private void btnAddMember_Click(object sender, EventArgs e)
         {
-            string memberID = "M001";
             string firstName = txtAddMemberFName.Text.Trim();
             string lastName = txtAddMemberLName.Text.Trim();
-            string dob = txtAddMemberDOB.Text.Trim();
+            DateTime dob = dtpAddMemberDOB.Value;
             string phone = txtAddMemberPhone.Text.Trim();
             string email = txtAddMemberEmail.Text.Trim();
             string address1 = txtAddMemberAddress1.Text.Trim();
             string address2 = txtAddMemberAddress2.Text.Trim();
-            string town = txtAddMemberTown.Text.Trim();
+            string city = txtAddMemberTown.Text.Trim();
             string county = txtAddMemberCounty.Text.Trim();
             string eircode = txtAddMemberEircode.Text.Trim();
-            string registrationDate = DateTime.Now.ToString("dd/MM/yyyy");
 
-            MessageBox.Show("MEMBER ADDED SUCCESSFULLY\n\n" +
-                $"\nMember ID: \n{memberID}" +
-                $"\n\nFirst Name: \n{firstName}" +
-                $"\n\nLast Name: \n{lastName}" +
-                $"\n\nD.O.B: \n{dob}" +
-                $"\n\nPhone: \n{phone}" +
-                $"\n\nEmail: \n{email}" +
-                $"\n\nAddress Line 1: \n{address1}" +
-                $"\n\nAddress Line 2: \n{address2}" +
-                $"\n\nTown: \n{town}" +
-                $"\n\nCounty: \n{county}" +
-                $"\n\nEircode: \n{eircode}" +
-                $"\n\nRegistration Date: \n{registrationDate}",
-                "Success");
+            int memberID = Member.GetNextMemberID();
+            
+            Member newMember = new Member(memberID, firstName, lastName, dob, phone, email, address1, address2, city, county, eircode);
+            newMember.AddMember();
+
+            MessageBox.Show("Member added successfully!\n" +
+                $"{firstName}{lastName} is now a registered member", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             txtAddMemberFName.Clear();
             txtAddMemberLName.Clear();
-            txtAddMemberDOB.Clear();
+            dtpAddMemberDOB.Value = DateTime.Now;
             txtAddMemberPhone.Clear();
             txtAddMemberEmail.Clear();
             txtAddMemberAddress1.Clear();
