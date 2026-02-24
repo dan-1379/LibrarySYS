@@ -58,6 +58,60 @@ namespace LibrarySYS
             string county = txtAddMemberCounty.Text.Trim();
             string eircode = txtAddMemberEircode.Text.Trim();
 
+            if (!MemberValidator.IsValidFirstName(firstName))
+            {
+                MessageBox.Show("Please enter a valid first name.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidLastName(lastName))
+            {
+                MessageBox.Show("Please enter a valid last name.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidDOB(dob))
+            {
+                MessageBox.Show("Please enter a valid date of birth that is not a future date and is does not exeed 120 years .", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string checkPhoneNumber = MemberValidator.IsValidPhone(phone);
+
+            if (checkPhoneNumber != "valid")
+            {
+                MessageBox.Show(checkPhoneNumber, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string checkEmail = MemberValidator.IsValidEmail(email);
+
+            if (checkEmail != "valid")
+            {
+                MessageBox.Show(checkEmail, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidCounty(county))
+            {
+                MessageBox.Show("Please enter a valid county.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string checkEircode = MemberValidator.IsValidEircode(eircode);
+
+            if (checkEircode != "valid")
+            {
+                MessageBox.Show(checkEircode, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (MemberValidator.IsExistingMember(firstName, lastName, phone))
+            {
+                MessageBox.Show("A member with the same first name, last name, and phone number already exists.", "Duplicate Member", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             int memberID = Member.GetNextMemberID();
             
             Member newMember = new Member(memberID, firstName, lastName, dob, phone, email, address1, address2, city, county, eircode);

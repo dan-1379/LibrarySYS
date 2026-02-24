@@ -116,19 +116,6 @@ namespace LibrarySYS
             Book newBook = new Book(bookID, title, author, description, isbn, genre, publisher, publicationDate, status);
             newBook.AddBook();
 
-
-            //MessageBox.Show("BOOK ADDED SUCCESSFULLY\n\n" +
-            //    $"\nBook_ID: \n{bookID}" +
-            //    $"\n\nTITLE: \n{title}" +
-            //    $"\n\nAUTHOR: \n{author}" +
-            //    $"\n\nDESCRIPTION: \n{description}" +
-            //    $"\n\nISBN: \n{isbn}" +
-            //    $"\n\nGENRE: \n{genre}" +
-            //    $"\n\nPUBLISHER: \n{publisher}" +
-            //    $"\n\nPUBLICATION DATE: \n{dateOnly}" +
-            //    $"\n\nStatus: {status}", 
-            //    "Success");
-
             MessageBox.Show("Book added successfully!\n" +
                 $"{title} written by {author}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

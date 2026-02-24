@@ -86,7 +86,7 @@ namespace LibrarySYS
 
         public static void DeleteBook(string ISBN)
         {
-            string sqlQuery = "DELETE FROM Books WHERE ISBN = '" + ISBN + "'";
+            string sqlQuery = "UPDATE Books SET Status = 'U' WHERE ISBN = '" + ISBN + "'";
             Database.ExecuteNonQuery(sqlQuery);
         }
 
