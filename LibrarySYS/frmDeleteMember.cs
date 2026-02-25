@@ -26,7 +26,9 @@ namespace LibrarySYS
 
         private void frmDeleteMember_Load(object sender, EventArgs e)
         {
-            grpDeleteMember.Visible = false;
+            grdDeleteMember.DataSource = Member.getAllMembers().Tables[0];
+            Utility.constructMemberDataGrid(grdDeleteMember);
+            Utility.styleGrid(grdDeleteMember);
         }
 
         private void mnuDeleteMemberExit_Click(object sender, EventArgs e)
@@ -38,29 +40,6 @@ namespace LibrarySYS
                 parent.Visible = true;
                 this.Close();
             }
-        }
-
-        private void btnDeleteMemberSearch_Click(object sender, EventArgs e)
-        {
-            String[] testData = {"M001", "Suzanne",
-                "Collins", "06/11/1983", "0123456789", "scollins123@gmail.com", "12 Upper Bridge Street",
-                "Killorglin", "Kerry", "V93 XY65", "01/01/2025", "0", "0"};
-
-            grpDeleteMember.Visible = true;
-
-
-            txtDeleteMemberFName.Text = testData[1];
-            txtDeleteMemberLName.Text = testData[2];
-            txtDeleteMemberDOB.Text = testData[3];
-            txtDeleteMemberPhone.Text = testData[4];
-            txtDeleteMemberEmail.Text = testData[5];
-            txtDeleteMemberAddress1.Text = testData[6];
-            txtDeleteMemberAddress2.Text = testData[7];
-            txtDeleteMemberCounty.Text = testData[8];
-            txtDeleteMemberEircode.Text = testData[9];
-            txtDeleteMemberRegDate.Text = testData[10];
-            txtDeleteMemberFines.Text = testData[11];
-            txtDeleteMemberLoans.Text = testData[12];
         }
 
         private void btnDeleteMemberDelete_Click(object sender, EventArgs e)
@@ -89,9 +68,31 @@ namespace LibrarySYS
 
                 MessageBox.Show("Member deleted successfully.", "Deletion Successful");
                 grpDeleteMember.Visible = false;
-                txtDeleteMemberID.Clear();
-                txtDeleteMemberID.Focus();
             }
+        }
+
+        private void grdDeleteMember_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            grpDeleteMember.Visible = true;
+            txtDeleteMemberFName.Text = grdDeleteMember.CurrentRow.Cells[1].Value.ToString();
+            txtDeleteMemberLName.Text = grdDeleteMember.CurrentRow.Cells[2].Value.ToString();
+
+            DateTime dob = Convert.ToDateTime(grdDeleteMember.CurrentRow.Cells[3].Value);
+            txtDeleteMemberDOB.Text = dob.ToString("dd/MM/yyyy");
+
+            txtDeleteMemberPhone.Text = grdDeleteMember.CurrentRow.Cells[4].Value.ToString();
+            txtDeleteMemberEmail.Text = grdDeleteMember.CurrentRow.Cells[5].Value.ToString();
+            txtDeleteMemberAddress1.Text = grdDeleteMember.CurrentRow.Cells[6].Value.ToString();
+
+            txtDeleteMemberAddress2.Text = grdDeleteMember.CurrentRow.Cells[7].Value.ToString();
+            txtDeleteMemberCounty.Text = grdDeleteMember.CurrentRow.Cells[9].Value.ToString();
+            txtDeleteMemberEircode.Text = grdDeleteMember.CurrentRow.Cells[10].Value.ToString();
+
+            DateTime regDate = Convert.ToDateTime(grdDeleteMember.CurrentRow.Cells[11].Value);
+            txtDeleteMemberRegDate.Text = regDate.ToString("dd/MM/yyyy");
+
+            txtDeleteMemberFines.Text = "€0.00";
+            txtDeleteMemberLoans.Text = "€0.00";
         }
     }
 }

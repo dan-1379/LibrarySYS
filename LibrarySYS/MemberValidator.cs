@@ -93,7 +93,7 @@ namespace LibrarySYS
                 return "The phone number must contain only numeric characters.";
             }
 
-            if (phone.Substring(0, 2) != "08" && phone.Substring(0, 2) != "353")
+            if (phone.Substring(0, 2) != "08" && phone.Substring(0, 3) != "353")
             {
                 return "Phone number must begin with 08 or 353";
             }
@@ -112,7 +112,7 @@ namespace LibrarySYS
         {
             if (email.Length < 10 || email.Length > 40)
             {
-                return "Email length must be between 10 and 50.";
+                return "Email length must be between 10 and 40.";
             }
 
             if (!email.Contains("@"))
@@ -128,8 +128,11 @@ namespace LibrarySYS
                 return "Email must end with a valid domain (.com, .org, .ie, .net).";
             }
 
-            string recipient = email.Substring(0, email.IndexOf("@"));
-            string domain = email.Substring(email.IndexOf("@") + 1);
+            string[] emailSections = email.Split('@');
+            string recipient = emailSections[0];
+
+            string[] domainSections = emailSections[1].Split('.');
+            string domain = domainSections[0];
 
             if (recipient.Length < 1 || recipient.Length > 30)
             {
@@ -138,8 +141,7 @@ namespace LibrarySYS
 
             if (!IsValidEmailSection(recipient))
             {
-                return "Recipient section must only contain uppercase and lowercase letters," +
-                       "Numbers, decimal points, dashes and underscores.";
+                return "Recipient section must only contain uppercase and lowercase letters, numbers, decimal points, dashes and underscores.";
             }
 
 
@@ -150,8 +152,7 @@ namespace LibrarySYS
 
             if (!IsValidEmailSection(domain))
             {
-                return "Domain section must only contain uppercase and lowercase letters," +
-                       "Numbers, decimal points, dashes and underscores.";
+                return "Domain section must only contain uppercase and lowercase letters, numbers, decimal points, dashes and underscores.";
             }
 
             return "valid";
@@ -168,7 +169,7 @@ namespace LibrarySYS
         {
             foreach (char ch in section)
             {
-                if (!Char.IsLetterOrDigit(ch) || ch == '.' || ch == '-' || ch == '_')
+                if (!Char.IsLetterOrDigit(ch) && ch != '.' && ch != '-' && ch != '_')
                 {
                     return false;
                 }
@@ -199,6 +200,18 @@ namespace LibrarySYS
         public static bool IsValidAddressLine2(string addressLine2)
         {
             return string.IsNullOrWhiteSpace(addressLine2) || (addressLine2.Length >= 5 && addressLine2.Length <= 30);
+        }
+
+        /// <summary>
+        /// Determines if the provided city is valid.
+        /// </summary>
+        /// <param name="city">The city of the member to be validated.</param>
+        /// <returns>
+        /// True if the city is non-empty and between 1 and 30 characters long; otherwise, false.
+        /// </returns>
+        public static bool IsValidCity(string city)
+        {
+            return !string.IsNullOrWhiteSpace(city) && city.Length >= 1 && city.Length <= 30;
         }
 
 
@@ -273,7 +286,7 @@ namespace LibrarySYS
         /// </returns>
         public static bool IsExistingMember(string firstName, string lastName, string phone)
         {
-            string sqlQuery = $"SELECT COUNT(*) FROM Members WHERE First_Name = {firstName} AND Last_Name = {lastName} AND Phone = {phone}";
+            string sqlQuery = $"SELECT COUNT(*) FROM Members WHERE First_Name = '{firstName}' AND Last_Name = '{lastName}' AND Phone = '{phone}'";
             OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
 
             dr.Read();

@@ -30,9 +30,6 @@
         {
             this.mnuDeleteMember = new System.Windows.Forms.MenuStrip();
             this.mnuDeleteMemberExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblDeleteMemberID = new System.Windows.Forms.Label();
-            this.txtDeleteMemberID = new System.Windows.Forms.TextBox();
-            this.btnDeleteMemberSearch = new System.Windows.Forms.Button();
             this.grpDeleteMember = new System.Windows.Forms.GroupBox();
             this.txtDeleteMemberLoans = new System.Windows.Forms.TextBox();
             this.lblDeleteMemberLoans = new System.Windows.Forms.Label();
@@ -59,8 +56,10 @@
             this.lblDeleteMemberDOB = new System.Windows.Forms.Label();
             this.lblDeleteMemberLName = new System.Windows.Forms.Label();
             this.lblDeleteMemberFName = new System.Windows.Forms.Label();
+            this.grdDeleteMember = new System.Windows.Forms.DataGridView();
             this.mnuDeleteMember.SuspendLayout();
             this.grpDeleteMember.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDeleteMember)).BeginInit();
             this.SuspendLayout();
             // 
             // mnuDeleteMember
@@ -69,7 +68,7 @@
             this.mnuDeleteMemberExit});
             this.mnuDeleteMember.Location = new System.Drawing.Point(0, 0);
             this.mnuDeleteMember.Name = "mnuDeleteMember";
-            this.mnuDeleteMember.Size = new System.Drawing.Size(406, 24);
+            this.mnuDeleteMember.Size = new System.Drawing.Size(747, 24);
             this.mnuDeleteMember.TabIndex = 0;
             this.mnuDeleteMember.Text = "menuStrip1";
             // 
@@ -80,32 +79,6 @@
             this.mnuDeleteMemberExit.Size = new System.Drawing.Size(37, 20);
             this.mnuDeleteMemberExit.Text = "Exit";
             this.mnuDeleteMemberExit.Click += new System.EventHandler(this.mnuDeleteMemberExit_Click);
-            // 
-            // lblDeleteMemberID
-            // 
-            this.lblDeleteMemberID.AutoSize = true;
-            this.lblDeleteMemberID.Location = new System.Drawing.Point(12, 36);
-            this.lblDeleteMemberID.Name = "lblDeleteMemberID";
-            this.lblDeleteMemberID.Size = new System.Drawing.Size(90, 13);
-            this.lblDeleteMemberID.TabIndex = 1;
-            this.lblDeleteMemberID.Text = "Enter Member ID:";
-            // 
-            // txtDeleteMemberID
-            // 
-            this.txtDeleteMemberID.Location = new System.Drawing.Point(108, 33);
-            this.txtDeleteMemberID.Name = "txtDeleteMemberID";
-            this.txtDeleteMemberID.Size = new System.Drawing.Size(148, 20);
-            this.txtDeleteMemberID.TabIndex = 2;
-            // 
-            // btnDeleteMemberSearch
-            // 
-            this.btnDeleteMemberSearch.Location = new System.Drawing.Point(280, 31);
-            this.btnDeleteMemberSearch.Name = "btnDeleteMemberSearch";
-            this.btnDeleteMemberSearch.Size = new System.Drawing.Size(93, 23);
-            this.btnDeleteMemberSearch.TabIndex = 3;
-            this.btnDeleteMemberSearch.Text = "Search";
-            this.btnDeleteMemberSearch.UseVisualStyleBackColor = true;
-            this.btnDeleteMemberSearch.Click += new System.EventHandler(this.btnDeleteMemberSearch_Click);
             // 
             // grpDeleteMember
             // 
@@ -134,16 +107,16 @@
             this.grpDeleteMember.Controls.Add(this.lblDeleteMemberDOB);
             this.grpDeleteMember.Controls.Add(this.lblDeleteMemberLName);
             this.grpDeleteMember.Controls.Add(this.lblDeleteMemberFName);
-            this.grpDeleteMember.Location = new System.Drawing.Point(15, 72);
+            this.grpDeleteMember.Location = new System.Drawing.Point(12, 321);
             this.grpDeleteMember.Name = "grpDeleteMember";
-            this.grpDeleteMember.Size = new System.Drawing.Size(358, 585);
+            this.grpDeleteMember.Size = new System.Drawing.Size(700, 331);
             this.grpDeleteMember.TabIndex = 4;
             this.grpDeleteMember.TabStop = false;
             this.grpDeleteMember.Text = "Member Details";
             // 
             // txtDeleteMemberLoans
             // 
-            this.txtDeleteMemberLoans.Location = new System.Drawing.Point(115, 464);
+            this.txtDeleteMemberLoans.Location = new System.Drawing.Point(471, 208);
             this.txtDeleteMemberLoans.Name = "txtDeleteMemberLoans";
             this.txtDeleteMemberLoans.ReadOnly = true;
             this.txtDeleteMemberLoans.Size = new System.Drawing.Size(222, 20);
@@ -152,7 +125,7 @@
             // lblDeleteMemberLoans
             // 
             this.lblDeleteMemberLoans.AutoSize = true;
-            this.lblDeleteMemberLoans.Location = new System.Drawing.Point(16, 467);
+            this.lblDeleteMemberLoans.Location = new System.Drawing.Point(369, 211);
             this.lblDeleteMemberLoans.Name = "lblDeleteMemberLoans";
             this.lblDeleteMemberLoans.Size = new System.Drawing.Size(78, 13);
             this.lblDeleteMemberLoans.TabIndex = 23;
@@ -160,7 +133,7 @@
             // 
             // txtDeleteMemberFines
             // 
-            this.txtDeleteMemberFines.Location = new System.Drawing.Point(115, 419);
+            this.txtDeleteMemberFines.Location = new System.Drawing.Point(471, 171);
             this.txtDeleteMemberFines.Name = "txtDeleteMemberFines";
             this.txtDeleteMemberFines.ReadOnly = true;
             this.txtDeleteMemberFines.Size = new System.Drawing.Size(222, 20);
@@ -169,7 +142,7 @@
             // lblDeleteMemberFines
             // 
             this.lblDeleteMemberFines.AutoSize = true;
-            this.lblDeleteMemberFines.Location = new System.Drawing.Point(16, 427);
+            this.lblDeleteMemberFines.Location = new System.Drawing.Point(369, 174);
             this.lblDeleteMemberFines.Name = "lblDeleteMemberFines";
             this.lblDeleteMemberFines.Size = new System.Drawing.Size(62, 13);
             this.lblDeleteMemberFines.TabIndex = 21;
@@ -177,7 +150,7 @@
             // 
             // txtDeleteMemberRegDate
             // 
-            this.txtDeleteMemberRegDate.Location = new System.Drawing.Point(115, 375);
+            this.txtDeleteMemberRegDate.Location = new System.Drawing.Point(471, 137);
             this.txtDeleteMemberRegDate.Name = "txtDeleteMemberRegDate";
             this.txtDeleteMemberRegDate.ReadOnly = true;
             this.txtDeleteMemberRegDate.Size = new System.Drawing.Size(222, 20);
@@ -185,7 +158,7 @@
             // 
             // txtDeleteMemberEircode
             // 
-            this.txtDeleteMemberEircode.Location = new System.Drawing.Point(115, 329);
+            this.txtDeleteMemberEircode.Location = new System.Drawing.Point(471, 97);
             this.txtDeleteMemberEircode.Name = "txtDeleteMemberEircode";
             this.txtDeleteMemberEircode.ReadOnly = true;
             this.txtDeleteMemberEircode.Size = new System.Drawing.Size(222, 20);
@@ -193,7 +166,7 @@
             // 
             // txtDeleteMemberCounty
             // 
-            this.txtDeleteMemberCounty.Location = new System.Drawing.Point(115, 289);
+            this.txtDeleteMemberCounty.Location = new System.Drawing.Point(472, 62);
             this.txtDeleteMemberCounty.Name = "txtDeleteMemberCounty";
             this.txtDeleteMemberCounty.ReadOnly = true;
             this.txtDeleteMemberCounty.Size = new System.Drawing.Size(222, 20);
@@ -201,7 +174,7 @@
             // 
             // txtDeleteMemberAddress2
             // 
-            this.txtDeleteMemberAddress2.Location = new System.Drawing.Point(115, 247);
+            this.txtDeleteMemberAddress2.Location = new System.Drawing.Point(471, 30);
             this.txtDeleteMemberAddress2.Name = "txtDeleteMemberAddress2";
             this.txtDeleteMemberAddress2.ReadOnly = true;
             this.txtDeleteMemberAddress2.Size = new System.Drawing.Size(222, 20);
@@ -257,7 +230,7 @@
             // 
             // btnDeleteMemberDelete
             // 
-            this.btnDeleteMemberDelete.Location = new System.Drawing.Point(16, 521);
+            this.btnDeleteMemberDelete.Location = new System.Drawing.Point(202, 260);
             this.btnDeleteMemberDelete.Name = "btnDeleteMemberDelete";
             this.btnDeleteMemberDelete.Size = new System.Drawing.Size(321, 39);
             this.btnDeleteMemberDelete.TabIndex = 10;
@@ -268,7 +241,7 @@
             // lblDeleteMemberRegDate
             // 
             this.lblDeleteMemberRegDate.AutoSize = true;
-            this.lblDeleteMemberRegDate.Location = new System.Drawing.Point(13, 382);
+            this.lblDeleteMemberRegDate.Location = new System.Drawing.Point(369, 140);
             this.lblDeleteMemberRegDate.Name = "lblDeleteMemberRegDate";
             this.lblDeleteMemberRegDate.Size = new System.Drawing.Size(92, 13);
             this.lblDeleteMemberRegDate.TabIndex = 9;
@@ -277,7 +250,7 @@
             // lblDeleteMemberEircode
             // 
             this.lblDeleteMemberEircode.AutoSize = true;
-            this.lblDeleteMemberEircode.Location = new System.Drawing.Point(13, 336);
+            this.lblDeleteMemberEircode.Location = new System.Drawing.Point(369, 104);
             this.lblDeleteMemberEircode.Name = "lblDeleteMemberEircode";
             this.lblDeleteMemberEircode.Size = new System.Drawing.Size(46, 13);
             this.lblDeleteMemberEircode.TabIndex = 8;
@@ -286,7 +259,7 @@
             // lblDeleteMemberCounty
             // 
             this.lblDeleteMemberCounty.AutoSize = true;
-            this.lblDeleteMemberCounty.Location = new System.Drawing.Point(13, 292);
+            this.lblDeleteMemberCounty.Location = new System.Drawing.Point(372, 69);
             this.lblDeleteMemberCounty.Name = "lblDeleteMemberCounty";
             this.lblDeleteMemberCounty.Size = new System.Drawing.Size(43, 13);
             this.lblDeleteMemberCounty.TabIndex = 7;
@@ -295,7 +268,7 @@
             // lblDeleteMemberAddress2
             // 
             this.lblDeleteMemberAddress2.AutoSize = true;
-            this.lblDeleteMemberAddress2.Location = new System.Drawing.Point(13, 254);
+            this.lblDeleteMemberAddress2.Location = new System.Drawing.Point(372, 37);
             this.lblDeleteMemberAddress2.Name = "lblDeleteMemberAddress2";
             this.lblDeleteMemberAddress2.Size = new System.Drawing.Size(80, 13);
             this.lblDeleteMemberAddress2.TabIndex = 6;
@@ -355,15 +328,22 @@
             this.lblDeleteMemberFName.TabIndex = 0;
             this.lblDeleteMemberFName.Text = "First Name:";
             // 
+            // grdDeleteMember
+            // 
+            this.grdDeleteMember.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdDeleteMember.Location = new System.Drawing.Point(12, 41);
+            this.grdDeleteMember.Name = "grdDeleteMember";
+            this.grdDeleteMember.Size = new System.Drawing.Size(700, 243);
+            this.grdDeleteMember.TabIndex = 5;
+            this.grdDeleteMember.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDeleteMember_CellClick);
+            // 
             // frmDeleteMember
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 676);
+            this.ClientSize = new System.Drawing.Size(747, 676);
+            this.Controls.Add(this.grdDeleteMember);
             this.Controls.Add(this.grpDeleteMember);
-            this.Controls.Add(this.btnDeleteMemberSearch);
-            this.Controls.Add(this.txtDeleteMemberID);
-            this.Controls.Add(this.lblDeleteMemberID);
             this.Controls.Add(this.mnuDeleteMember);
             this.MainMenuStrip = this.mnuDeleteMember;
             this.Name = "frmDeleteMember";
@@ -373,6 +353,7 @@
             this.mnuDeleteMember.PerformLayout();
             this.grpDeleteMember.ResumeLayout(false);
             this.grpDeleteMember.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdDeleteMember)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,9 +363,6 @@
 
         private System.Windows.Forms.MenuStrip mnuDeleteMember;
         private System.Windows.Forms.ToolStripMenuItem mnuDeleteMemberExit;
-        private System.Windows.Forms.Label lblDeleteMemberID;
-        private System.Windows.Forms.TextBox txtDeleteMemberID;
-        private System.Windows.Forms.Button btnDeleteMemberSearch;
         private System.Windows.Forms.GroupBox grpDeleteMember;
         private System.Windows.Forms.Label lblDeleteMemberFName;
         private System.Windows.Forms.Label lblDeleteMemberRegDate;
@@ -411,5 +389,6 @@
         private System.Windows.Forms.Label lblDeleteMemberFines;
         private System.Windows.Forms.TextBox txtDeleteMemberLoans;
         private System.Windows.Forms.Label lblDeleteMemberLoans;
+        private System.Windows.Forms.DataGridView grdDeleteMember;
     }
 }

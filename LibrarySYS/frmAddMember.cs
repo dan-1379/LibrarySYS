@@ -92,6 +92,24 @@ namespace LibrarySYS
                 return;
             }
 
+            if (!MemberValidator.IsValidAddressLine1(address1))
+            {
+                MessageBox.Show("Please enter a valid line 1 address", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidAddressLine2(address2))
+            {
+                MessageBox.Show("Please enter a valid line 2 address", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidCity(city))
+            {
+                MessageBox.Show("Please enter a valid city", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (!MemberValidator.IsValidCounty(county))
             {
                 MessageBox.Show("Please enter a valid county.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -113,12 +131,13 @@ namespace LibrarySYS
             }
 
             int memberID = Member.GetNextMemberID();
+            lastName = lastName.Replace("'", "");
             
             Member newMember = new Member(memberID, firstName, lastName, dob, phone, email, address1, address2, city, county, eircode);
             newMember.AddMember();
 
             MessageBox.Show("Member added successfully!\n" +
-                $"{firstName}{lastName} is now a registered member", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                $"{firstName} {lastName} is now a registered member", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             txtAddMemberFName.Clear();
             txtAddMemberLName.Clear();

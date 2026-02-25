@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,6 +77,12 @@ namespace LibrarySYS
 
             dr.Close();
             return nextId;
+        }
+
+        public static DataSet getAllMembers()
+        {
+            string sqlQuery = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date FROM Members ORDER BY Member_ID";
+            return Database.ExecuteMultiRowQuery(sqlQuery);
         }
 
         public void AddMember()

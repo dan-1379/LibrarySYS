@@ -66,18 +66,17 @@ namespace LibrarySYS.Tests
 
         [DataTestMethod]
         [DataRow("dcourtney", "Email length must be between 10 and 40.")]
-        [DataRow("dcourtney@", "Email length must be between 10 and 40.")]
-        [DataRow("danieljamesandrewcourtneybusinesslogisticsaccount@gmail.com", "Email length must be between 10 and 50.")]
+        [DataRow("danieljamesandrewcourtneybusinesslogisticsaccount@gmail.com", "Email length must be between 10 and 40.")]
         [DataRow("danielcourtney.com", "Email must contain an @ symbol.")]
         [DataRow("daniel@courtney.bye", "Email must end with a valid domain (.com, .org, .ie, .net).")]
         [DataRow("daniel@courtney", "Email must end with a valid domain (.com, .org, .ie, .net).")]
         [DataRow("@courtney.com", "Recipient section of the email must be between 1 and 30 characters.")]
-        [DataRow("danieljamesandrewcourtneybusiness@courtney.com", "Recipient section of the email must be between 1 and 30 characters.")]
+        [DataRow("danieljamesandrewcourtneybusiness@c.com", "Recipient section of the email must be between 1 and 30 characters.")]
         [DataRow("daniel~james@courtney.com", "Recipient section must only contain uppercase and lowercase letters, numbers, decimal points, dashes and underscores.")]
         [DataRow("daniel.courtney@.com", "Domain section of the email must be between 2 and 15 characters.")]
-        [DataRow("daniel.courtney@courtneybusinesslogisticscompany.com", "Domain section of the email must be between 2 and 15 characters.")]
-        [DataRow("danielcourtney@courtn£ylogistics.com", "Domain section must only contain uppercase and lowercase letters, Numbers, decimal points, dashes and underscores.")]
-        [DataRow("danielcourtney@courtneylogistics.com", "valid")]
+        [DataRow("daniel.courtney@courtneybusiness.com", "Domain section of the email must be between 2 and 15 characters.")]
+        [DataRow("danielcourtney@courtn£ybusines.com", "Domain section must only contain uppercase and lowercase letters, numbers, decimal points, dashes and underscores.")]
+        [DataRow("danielcourtney@courtneybusines.com", "valid")]
         public void TestValidEmail(string email, string expected)
         {
             string result = MemberValidator.IsValidEmail(email);
@@ -105,6 +104,17 @@ namespace LibrarySYS.Tests
         public void TestValidAddressLine2(string addressLine2, bool expected)
         {
             bool result = MemberValidator.IsValidAddressLine2(addressLine2);
+            Assert.AreEqual(expected, result);
+        }
+
+        [DataTestMethod]
+        [DataRow(null, false)]
+        [DataRow("     ", false)]
+        [DataRow("abcdefghijklmnopqrstuvwxyzabcdefgh", false)]
+        [DataRow("Tralee", true)]
+        public void TestValidCity(string city, bool expected) 
+        {
+            bool result = MemberValidator.IsValidCity(city);
             Assert.AreEqual(expected, result);
         }
 
