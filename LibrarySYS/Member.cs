@@ -81,7 +81,7 @@ namespace LibrarySYS
 
         public static DataSet getAllMembers()
         {
-            string sqlQuery = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date FROM Members ORDER BY Member_ID";
+            string sqlQuery = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status FROM Members ORDER BY Member_ID";
             return Database.ExecuteMultiRowQuery(sqlQuery);
         }
 
@@ -92,6 +92,12 @@ namespace LibrarySYS
                               "', '" + AddressLine1 + "', '" + AddressLine2 + "', '" + City + "', '" + County + "', '" + Eircode + "', TO_DATE('" + RegistrationDate.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'))"; 
             
             Database.ExecuteMultiRowQuery(sqlQuery);
+        }
+
+        public static void AlterMemberStatus(string MemberID)
+        {
+            string sqlQuery = "UPDATE Members SET Status = 'I' WHERE Member_ID = '" + MemberID + "'";
+            Database.ExecuteSingleRowQuery(sqlQuery);
         }
     }
 }

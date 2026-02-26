@@ -10,7 +10,7 @@ namespace LibrarySYS
 {
     internal class Utility
     {
-        public static void constructMemberDataGrid(DataGridView dg)
+        public static void constructGrid(DataGridView dg)
         {
             dg.Columns["Member_ID"].Width = 100;
             dg.Columns["Member_ID"].DefaultCellStyle.Format = "000";
@@ -60,6 +60,10 @@ namespace LibrarySYS
             dg.Columns["Registration_Date"].DefaultCellStyle.Format = "dd/MM/yyyy";
             dg.Columns["Registration_Date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+            dg.Columns["Status"].Width = 100;
+            dg.Columns["Status"].DefaultCellStyle.Format = "000";
+            dg.Columns["Status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
             dg.AllowUserToAddRows = false;
             dg.AllowUserToDeleteRows = false;
             dg.AllowUserToResizeColumns = false;
@@ -83,8 +87,6 @@ namespace LibrarySYS
             dg.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             dg.ColumnHeadersHeight = 35;
 
-            dg.DefaultCellStyle.BackColor = Color.White;
-            dg.DefaultCellStyle.ForeColor = Color.Black;
             dg.DefaultCellStyle.SelectionBackColor = Color.FromArgb(41, 128, 185); // blue selection
             dg.DefaultCellStyle.SelectionForeColor = Color.White;
             dg.DefaultCellStyle.Font = new Font("Segoe UI", 9);
@@ -94,5 +96,24 @@ namespace LibrarySYS
 
             dg.GridColor = Color.LightGray;
         }
-    }
+
+        public static void ColourRowsByStatus(DataGridView dg)
+        {
+            foreach (DataGridViewRow row in dg.Rows)
+            {
+                string status = row.Cells["Status"].Value.ToString();
+
+                if (status == "A")
+                {
+                    dg.DefaultCellStyle.BackColor = Color.White;
+                    dg.DefaultCellStyle.ForeColor = Color.Black;
+                }
+                else if (status == "I")
+                {
+                    row.DefaultCellStyle.BackColor = Color.White;
+                    row.DefaultCellStyle.ForeColor = Color.Gray;
+                }
+            }
+        }
+     }
 }
