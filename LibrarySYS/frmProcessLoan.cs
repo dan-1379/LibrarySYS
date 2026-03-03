@@ -54,6 +54,17 @@ namespace LibrarySYS
 
         private void btnProcessLoanSearchID_Click(object sender, EventArgs e)
         {
+            string ID = txtProcessLoanMemberID.Text;
+
+            if (!MemberValidator.IsValidID(ID)) { 
+                MessageBox.Show("Invalid ID. Please enter a valid ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // CODE SHOULD BE WRITTEN HERE TO MAKE SURE THAT THE MEMBER HAS NO ACTIVE LOANS OR FINES BEFORE PROCEEDING TO THE LOAN PROCESSING
+            Member extracted = Member.GetMemberRecord(ID);
+
+            txtProcessLoanName.Text = extracted.FirstName;
+            txtProcessLoanAddress.Text = extracted.AddressLine1;
             grpProcessLoan.Visible = true;
         }
 
@@ -136,18 +147,7 @@ namespace LibrarySYS
 
         private void txtProcessLoanMemberID_TextChanged(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("This member has €12.70 in active fines. Pay the fines?", 
-                "Active Fines", MessageBoxButtons.YesNo);
-
-            if (confirmExit == DialogResult.Yes)
-            {
-                frmPayFines payFinesForm = new frmPayFines(this);
-                payFinesForm.Show();
-                this.Hide();
-            } else
-            {
-                MessageBox.Show("Cannot process loan with active fines.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
         }
     }
 }

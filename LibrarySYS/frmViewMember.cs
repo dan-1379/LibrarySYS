@@ -50,5 +50,43 @@ namespace LibrarySYS
                 this.Close();
             }
         }
+
+        private void lblViewMemberName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnViewMembers_Click(object sender, EventArgs e)
+        {
+            grdViewMember.ClearSelection();
+            grdViewMember.CurrentCell = null;
+
+            string search = txtViewMemberPhone.Text.Trim();
+
+            foreach (DataGridViewRow row in grdViewMember.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string phone = row.Cells["Phone"].Value?.ToString();
+
+                if (string.IsNullOrEmpty(search))
+                {
+                    row.Visible = true;
+                }
+                else if (phone != null && phone.Contains(search))
+                {
+                    row.Visible = true;
+                }
+                else
+                {
+                    row.Visible = false;
+                }
+            }
+        }
+
+        private void txtViewMemberName_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -18,6 +18,22 @@ namespace LibrarySYS
     /// </summary>
     public class MemberValidator
     {
+        public static bool IsValidID(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return false;
+            }
+            
+            int memberID;
+
+            if (!int.TryParse(id, out memberID))
+            {
+                return false;
+            }
+            return memberID > 0;
+        }
+
         /// <summary>
         /// Determines if the provided first name is valid.
         /// </summary>

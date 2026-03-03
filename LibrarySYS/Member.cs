@@ -107,6 +107,35 @@ namespace LibrarySYS
             return Database.ExecuteMultiRowQuery(sqlQuery);
         }
 
+        public static Member GetMemberRecord(string ID)
+        {
+            string sql = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status FROM Members WHERE Phone = '" + ID + "'";
+            OracleDataReader dr = Database.ExecuteSingleRowQuery(sql);
+            dr.Read();
+
+            if (dr.Read())
+            {
+                return new Member(
+                    Convert.ToInt32(dr.GetDecimal(0)),  // Member_ID
+                    dr.GetString(1),                     // First_Name
+                    dr.GetString(2),                     // Last_Name
+                    dr.GetDateTime(3),                   // DOB
+                    dr.GetString(4),                     // Phone
+                    dr.GetString(5),                     // Email
+                    dr.GetString(6),                     // Address_Line1
+                    dr.GetString(7),                     // Address_Line2
+                    dr.GetString(8),                     // City
+                    dr.GetString(9),                     // County
+                    dr.GetString(10),                    // Eircode
+                    dr.GetString(12)[0]                  // Status
+                );
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public void AddMember()
         {
             string sqlQuery = "INSERT INTO Members (Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status) " +

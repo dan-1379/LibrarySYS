@@ -56,6 +56,10 @@
             this.lblProcessLoanDescription = new System.Windows.Forms.Label();
             this.lblProcessLoanAuthor = new System.Windows.Forms.Label();
             this.lblProcessLoanTitle = new System.Windows.Forms.Label();
+            this.lblProcessLoanName = new System.Windows.Forms.Label();
+            this.lblProcessLoanAddress = new System.Windows.Forms.Label();
+            this.txtProcessLoanName = new System.Windows.Forms.TextBox();
+            this.txtProcessLoanAddress = new System.Windows.Forms.TextBox();
             this.mnuProcessLoan.SuspendLayout();
             this.grpProcessLoan.SuspendLayout();
             this.SuspendLayout();
@@ -83,9 +87,9 @@
             this.lblProcessLoanMemberID.AutoSize = true;
             this.lblProcessLoanMemberID.Location = new System.Drawing.Point(12, 31);
             this.lblProcessLoanMemberID.Name = "lblProcessLoanMemberID";
-            this.lblProcessLoanMemberID.Size = new System.Drawing.Size(62, 13);
+            this.lblProcessLoanMemberID.Size = new System.Drawing.Size(59, 13);
             this.lblProcessLoanMemberID.TabIndex = 1;
-            this.lblProcessLoanMemberID.Text = "Member ID:";
+            this.lblProcessLoanMemberID.Text = "MemberID:";
             // 
             // txtProcessLoanMemberID
             // 
@@ -129,7 +133,7 @@
             this.grpProcessLoan.Controls.Add(this.lblProcessLoanDescription);
             this.grpProcessLoan.Controls.Add(this.lblProcessLoanAuthor);
             this.grpProcessLoan.Controls.Add(this.lblProcessLoanTitle);
-            this.grpProcessLoan.Location = new System.Drawing.Point(15, 81);
+            this.grpProcessLoan.Location = new System.Drawing.Point(15, 164);
             this.grpProcessLoan.Name = "grpProcessLoan";
             this.grpProcessLoan.Size = new System.Drawing.Size(773, 427);
             this.grpProcessLoan.TabIndex = 4;
@@ -331,11 +335,49 @@
             this.lblProcessLoanTitle.TabIndex = 0;
             this.lblProcessLoanTitle.Text = "Title:";
             // 
+            // lblProcessLoanName
+            // 
+            this.lblProcessLoanName.AutoSize = true;
+            this.lblProcessLoanName.Location = new System.Drawing.Point(12, 74);
+            this.lblProcessLoanName.Name = "lblProcessLoanName";
+            this.lblProcessLoanName.Size = new System.Drawing.Size(38, 13);
+            this.lblProcessLoanName.TabIndex = 5;
+            this.lblProcessLoanName.Text = "Name:";
+            // 
+            // lblProcessLoanAddress
+            // 
+            this.lblProcessLoanAddress.AutoSize = true;
+            this.lblProcessLoanAddress.Location = new System.Drawing.Point(12, 111);
+            this.lblProcessLoanAddress.Name = "lblProcessLoanAddress";
+            this.lblProcessLoanAddress.Size = new System.Drawing.Size(48, 13);
+            this.lblProcessLoanAddress.TabIndex = 6;
+            this.lblProcessLoanAddress.Text = "Address:";
+            // 
+            // txtProcessLoanName
+            // 
+            this.txtProcessLoanName.Location = new System.Drawing.Point(80, 74);
+            this.txtProcessLoanName.Name = "txtProcessLoanName";
+            this.txtProcessLoanName.ReadOnly = true;
+            this.txtProcessLoanName.Size = new System.Drawing.Size(220, 20);
+            this.txtProcessLoanName.TabIndex = 7;
+            // 
+            // txtProcessLoanAddress
+            // 
+            this.txtProcessLoanAddress.Location = new System.Drawing.Point(80, 108);
+            this.txtProcessLoanAddress.Name = "txtProcessLoanAddress";
+            this.txtProcessLoanAddress.ReadOnly = true;
+            this.txtProcessLoanAddress.Size = new System.Drawing.Size(220, 20);
+            this.txtProcessLoanAddress.TabIndex = 8;
+            // 
             // frmProcessLoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 526);
+            this.ClientSize = new System.Drawing.Size(800, 618);
+            this.Controls.Add(this.txtProcessLoanAddress);
+            this.Controls.Add(this.txtProcessLoanName);
+            this.Controls.Add(this.lblProcessLoanAddress);
+            this.Controls.Add(this.lblProcessLoanName);
             this.Controls.Add(this.grpProcessLoan);
             this.Controls.Add(this.btnProcessLoanSearchID);
             this.Controls.Add(this.txtProcessLoanMemberID);
@@ -384,5 +426,9 @@
         private System.Windows.Forms.Button btnProcessLoanRemove;
         private System.Windows.Forms.Button btnProcessLoanSearchISBN;
         private System.Windows.Forms.TextBox txtProcessLoanISBN;
+        private System.Windows.Forms.Label lblProcessLoanName;
+        private System.Windows.Forms.Label lblProcessLoanAddress;
+        private System.Windows.Forms.TextBox txtProcessLoanName;
+        private System.Windows.Forms.TextBox txtProcessLoanAddress;
     }
 }
