@@ -23,6 +23,8 @@ namespace LibrarySYS
         public string Eircode { get; set; }
         public DateTime RegistrationDate { get; set; }
 
+        public char Status { get; set; }
+
         public Member(int memberID, string firstName, string lastName, DateTime dob,
                       string phone, string email, string addressLine1, string addressLine2,
                       string city, string county, string eircode)
@@ -39,6 +41,26 @@ namespace LibrarySYS
             County = county;
             Eircode = eircode;
             RegistrationDate = DateTime.Now;
+            Status = 'A';
+        }
+
+        public Member(int memberID, string firstName, string lastName, DateTime dob,
+                      string phone, string email, string addressLine1, string addressLine2,
+                      string city, string county, string eircode, char status)
+        {
+            MemberID = memberID;
+            FirstName = firstName;
+            LastName = lastName;
+            DOB = dob;
+            Phone = phone;
+            Email = email;
+            AddressLine1 = addressLine1;
+            AddressLine2 = addressLine2;
+            City = city;
+            County = county;
+            Eircode = eircode;
+            RegistrationDate = DateTime.Now;
+            Status = status;
         }
 
         public override string ToString()
@@ -87,10 +109,10 @@ namespace LibrarySYS
 
         public void AddMember()
         {
-            string sqlQuery = "INSERT INTO Members (Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date) " + 
-                              "VALUES (" + MemberID + ", '" + FirstName + "', '" + LastName + "', TO_DATE('" + DOB.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), '" + Phone + "', '" + Email + 
-                              "', '" + AddressLine1 + "', '" + AddressLine2 + "', '" + City + "', '" + County + "', '" + Eircode + "', TO_DATE('" + RegistrationDate.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'))"; 
-            
+            string sqlQuery = "INSERT INTO Members (Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status) " +
+                              "VALUES (" + MemberID + ", '" + FirstName + "', '" + LastName + "', TO_DATE('" + DOB.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), '" + Phone + "', '" + Email +
+                              "', '" + AddressLine1 + "', '" + AddressLine2 + "', '" + City + "', '" + County + "', '" + Eircode + "', TO_DATE('" + RegistrationDate.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), '" + Status + "')";
+
             Database.ExecuteMultiRowQuery(sqlQuery);
         }
 
@@ -98,6 +120,26 @@ namespace LibrarySYS
         {
             string sqlQuery = "UPDATE Members SET Status = 'I' WHERE Member_ID = '" + MemberID + "'";
             Database.ExecuteSingleRowQuery(sqlQuery);
+        }
+
+        public void UpdateMemberDetails(string MemberID)
+        {
+            string sqlQuery = "UPDATE Members SET " +
+                              "First_Name = '" + FirstName + "', " +
+                              "Last_Name = '" + LastName + "', " +
+                              "DOB = TO_DATE('" + DOB.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), " +
+                              "Phone = '" + Phone + "', " +
+                              "Email = '" + Email + "', " +
+                              "Address_Line1 = '" + AddressLine1 + "', " +
+                              "Address_Line2 = '" + AddressLine2 + "', " +
+                              "City = '" + City + "', " +
+                              "County = '" + County + "', " +
+                              "Eircode = '" + Eircode + "', " +
+                              "Status = '" + Status + "', " +
+                              "Registration_Date = TO_DATE('" + RegistrationDate.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD') " +
+                              "WHERE Member_ID = " + MemberID;
+
+            Database.ExecuteMultiRowQuery(sqlQuery);
         }
     }
 }

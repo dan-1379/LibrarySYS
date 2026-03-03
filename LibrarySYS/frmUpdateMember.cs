@@ -13,9 +13,7 @@ namespace LibrarySYS
     public partial class frmUpdateMember : Form
     {
         frmMainMenu parent;
-
-        String[] testData = {"Dan", "Courtney", "12/02/2004", "0874651234", "dcourtney@gmail.com",
-                            "12 Downing Street", "Rockfeller",  "Tralee", "Kerry", "V94 X2H6"};
+        bool memberSelected = false;
 
         public frmUpdateMember()
         {
@@ -39,62 +37,202 @@ namespace LibrarySYS
             }
         }
 
-        private void btnUpdateMemberSearch_Click(object sender, EventArgs e)
-        {
-            grpUpdateMember.Visible = true;
-
-            txtUpdateMemberFName.Text = testData[0];
-            txtUpdateMemberLName.Text = testData[1];
-            dtpUpdateMemberDOB.Value = DateTime.Parse(testData[2]);
-            txtUpdateMemberPhone.Text = testData[3];
-            txtUpdateMemberEmail.Text = testData[4];
-            txtUpdateMemberAddress1.Text = testData[5];
-            txtUpdateMemberAddress2.Text = testData[6];
-            txtUpdateMemberTown.Text = testData[7];
-            txtUpdateMemberCounty.Text = testData[8];
-            txtUpdateMemberEircode.Text = testData[9];
-        }
-
         private void frmUpdateMember_Load(object sender, EventArgs e)
         {
-            grpUpdateMember.Visible = false;
+            grdUpdateMember.DataSource = Member.getAllMembers().Tables[0];
+
+            Utility.constructGrid(grdUpdateMember);
+            Utility.styleGrid(grdUpdateMember);
+            Utility.ColourRowsByStatus(grdUpdateMember);
+            Utility.StyleInputBoxes(grpUpdateMember);
+
+            foreach (Control control in grpUpdateMember.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).ReadOnly = true;
+                }
+                else if (control is DateTimePicker || control is ComboBox)
+                {
+                    control.Enabled = false;
+                }
+            }
         }
 
         private void btnUpdateMemberUpdate_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show(
-                $"Are you sure you want to update?\n\nUpdated Details:" +
-                $"\nFirst Name: " + txtUpdateMemberFName.Text +
-                $"\nLast Name: " + txtUpdateMemberLName.Text +
-                $"\nDate Of Birth: " + dtpUpdateMemberDOB.Value +
-                $"\nPhone: " + txtUpdateMemberPhone.Text +
-                $"\nEmail: " + txtUpdateMemberEmail.Text +
-                $"\nAddress Line 1: " + txtUpdateMemberAddress1.Text +
-                $"\nAddress Line 2: " + txtUpdateMemberAddress2.Text +
-                $"\nTown / City: " + txtUpdateMemberTown.Text +
-                $"\nCounty: " + txtUpdateMemberCounty.Text +
-                $"\nEircode: " + txtUpdateMemberEircode.Text,
-                "Confirm Update", MessageBoxButtons.YesNo
+            if (!memberSelected)
+            {
+                MessageBox.Show("Please select a member to update", "Select member", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string name = txtUpdateMemberFName.Text;
+
+            if (name == null || name == "")
+            {
+                MessageBox.Show("Please select a member to update", "Select Member", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult confirmDelete = MessageBox.Show(
+                $"Are you sure you wish to update member:\n{txtUpdateMemberFName.Text} {txtUpdateMemberLName.Text}",
+                "Confirm Deletion", MessageBoxButtons.YesNo
             );
 
-            testData[0] = txtUpdateMemberFName.Text;
-            testData[1] = txtUpdateMemberLName.Text;
-            testData[2] = dtpUpdateMemberDOB.Text;
-            testData[3] = txtUpdateMemberPhone.Text;
-            testData[4] = txtUpdateMemberEmail.Text;
-            testData[5] = txtUpdateMemberAddress1.Text;
-            testData[6] = txtUpdateMemberAddress2.Text;
-            testData[7] = txtUpdateMemberTown.Text;
-            testData[8] = txtUpdateMemberCounty.Text;
-            testData[9] = txtUpdateMemberEircode.Text;
-
-            if (confirmExit == DialogResult.Yes)
+            if (confirmDelete != DialogResult.Yes)
             {
-                MessageBox.Show($"Member: {testData[0]} {testData[1]} updated successfully.", "Update Successful");
-                grpUpdateMember.Visible = false;
-                txtUpdateMemberID.Clear();
-                txtUpdateMemberID.Focus();
+                return;
             }
+
+            if (txtUpdateMemberFines.Text != "€0.00")
+            {
+                MessageBox.Show("Cannot delete member with outstanding fines.", "Deletion Error");
+                return;
+            }
+
+            int selectedMemberID = Convert.ToInt32(grdUpdateMember.CurrentRow.Cells[0].Value);
+            string firstName = txtUpdateMemberFName.Text;
+            string lastName = txtUpdateMemberLName.Text;
+            DateTime dob = dtpUpdateMemberDOB.Value;
+
+            string phone = txtUpdateMemberPhone.Text;
+            string email = txtUpdateMemberEmail.Text;
+
+            string addressLine1 = txtUpdateMemberAddress1.Text;
+            string addressLine2 = txtUpdateMemberAddress2.Text;
+            string town = txtUpdateMemberTown.Text;
+            string county = txtUpdateMemberCounty.Text;
+            string eircode = txtUpdateMemberEircode.Text;
+            char status = cboUpdateMemberStatus.Text[0];
+
+            if (!MemberValidator.IsValidFirstName(firstName))
+            {
+                MessageBox.Show("Please enter a valid first name.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidLastName(lastName))
+            {
+                MessageBox.Show("Please enter a valid last name.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidDOB(dob))
+            {
+                MessageBox.Show("Please enter a valid date of birth that is not a future date and is does not exeed 120 years .", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string checkPhoneNumber = MemberValidator.IsValidPhone(phone);
+
+            if (checkPhoneNumber != "valid")
+            {
+                MessageBox.Show(checkPhoneNumber, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string checkEmail = MemberValidator.IsValidEmail(email);
+
+            if (checkEmail != "valid")
+            {
+                MessageBox.Show(checkEmail, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidAddressLine1(addressLine1))
+            {
+                MessageBox.Show("Please enter a valid line 1 address", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidAddressLine2(addressLine2))
+            {
+                MessageBox.Show("Please enter a valid line 2 address", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidCity(town))
+            {
+                MessageBox.Show("Please enter a valid city", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!MemberValidator.IsValidCounty(county))
+            {
+                MessageBox.Show("Please enter a valid county.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string checkEircode = MemberValidator.IsValidEircode(eircode);
+
+            if (checkEircode != "valid")
+            {
+                MessageBox.Show(checkEircode, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Member updatedMember = new Member(selectedMemberID, firstName, lastName, Convert.ToDateTime(dob), phone, email, addressLine1, addressLine2, town, county, eircode, status);
+            updatedMember.UpdateMemberDetails(selectedMemberID.ToString());
+
+
+            MessageBox.Show("Member updated successfully.", "Deletion Successful");
+            grdUpdateMember.DataSource = Member.getAllMembers().Tables[0];
+            Utility.ColourRowsByStatus(grdUpdateMember);
+
+            foreach (Control control in grpUpdateMember.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Clear();
+                    ((TextBox)control).ReadOnly = true;
+                }
+                else if (control is DateTimePicker)
+                {
+                    ((DateTimePicker)control).Value = DateTime.Now;
+                    control.Enabled = false;
+                }
+                else if (control is ComboBox)
+                {
+                    control.Enabled = false;
+                }
+            }
+        }
+
+        private void grdUpdateMember_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            memberSelected = true;
+
+            foreach (Control control in grpUpdateMember.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).ReadOnly = false;
+                }
+                else if (control is DateTimePicker || control is ComboBox)
+                {
+                    control.Enabled = true;
+                }
+            }
+
+            txtUpdateMemberFName.Text = grdUpdateMember.CurrentRow.Cells[1].Value.ToString();
+            txtUpdateMemberLName.Text = grdUpdateMember.CurrentRow.Cells[2].Value.ToString();
+
+            DateTime dob = Convert.ToDateTime(grdUpdateMember.CurrentRow.Cells[3].Value);
+            dtpUpdateMemberDOB.Text = dob.ToString("dd/MM/yyyy");
+
+            txtUpdateMemberPhone.Text = grdUpdateMember.CurrentRow.Cells[4].Value.ToString();
+            txtUpdateMemberEmail.Text = grdUpdateMember.CurrentRow.Cells[5].Value.ToString();
+
+            txtUpdateMemberAddress1.Text = grdUpdateMember.CurrentRow.Cells[6].Value.ToString();
+            txtUpdateMemberAddress2.Text = grdUpdateMember.CurrentRow.Cells[7].Value.ToString();
+            txtUpdateMemberTown.Text = grdUpdateMember.CurrentRow.Cells[8].Value.ToString();
+
+            txtUpdateMemberCounty.Text = grdUpdateMember.CurrentRow.Cells[9].Value.ToString();
+            txtUpdateMemberEircode.Text = grdUpdateMember.CurrentRow.Cells[10].Value.ToString();
+            cboUpdateMemberStatus.Text = grdUpdateMember.CurrentRow.Cells[12].Value.ToString();
+
+            txtUpdateMemberFines.Text = "€0.00";
         }
     }
 }

@@ -115,5 +115,22 @@ namespace LibrarySYS
                 }
             }
         }
+
+        public static void StyleInputBoxes(GroupBox grp)
+        {
+            foreach (Control control in grp.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).ReadOnly = true;
+                    TextBox txt = (TextBox)control;
+                    txt.Height = 25;
+                    txt.Width = 200;
+                    txt.BackColor = Color.FromArgb(245, 245, 245);
+                    txt.ForeColor = Color.Black;
+                    txt.BorderStyle = BorderStyle.FixedSingle;
+                }
+            }
+        }
      }
 }
