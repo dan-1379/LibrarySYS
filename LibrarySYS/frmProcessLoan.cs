@@ -14,23 +14,6 @@ namespace LibrarySYS
     {
         frmMainMenu parent;
 
-        /*
-            ISBN
-            Title
-            Author
-            Description
-            Genre
-            Publisher
-            Publication
-            Status
-         */
-        String[,] dummyBookDetails = {
-            {"1", "The Hunger Games", "Suzanne Collins", "Dystopian Novel", "Young Adult", "Scholastic Press", "14/09/2008", "A" },
-            {"2", "The Maze Runner", "James Dashner", "Dystopian Novel", "Young Adult", "Delacorte Press", "06/10/2009", "A"},
-            {"3", "Angels & Demons", "Dan Brown", "Thriller", "Fiction", "Pocket Books", "01/05/2000", "A"},
-            {"4", "The Silent Patient", "Alex Michaelides", "Psychological Thriller", "Fiction", "Celadon Books", "05/02/2019", "A"},
-            {"5", "Where the Crawdads Sing", "Delia Owens", "Mystery/Drama", "Fiction", "G.P. Putnam's Sons", "14/08/2018", "A"  }
-        };
         public frmProcessLoan()
         {
             InitializeComponent();
@@ -58,45 +41,65 @@ namespace LibrarySYS
 
             if (!MemberValidator.IsValidID(ID)) { 
                 MessageBox.Show("Invalid ID. Please enter a valid ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             // CODE SHOULD BE WRITTEN HERE TO MAKE SURE THAT THE MEMBER HAS NO ACTIVE LOANS OR FINES BEFORE PROCEEDING TO THE LOAN PROCESSING
             Member extracted = Member.GetMemberRecord(ID);
 
-            txtProcessLoanName.Text = extracted.FirstName;
-            txtProcessLoanAddress.Text = extracted.AddressLine1;
+            if (extracted == null) { 
+                MessageBox.Show("No member found with the provided ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            txtProcessLoanName.Text = extracted.FirstName + " " + extracted.LastName;
+            txtProcessLoanAddress.Text = extracted.AddressLine1 + ", " + extracted.AddressLine2 + ", " + extracted.City;
             grpProcessLoan.Visible = true;
+            txtProcessLoanMemberID.ReadOnly = true;
         }
 
         private void btnProcessLoanSearchISBN_Click(object sender, EventArgs e)
         {
-            String ISBN = txtProcessLoanISBN.Text;
+            string ISBN = txtProcessLoanISBN.Text;
+            String validation = BookValidator.IsValidISBN(ISBN);
 
-            for (int i = 0; i < dummyBookDetails.Length; i++)
+            if (validation != "Valid ISBN")
             {
-                if (ISBN == "")
-                {
-                    MessageBox.Show("Please enter an ISBN to search.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                };
-
-                if (dummyBookDetails[i, 0] == ISBN)
-                {
-                    txtProcessLoanTitle.Text = dummyBookDetails[i, 1];
-                    txtProcessLoanAuthor.Text = dummyBookDetails[i, 2];
-                    txtProcessLoanDescription.Text = dummyBookDetails[i, 3];
-                    cboProcessLoanGenre.Text = dummyBookDetails[i, 4];
-                    txtProcessLoanPublisher.Text = dummyBookDetails[i, 5];
-                    dtpProcessLoanPublication.Text = dummyBookDetails[i, 6];
-                    cboProcessLoanStatus.Text = dummyBookDetails[i, 7];
-                    return;
-                }
+                MessageBox.Show(validation, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            DataSet dr = Book.GetBook(ISBN);
+
+            if (dr.Tables[0].Rows.Count == 0)
+            {
+                MessageBox.Show("No book found with the provided ISBN.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            txtProcessLoanTitle.Text = dr.Tables[0].Rows[0]["Title"].ToString();
+            txtProcessLoanAuthor.Text = dr.Tables[0].Rows[0]["Author"].ToString();
+            txtProcessLoanDescription.Text = dr.Tables[0].Rows[0]["Description"].ToString();
+            cboProcessLoanGenre.Text = dr.Tables[0].Rows[0]["Genre"].ToString();
+            txtProcessLoanPublisher.Text = dr.Tables[0].Rows[0]["Publisher"].ToString();
+            dtpProcessLoanPublication.Value = Convert.ToDateTime(dr.Tables[0].Rows[0]["Publication_Date"]);
+            cboProcessLoanStatus.Text = dr.Tables[0].Rows[0]["Status"].ToString();
         }
 
         private void btnProcessLoanAdd_Click(object sender, EventArgs e)
         {
-            clbProcessLoan.Items.Add(txtProcessLoanTitle.Text);
+            string bookTitle = txtProcessLoanTitle.Text;
+
+            for (int i = 0; i < clbProcessLoan.Items.Count; i++)
+            {
+                if (clbProcessLoan.Items[i].ToString() == bookTitle)
+                {
+                    MessageBox.Show("Book already in loan", "Add Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            clbProcessLoan.Items.Add(bookTitle);
 
             txtProcessLoanISBN.Clear();
             txtProcessLoanTitle.Clear();
@@ -127,9 +130,14 @@ namespace LibrarySYS
 
                 if (dr == DialogResult.Yes)
                 {
+                    // CHECK TO MAKE SURE THAT THE MEMBER HAS NO ACTIVE LOANS OR FINES BEFORE PROCEEDING TO THE LOAN PROCESSING
+                    LoanTransaction newLoan = new LoanTransaction(1, Convert.ToInt32(txtProcessLoanMemberID.Text));
+                    newLoan.processTransaction();
+
                     MessageBox.Show("Books loaned successfully!", "Loan Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     clbProcessLoan.Items.Clear();
                     grpProcessLoan.Visible = false;
+                    txtProcessLoanMemberID.ReadOnly = false;
                 }
             }
         }

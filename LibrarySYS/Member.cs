@@ -109,31 +109,32 @@ namespace LibrarySYS
 
         public static Member GetMemberRecord(string ID)
         {
-            string sql = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status FROM Members WHERE Phone = '" + ID + "'";
-            OracleDataReader dr = Database.ExecuteSingleRowQuery(sql);
-            dr.Read();
+            string sql = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status FROM Members WHERE Member_ID = '" + ID + "'";
+            OracleDataReader member = Database.ExecuteSingleRowQuery(sql);
 
-            if (dr.Read())
+            if (member == null || !member.Read())
             {
-                return new Member(
-                    Convert.ToInt32(dr.GetDecimal(0)),  // Member_ID
-                    dr.GetString(1),                     // First_Name
-                    dr.GetString(2),                     // Last_Name
-                    dr.GetDateTime(3),                   // DOB
-                    dr.GetString(4),                     // Phone
-                    dr.GetString(5),                     // Email
-                    dr.GetString(6),                     // Address_Line1
-                    dr.GetString(7),                     // Address_Line2
-                    dr.GetString(8),                     // City
-                    dr.GetString(9),                     // County
-                    dr.GetString(10),                    // Eircode
-                    dr.GetString(12)[0]                  // Status
-                );
-            }
-            else
-            {
+                member?.Close();
                 return null;
             }
+
+            Member result = new Member(
+                Convert.ToInt32(member["Member_ID"]),
+                member["First_Name"].ToString(),
+                member["Last_Name"].ToString(),
+                Convert.ToDateTime(member["DOB"]),
+                member["Phone"].ToString(),
+                member["Email"].ToString(),
+                member["Address_Line1"].ToString(),
+                member["Address_Line2"].ToString(),
+                member["City"].ToString(),
+                member["County"].ToString(),
+                member["Eircode"].ToString(),
+                Convert.ToChar(member["Status"])
+            );
+
+            member.Close();
+            return result;
         }
 
         public void AddMember()
