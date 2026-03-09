@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -13,6 +14,7 @@ namespace LibrarySYS
     public partial class frmProcessLoan : Form
     {
         frmMainMenu parent;
+        ArrayList bookItems = new ArrayList();
 
         public frmProcessLoan()
         {
@@ -33,6 +35,7 @@ namespace LibrarySYS
         private void frmProcessLoan_Load(object sender, EventArgs e)
         {
             grpProcessLoan.Visible = false;
+            bookItems.Clear();
         }
 
         private void btnProcessLoanSearchID_Click(object sender, EventArgs e)
@@ -76,6 +79,8 @@ namespace LibrarySYS
                 MessageBox.Show("No book found with the provided ISBN.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            bookItems.Add(dr.Tables[0].Rows[0]);
 
             txtProcessLoanTitle.Text = dr.Tables[0].Rows[0]["Title"].ToString();
             txtProcessLoanAuthor.Text = dr.Tables[0].Rows[0]["Author"].ToString();
@@ -133,6 +138,13 @@ namespace LibrarySYS
                     // CHECK TO MAKE SURE THAT THE MEMBER HAS NO ACTIVE LOANS OR FINES BEFORE PROCEEDING TO THE LOAN PROCESSING
                     LoanTransaction newLoan = new LoanTransaction(1, Convert.ToInt32(txtProcessLoanMemberID.Text));
                     newLoan.processTransaction();
+
+                    foreach (DataRow book in bookItems)
+                    {
+                        LoanItem newItem = new LoanItem(Convert.ToInt32(book["Book_ID"]));
+                        newItem.AddLoanItem();
+                        Book.UpdateBookStatus(book["Book_ID"].ToString());
+                    }
 
                     MessageBox.Show("Books loaned successfully!", "Loan Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     clbProcessLoan.Items.Clear();

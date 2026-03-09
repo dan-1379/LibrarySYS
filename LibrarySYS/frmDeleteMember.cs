@@ -31,20 +31,7 @@ namespace LibrarySYS
             Utility.constructGrid(grdDeleteMember);
             Utility.styleGrid(grdDeleteMember);
             Utility.ColourRowsByStatus(grdDeleteMember);
-
-            foreach (Control control in grpDeleteMember.Controls)
-            {
-                if (control is TextBox)
-                {
-                    ((TextBox)control).ReadOnly = true;
-                    TextBox txt = (TextBox)control;
-                    txt.Height = 25;
-                    txt.Width = 200;
-                    txt.BackColor = Color.FromArgb(245, 245, 245);
-                    txt.ForeColor = Color.Black;
-                    txt.BorderStyle = BorderStyle.FixedSingle;
-                }
-            }
+            Utility.StyleInputBoxes(grpDeleteMember);
         }
 
         private void mnuDeleteMemberExit_Click(object sender, EventArgs e)
@@ -127,7 +114,7 @@ namespace LibrarySYS
             DateTime regDate = Convert.ToDateTime(grdDeleteMember.CurrentRow.Cells[11].Value);
             txtDeleteMemberRegDate.Text = regDate.ToString("dd/MM/yyyy");
 
-            txtDeleteMemberFines.Text = "€0.00";
+            txtDeleteMemberFines.Text = Fines.GetOutstandingFines(Convert.ToInt32(grdDeleteMember.CurrentRow.Cells[0].Value)).ToString("C");
             txtDeleteMemberLoans.Text = "€0.00";
         }
     }

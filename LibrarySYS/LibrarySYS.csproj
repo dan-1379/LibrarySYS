@@ -87,6 +87,7 @@
     <Compile Include="Book.cs" />
     <Compile Include="BookValidator.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Fines.cs" />
     <Compile Include="frmAddMember.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +172,7 @@
     <Compile Include="frmViewMember.Designer.cs">
       <DependentUpon>frmViewMember.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoanItem.cs" />
     <Compile Include="LoanTransaction.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="MemberValidator.cs" />

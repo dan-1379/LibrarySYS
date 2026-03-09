@@ -91,7 +91,7 @@ namespace LibrarySYS
 
             if (confirmDelete == DialogResult.Yes)
             {
-                Book.DeleteBook(selectedISBN);
+                Book.UpdateBookStatus(selectedISBN);
 
                 MessageBox.Show("Book deleted successfully.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 grpDeleteBookDetails.Visible = false;
