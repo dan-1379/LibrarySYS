@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LibrarySYS
 {
@@ -43,17 +44,16 @@ namespace LibrarySYS
 
         public static double GetOutstandingFines(int memberID)
         {
-            string sqlQuery = $"SELECT NVL(SUM(f.FINE_ID), 0), f.FINE_AMOUNT, f.STATUS, f.LOAN_ID, f.BOOK_ID " +
+            string sqlQuery = $"SELECT NVL(SUM(f.FINE_AMOUNT), 0) " +
                               $"FROM Fines f " +
-                              $"JOIN LoanItems li ON f.LOAN_ID = li.LOAN_ID " +
-                              $"JOIN Loans l ON li.LOAN_ID = l.LOAN_ID " +
-                              $"WHERE l.Member_ID = {memberID} AND f.STATUS = 'U'";
-            
+                              $"JOIN Loans l ON f.LOAN_ID = l.LOAN_ID " +
+                              $"WHERE l.MEMBER_ID = {memberID} AND f.STATUS = 'U'";
+
             OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
             double total = 0.0;
             if (dr.Read())
             {
-                total = dr.GetDouble(0);
+                total = Convert.ToDouble(dr[0]);
             }
             dr.Close();
             return total;

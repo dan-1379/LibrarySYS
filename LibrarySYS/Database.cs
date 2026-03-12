@@ -79,7 +79,6 @@ namespace LibrarySYS
             OracleDataReader dr = cmd.ExecuteReader();
 
             return dr;
-
         }
 
         public static void ExecuteNonQuery(string query)

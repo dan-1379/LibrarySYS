@@ -14,7 +14,7 @@ namespace LibrarySYS
     public partial class frmProcessLoan : Form
     {
         frmMainMenu parent;
-        ArrayList bookItems = new ArrayList();
+        private ArrayList bookItems = new ArrayList();
 
         public frmProcessLoan()
         {
@@ -47,7 +47,26 @@ namespace LibrarySYS
                 return;
             }
 
-            // CODE SHOULD BE WRITTEN HERE TO MAKE SURE THAT THE MEMBER HAS NO ACTIVE LOANS OR FINES BEFORE PROCEEDING TO THE LOAN PROCESSING
+            double fetchFine = Fines.GetOutstandingFines(Convert.ToInt32(ID));
+
+            if (fetchFine > 0)
+            {
+                DialogResult dr =  MessageBox.Show("Member currently has: €" + fetchFine + " in unpaid fines. Does the member wish to pay the fine?", 
+                                "Outstanding Fines", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                
+                if (dr == DialogResult.Yes)
+                {
+                    frmPayFines payFineForm = new frmPayFines();
+                    payFineForm.ShowDialog();
+                } else
+                {
+                    MessageBox.Show("Member must pay outstanding fines before loaning books.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtProcessLoanMemberID.Clear();
+                    return;
+                }
+            }
+
+
             Member extracted = Member.GetMemberRecord(ID);
 
             if (extracted == null) { 
@@ -94,12 +113,19 @@ namespace LibrarySYS
         private void btnProcessLoanAdd_Click(object sender, EventArgs e)
         {
             string bookTitle = txtProcessLoanTitle.Text;
+            char status = cboProcessLoanStatus.Text[0];
+
+            if (status == 'U')
+            {
+                MessageBox.Show("Book is currently unavailable for loan.", "Book Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             for (int i = 0; i < clbProcessLoan.Items.Count; i++)
             {
                 if (clbProcessLoan.Items[i].ToString() == bookTitle)
                 {
-                    MessageBox.Show("Book already in loan", "Add Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Book already in loan", "Book in loan", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -135,7 +161,21 @@ namespace LibrarySYS
 
                 if (dr == DialogResult.Yes)
                 {
-                    // CHECK TO MAKE SURE THAT THE MEMBER HAS NO ACTIVE LOANS OR FINES BEFORE PROCEEDING TO THE LOAN PROCESSING
+                    int memberID = Convert.ToInt32(txtProcessLoanMemberID.Text);
+                    int currentLoanedAmount = LoanItem.fetchUnreturnedBooks(memberID);
+
+                    if (currentLoanedAmount >= 5)
+                    {
+                        MessageBox.Show("Member has already loaned the maximum amount of books (5).", "Loan Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (clbProcessLoan.Items.Count + currentLoanedAmount > currentLoanedAmount)
+                    {
+                        MessageBox.Show("Member can only loan " + (5 - currentLoanedAmount) + " more book(s).", "Loan Limit Exceeded", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     LoanTransaction newLoan = new LoanTransaction(1, Convert.ToInt32(txtProcessLoanMemberID.Text));
                     newLoan.processTransaction();
 

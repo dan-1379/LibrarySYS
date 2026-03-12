@@ -46,5 +46,22 @@ namespace LibrarySYS
             dr.Close();
             return nextId;
         }
+
+        public static int fetchUnreturnedBooks(int memberID)
+        {
+            string sqlQuery = $"SELECT COUNT(*) " +
+                              $"FROM LoanItems li " +
+                              $"JOIN Loans l ON li.Loan_ID = l.Loan_ID " +
+                              $"WHERE l.Member_ID = {memberID} AND li.Return_Date IS NULL";
+           
+            OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
+            int count = 0;
+            if (dr.Read())
+            {
+                count = Convert.ToInt32(dr[0]);
+            }
+            dr.Close();
+            return count;
+        }
     }
 }
