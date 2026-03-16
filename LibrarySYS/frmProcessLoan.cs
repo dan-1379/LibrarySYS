@@ -170,7 +170,7 @@ namespace LibrarySYS
                         return;
                     }
 
-                    if (clbProcessLoan.Items.Count + currentLoanedAmount > currentLoanedAmount)
+                    if (clbProcessLoan.Items.Count + currentLoanedAmount > 5)
                     {
                         MessageBox.Show("Member can only loan " + (5 - currentLoanedAmount) + " more book(s).", "Loan Limit Exceeded", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -183,7 +183,7 @@ namespace LibrarySYS
                     {
                         LoanItem newItem = new LoanItem(Convert.ToInt32(book["Book_ID"]));
                         newItem.AddLoanItem();
-                        Book.UpdateBookStatus(book["Book_ID"].ToString());
+                        Book.UpdateBookStatus(book["ISBN"].ToString());
                     }
 
                     MessageBox.Show("Books loaned successfully!", "Loan Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);

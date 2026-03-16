@@ -52,7 +52,7 @@ namespace LibrarySYS
             string sqlQuery = $"SELECT COUNT(*) " +
                               $"FROM LoanItems li " +
                               $"JOIN Loans l ON li.Loan_ID = l.Loan_ID " +
-                              $"WHERE l.Member_ID = {memberID} AND li.Return_Date IS NULL";
+                              $"WHERE l.Member_ID = {memberID} AND li.ReturnDate IS NULL";
            
             OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
             int count = 0;
