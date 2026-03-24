@@ -17,7 +17,8 @@ namespace LibrarySYS
         public int Loan_ID { get; set; }
         public int Book_ID { get; set; }
 
-        public Fines(double fineAmount, int loanID, int bookID) { 
+        public Fines(double fineAmount, int loanID, int bookID)
+        {
             Fine_Amount = fineAmount;
             Loan_ID = loanID;
             Book_ID = bookID;
@@ -57,6 +58,12 @@ namespace LibrarySYS
             }
             dr.Close();
             return total;
+        }
+
+        public static void alterFineStatus(int fineID, char newStatus)
+        {
+            string sqlQuery = $"UPDATE Fines SET STATUS = '{newStatus}' WHERE FINE_ID = {fineID}";
+            Database.ExecuteNonQuery(sqlQuery);
         }
     }
 }

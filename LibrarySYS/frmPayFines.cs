@@ -13,21 +13,16 @@ namespace LibrarySYS
     public partial class frmPayFines : Form
     {
         Form parent;
-        public frmPayFines()
+        public frmPayFines(string memberID, Form parent)
         {
             InitializeComponent();
-        }
-
-        public frmPayFines(Form Parent)
-        {
-            InitializeComponent();
-            parent = Parent;
+            this.parent = parent;
+            txtPayFinesMemberID.Text = memberID;
         }
 
         private void frmPayFines_Load(object sender, EventArgs e)
         {
-            txtPayFinesMemberID.Text = "M001";
-            txtPayFinesTotalAmount.Text = "25.00";
+            txtPayFinesTotalAmount.Text = Fines.GetOutstandingFines(Convert.ToInt32(txtPayFinesMemberID.Text)).ToString();
         }
 
         private void txtPayFinesCVV_TextChanged(object sender, EventArgs e)
@@ -48,9 +43,9 @@ namespace LibrarySYS
 
         private void btnPayFinesPay_Click(object sender, EventArgs e)
         {
+            Fines.alterFineStatus(Convert.ToInt32(txtPayFinesMemberID.Text), 'P');
             MessageBox.Show("Fines Paid Successfully!", "Payment Confirmation");
             this.Close();
-            parent.Show();
         }
     }
 }

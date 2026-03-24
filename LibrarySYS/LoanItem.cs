@@ -13,9 +13,9 @@ namespace LibrarySYS
         public int Book_ID { get; set; }
         public DateTime? Return_Date { get; set; }
 
-        public LoanItem(int bookId)
+        public LoanItem(int bookId, int loanId)
         {
-            Loan_ID = GetNextLoanID();
+            Loan_ID = loanId;
             Book_ID = bookId;
             Return_Date = null;
         }
@@ -26,27 +26,6 @@ namespace LibrarySYS
             Database.ExecuteNonQuery(sqlQuery);
         }
 
-        public static int GetNextLoanID()
-        {
-            string sqlQuery = "SELECT MAX(Loan_ID) FROM LoanItems";
-            OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
-
-            int nextId;
-            dr.Read();
-
-            if (dr.IsDBNull(0))
-            {
-                nextId = 1;
-            }
-            else
-            {
-                nextId = Convert.ToInt32(dr.GetDecimal(0) + 1);
-            }
-
-            dr.Close();
-            return nextId;
-        }
-
         public static int fetchUnreturnedBooks(int memberID)
         {
             string sqlQuery = $"SELECT COUNT(*) " +
@@ -54,6 +33,23 @@ namespace LibrarySYS
                               $"JOIN Loans l ON li.Loan_ID = l.Loan_ID " +
                               $"WHERE l.Member_ID = {memberID} AND li.ReturnDate IS NULL";
            
+            OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
+            int count = 0;
+            if (dr.Read())
+            {
+                count = Convert.ToInt32(dr[0]);
+            }
+            dr.Close();
+            return count;
+        }
+
+        public static int fetchOverdueBooksCount(int memberID)
+        {
+            string sqlQuery = $"SELECT COUNT(*) " +
+                              $"FROM LoanItems li " +
+                              $"JOIN Loans l ON li.Loan_ID = l.Loan_ID " +
+                              $"WHERE l.Member_ID = {memberID} AND li.ReturnDate IS NULL AND l.Due_Date < SYSDATE";
+
             OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
             int count = 0;
             if (dr.Read())

@@ -56,8 +56,15 @@ namespace LibrarySYS
                 
                 if (dr == DialogResult.Yes)
                 {
-                    frmPayFines payFineForm = new frmPayFines();
+                    frmPayFines payFineForm = new frmPayFines(ID, this);
                     payFineForm.ShowDialog();
+
+                    if (Fines.GetOutstandingFines(Convert.ToInt32(ID)) > 0)
+                    {
+                        MessageBox.Show("Member has outstanding fines and cannot loan books until they are paid.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtProcessLoanMemberID.Clear();
+                        return;
+                    }
                 } else
                 {
                     MessageBox.Show("Member must pay outstanding fines before loaning books.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -73,7 +80,21 @@ namespace LibrarySYS
                 MessageBox.Show("No member found with the provided ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
+            if (extracted.Status == 'I')
+            {
+                MessageBox.Show("Member is currently inactive and cannot loan books.", "Inactive Member", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProcessLoanMemberID.Clear();
+                return;
+            }
+
+            if (LoanItem.fetchOverdueBooksCount(extracted.MemberID) > 0)
+            {
+                MessageBox.Show("Member has overdue books and cannot loan more until they are returned.", "Overdue Books", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProcessLoanMemberID.Clear();
+                return;
+            }
+
             txtProcessLoanName.Text = extracted.FirstName + " " + extracted.LastName;
             txtProcessLoanAddress.Text = extracted.AddressLine1 + ", " + extracted.AddressLine2 + ", " + extracted.City;
             grpProcessLoan.Visible = true;
@@ -181,7 +202,7 @@ namespace LibrarySYS
 
                     foreach (DataRow book in bookItems)
                     {
-                        LoanItem newItem = new LoanItem(Convert.ToInt32(book["Book_ID"]));
+                        LoanItem newItem = new LoanItem(Convert.ToInt32(book["Book_ID"]), newLoan.LoanId);
                         newItem.AddLoanItem();
                         Book.UpdateBookStatus(book["ISBN"].ToString());
                     }
