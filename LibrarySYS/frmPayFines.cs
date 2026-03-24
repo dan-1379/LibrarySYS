@@ -13,6 +13,12 @@ namespace LibrarySYS
     public partial class frmPayFines : Form
     {
         Form parent;
+
+        public frmPayFines()
+        {
+            InitializeComponent();
+        }
+
         public frmPayFines(string memberID, Form parent)
         {
             InitializeComponent();

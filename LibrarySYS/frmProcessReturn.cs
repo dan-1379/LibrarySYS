@@ -118,7 +118,7 @@ namespace LibrarySYS
             if (confirmExit == DialogResult.Yes)
             {
                 this.Hide();
-                frmPayFines payFinesForm = new frmPayFines(this);
+                frmPayFines payFinesForm = new frmPayFines(txtProcessReturnMemberID.Text, this);
                 payFinesForm.ShowDialog();
                 this.Show();
             } else

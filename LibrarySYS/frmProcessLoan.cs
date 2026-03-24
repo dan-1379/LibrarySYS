@@ -120,6 +120,12 @@ namespace LibrarySYS
                 return;
             }
 
+            if (bookItems.Contains(ISBN))
+            {
+                MessageBox.Show("Book already in loan", "Book in loan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             bookItems.Add(dr.Tables[0].Rows[0]);
 
             txtProcessLoanTitle.Text = dr.Tables[0].Rows[0]["Title"].ToString();
@@ -134,6 +140,7 @@ namespace LibrarySYS
         private void btnProcessLoanAdd_Click(object sender, EventArgs e)
         {
             string bookTitle = txtProcessLoanTitle.Text;
+            string bookISBN = txtProcessLoanISBN.Text;
             char status = cboProcessLoanStatus.Text[0];
 
             if (status == 'U')
@@ -209,8 +216,10 @@ namespace LibrarySYS
 
                     MessageBox.Show("Books loaned successfully!", "Loan Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     clbProcessLoan.Items.Clear();
+                    bookItems.Clear();
                     grpProcessLoan.Visible = false;
                     txtProcessLoanMemberID.ReadOnly = false;
+                    txtProcessLoanMemberID.Clear();
                 }
             }
         }
