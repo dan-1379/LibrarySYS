@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -15,14 +17,8 @@ namespace LibrarySYS
     public partial class frmProcessReturn : Form
     {
         Form parent;
+        private List<Book> bookItems = new List<Book>();
 
-        String[,] dummyBookDetails = {
-            {"1", "The Hunger Games", "Suzanne Collins", "Dystopian Novel", "Young Adult", "Scholastic Press", "14/09/2008", "A", "20/11/2025", "1.30"},
-            {"2", "The Maze Runner", "James Dashner", "Dystopian Novel", "Young Adult", "Delacorte Press", "06/10/2009", "A", "20/11/2025", "1.30"},
-            {"3", "Angels & Demons", "Dan Brown", "Thriller", "Fiction", "Pocket Books", "01/05/2000", "A", "24/11/25", "0.00"},
-            {"4", "The Silent Patient", "Alex Michaelides", "Psychological Thriller", "Fiction", "Celadon Books", "05/02/2019", "A", "24/11/2025", "0.00"},
-            {"5", "Where the Crawdads Sing", "Delia Owens", "Mystery/Drama", "Fiction", "G.P. Putnam's Sons", "14/08/2018", "A",  "24/11/2025", "0.00"}
-        };
         public frmProcessReturn()
         {
             InitializeComponent();
@@ -37,6 +33,17 @@ namespace LibrarySYS
         private void frmProcessReturn_Load(object sender, EventArgs e)
         {
             grpProcessReturn.Visible = false;
+            txtProcessReturnMemberID.Focus();
+
+            lblProcessReturnMemberName.Visible = false;
+            lblProcessReturnMemberAddress.Visible = false;
+
+            txtProcessReturnMemberAddress.Visible = false;
+            txtProcessReturnMemberAddress.ReadOnly = true;
+
+            txtProcessReturnMemberName.Visible = false;
+            txtProcessReturnMemberName.ReadOnly = true;
+
         }
 
         private void mnuProcessLoanExit_Click(object sender, EventArgs e)
@@ -52,105 +59,135 @@ namespace LibrarySYS
 
         private void btnProcessReturnSearchID_Click(object sender, EventArgs e)
         {
-            grpProcessReturn.Visible = true;
-        }
+            string ID = txtProcessReturnMemberID.Text;
 
-        private void btnProcessLoanReturnISBN_Click(object sender, EventArgs e)
-        {
-            String ISBN = txtProcessReturnISBN.Text;
-
-            for (int i = 0; i < dummyBookDetails.Length; i++)
+            if (!MemberValidator.IsValidID(ID))
             {
-                if (ISBN == "")
-                {
-                    MessageBox.Show("Please enter an ISBN to search.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                ;
-
-                if (dummyBookDetails[i, 0] == ISBN)
-                {
-                    txtProcessReturnTitle.Text = dummyBookDetails[i, 1];
-                    txtProcessReturnAuthor.Text = dummyBookDetails[i, 2];
-                    txtProcessReturnDescription.Text = dummyBookDetails[i, 3];
-                    cboProcessReturnGenre.Text = dummyBookDetails[i, 4];
-                    txtProcessReturnPublisher.Text = dummyBookDetails[i, 5];
-                    dtpProcessReturnPublication.Text = dummyBookDetails[i, 6];
-                    cboProcessReturnStatus.Text = dummyBookDetails[i, 7];
-                    dtpProcessReturnCheckout.Text = dummyBookDetails[i, 8];
-                    return;
-                }
+                MessageBox.Show("Invalid ID. Please enter a valid ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-        }
 
-        private void btnProcessReturnAdd_Click(object sender, EventArgs e)
-        {
-            clbProcessReturn.Items.Add(txtProcessReturnTitle.Text);
+            Member extracted = Member.GetMemberRecord(ID);
 
-            txtProcessReturnISBN.Clear();
-            txtProcessReturnTitle.Clear();
-            txtProcessReturnAuthor.Clear();
-            txtProcessReturnDescription.Clear();
-            cboProcessReturnGenre.Text = "";
-            txtProcessReturnPublisher.Clear();
-            dtpProcessReturnPublication.Value = DateTime.Now;
-            cboProcessReturnStatus.Text = "";
-        }
-
-        private void btnProcessReturnRemove_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < clbProcessReturn.CheckedItems.Count; i++)
+            if (extracted == null)
             {
-                clbProcessReturn.Items.Remove(clbProcessReturn.CheckedItems[i]);
+                MessageBox.Show("No member found with the provided ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-        }
 
-        private void grpProcessReturn_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnProcessLoanReturnBooks_Click(object sender, EventArgs e)
-        {
-            DialogResult confirmExit = MessageBox.Show("This member has €12.70 in active fines. Pay the fines?",
-               "Active Fines", MessageBoxButtons.YesNo);
-
-            if (confirmExit == DialogResult.Yes)
+            if (extracted.Status == 'I')
             {
-                this.Hide();
-                frmPayFines payFinesForm = new frmPayFines(txtProcessReturnMemberID.Text, this);
-                payFinesForm.ShowDialog();
-                this.Show();
-            } else
-            {
-                MessageBox.Show("Please pay outstanding fines before returning books.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                grpProcessReturn.Visible = false;
+                MessageBox.Show("Member is currently inactive and cannot loan books.", "Inactive Member", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProcessReturnMemberID.Clear();
                 return;
             }
 
-            if (clbProcessReturn.Items.Count == 0)
+            if (LoanItem.fetchOverdueBooksCount(extracted.MemberID) > 0)
             {
-                MessageBox.Show("No books selected for loan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Member has overdue books and cannot loan more until they are returned.", "Overdue Books", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProcessReturnMemberID.Clear();
                 return;
             }
-           
-            DialogResult dr = MessageBox.Show("Are you sure you want to return the selected books?", "Confirm Loan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (dr == DialogResult.Yes)
+            double fetchFine = Fines.GetOutstandingFines(Convert.ToInt32(ID));
+
+            if (fetchFine > 0)
             {
-                MessageBox.Show("Books returned successfully!", "Return Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                clbProcessReturn.Items.Clear();
-                grpProcessReturn.Visible = false;
-            } else
+                DialogResult dr = MessageBox.Show("Member currently has: €" + fetchFine + " in unpaid fines. Does the member wish to pay the fine?",
+                                "Outstanding Fines", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (dr == DialogResult.Yes)
+                {
+                    frmPayFines payFineForm = new frmPayFines(ID, this);
+                    payFineForm.ShowDialog();
+
+                    if (Fines.GetOutstandingFines(Convert.ToInt32(ID)) > 0)
+                    {
+                        MessageBox.Show("Member has outstanding fines and cannot loan books until they are paid.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtProcessReturnMemberID.Clear();
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Member must pay outstanding fines before loaning books.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtProcessReturnMemberID.Clear();
+                    return;
+                }
+            }
+
+            txtProcessReturnMemberName.Text = extracted.FirstName + " " + extracted.LastName;
+            txtProcessReturnMemberAddress.Text = extracted.AddressLine1 + ", " + extracted.AddressLine2 + ", " + extracted.City;
+            grpProcessReturn.Visible = true;
+            txtProcessReturnMemberID.ReadOnly = true;
+
+
+            lblProcessReturnMemberName.Visible = true;
+            lblProcessReturnMemberAddress.Visible = true;
+
+            txtProcessReturnMemberAddress.Visible = true;
+            txtProcessReturnMemberName.Visible = true;
+
+            bookItems.Clear();
+            clbProcessReturn.Items.Clear();
+            List<Book> unreturnedBooks = LoanItem.GetUnreturnedBooks(extracted.MemberID);
+            
+            foreach (Book book in unreturnedBooks)
             {
-                MessageBox.Show("Books not returned!", "Return not Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clbProcessReturn.Items.Add(book.Title);
+                bookItems.Add(book);
             }
         }
 
         private void txtProcessReturnMemberID_TextChanged(object sender, EventArgs e)
         {
            
+        }
+
+        private void btnProcessReturnReturn_Click(object sender, EventArgs e)
+        {
+            if (clbProcessReturn.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Please select at least one book to return.", "No Books Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirmReturn = MessageBox.Show("Are you sure you want to return the selected book(s)?", "Confirm Return", MessageBoxButtons.YesNo);
+
+            if (confirmReturn == DialogResult.Yes)
+            {
+                OracleConnection con = Database.OpenConnection();
+                OracleTransaction transaction = null;
+
+                try
+                {
+                    transaction = con.BeginTransaction();
+
+                    foreach (Book book in bookItems)
+                    {
+                        ReturnTransaction returnTransaction = new ReturnTransaction(book.BookID, Convert.ToInt32(txtProcessReturnMemberID.Text));
+                        ReturnTransaction.processTransaction(book.BookID);
+                        Book.UpdateBookStatus(book.ISBN, 'A');
+                    }
+
+                    transaction.Commit();
+
+                    MessageBox.Show("Books loaned successfully!", "Loan Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    if (transaction != null)
+                    {
+                        transaction.Rollback();
+                    }
+
+                    MessageBox.Show("An error occurred while processing the loan: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
     }
 }

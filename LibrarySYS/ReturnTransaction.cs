@@ -16,9 +16,9 @@ namespace LibrarySYS
         }
         public override void processTransaction()
         {
-            // Implement the logic to process a return transaction
-            // This could involve updating the book's status to available,
-            // calculating any late fees, and recording the transaction details.
+            string updateLoanQuery = $"UPDATE Loans SET Return_Date = TO_DATE('{DateTime.Now:dd-MM-yyyy}', 'DD-MM-YYYY') " +
+                                     $"WHERE Loan_ID = {LoanID}";
+            Database.ExecuteNonQuery(updateLoanQuery);
         }
     }
 }

@@ -84,9 +84,9 @@ namespace LibrarySYS
             Database.ExecuteNonQuery(sqlQuery);
         }
 
-        public static void UpdateBookStatus(string ISBN)
+        public static void UpdateBookStatus(string ISBN, char status)
         {
-            string sqlQuery = "UPDATE Books SET Status = 'U' WHERE ISBN = '" + ISBN + "'";
+            string sqlQuery = "UPDATE Books SET Status = '" + status + "' WHERE ISBN = '" + ISBN + "'";
             Database.ExecuteNonQuery(sqlQuery);
         }
 

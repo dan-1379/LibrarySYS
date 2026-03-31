@@ -245,7 +245,7 @@ namespace LibrarySYS
                         {
                             LoanItem newItem = new LoanItem(book.BookID, newLoan.LoanId);
                             newItem.AddLoanItem();
-                            Book.UpdateBookStatus(book.ISBN);
+                            Book.UpdateBookStatus(book.ISBN, 'U');
                         }
 
                         transaction.Commit();

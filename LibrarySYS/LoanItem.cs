@@ -59,5 +59,36 @@ namespace LibrarySYS
             dr.Close();
             return count;
         }
+
+        public static List<Book> GetUnreturnedBooks(int memberID)
+        {
+            string sqlQuery = $"SELECT b.* " +
+                              $"FROM LoanItems li " +
+                              $"JOIN Loans l ON li.Loan_ID = l.Loan_ID " +
+                              $"JOIN Books b ON li.Book_ID = b.Book_ID " +
+                              $"WHERE l.Member_ID = {memberID} AND li.ReturnDate IS NULL";
+
+            OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
+            List<Book> unreturnedBooks = new List<Book>();
+
+            while (dr.Read())
+            {
+                Book book = new Book(
+                    Convert.ToInt32(dr["BOOK_ID"]),
+                    dr["TITLE"].ToString(),
+                    dr["AUTHOR"].ToString(),
+                    dr["DESCRIPTION"].ToString(),
+                    dr["ISBN"].ToString(),
+                    dr["GENRE"].ToString(),
+                    dr["PUBLISHER"].ToString(),
+                    Convert.ToDateTime(dr["PUBLICATION_DATE"]),
+                    Convert.ToChar(dr["STATUS"])
+                );
+
+                unreturnedBooks.Add(book);
+            }
+            dr.Close();
+            return unreturnedBooks;
+        }
     }
 }
