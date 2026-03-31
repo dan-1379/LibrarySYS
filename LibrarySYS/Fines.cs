@@ -51,7 +51,7 @@ namespace LibrarySYS
                               $"WHERE l.MEMBER_ID = {memberID} AND f.STATUS = 'U'";
 
             OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
-            double total = 0.0;
+            double total = 0;
             if (dr.Read())
             {
                 total = Convert.ToDouble(dr[0]);

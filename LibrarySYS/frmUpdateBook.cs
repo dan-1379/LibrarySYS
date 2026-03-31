@@ -54,29 +54,27 @@ namespace LibrarySYS
                 return;
             }
 
-            DataSet ds = Book.GetBook(selectedISBN);
+            Book book = Book.GetBook(selectedISBN);
 
-            if (ds == null || ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            if (book == null)
             {
                 MessageBox.Show("No book found with the provided ISBN.", "Book Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 grpUpdateBook.Visible = false;
                 return;
             }
 
-            DataRow row = ds.Tables[0].Rows[0];
-
             grpUpdateBook.Visible = true;
             txtUpdateBookISBN.ReadOnly = true;
 
-            bookID = Convert.ToInt32(row["Book_ID"].ToString());
+            bookID = Convert.ToInt32(book.BookID.ToString());
 
-            txtUpdateBookTitle.Text = row["Title"].ToString();
-            txtUpdateBookAuthor.Text = row["Author"].ToString();
-            txtUpdateBookDescription.Text = row["Description"].ToString();
-            cboUpdateBookGenre.Text = row["Genre"].ToString();
-            txtUpdateBookPublisher.Text = row["Publisher"].ToString();
-            dtpUpdateBookPublication.Value = Convert.ToDateTime(row["Publication_Date"]);
-            cboUpdateBookStatus.Text = row["Status"].ToString();
+            txtUpdateBookTitle.Text = book.Title;
+            txtUpdateBookAuthor.Text = book.Author;
+            txtUpdateBookDescription.Text = book.Description;
+            cboUpdateBookGenre.Text = book.Genre;
+            txtUpdateBookPublisher.Text = book.Publisher;
+            dtpUpdateBookPublication.Value = Convert.ToDateTime(book.Publication);
+            cboUpdateBookStatus.Text = book.Status.ToString();
 
         }
 

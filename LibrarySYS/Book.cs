@@ -105,10 +105,32 @@ namespace LibrarySYS
             Database.ExecuteNonQuery(sqlQuery);
         }
 
-        public static DataSet GetBook(string ISBN)
+        public static Book GetBook(string ISBN)
         {
             string sqlQuery = "SELECT * FROM Books WHERE ISBN = '" + ISBN + "'";
-            return Database.ExecuteMultiRowQuery(sqlQuery);
+            OracleDataReader book = Database.ExecuteSingleRowQuery(sqlQuery);
+
+            if (book == null || !book.Read())
+            {
+                book?.Close();
+                return null;
+            }
+
+            Book fetchedBook = new Book(
+                Convert.ToInt32(book["Book_ID"]),
+                book["Title"].ToString(),
+                book["Author"].ToString(),
+                book["Description"].ToString(),
+                book["ISBN"].ToString(),
+                book["Genre"].ToString(),
+                book["Publisher"].ToString(),
+                Convert.ToDateTime(book["Publication_Date"]),
+                Convert.ToChar(book["Status"])
+            );
+
+            book.Close();
+            return fetchedBook;
         }
+
     }
 }

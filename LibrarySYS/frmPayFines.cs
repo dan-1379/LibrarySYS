@@ -49,8 +49,45 @@ namespace LibrarySYS
 
         private void btnPayFinesPay_Click(object sender, EventArgs e)
         {
+            string cardNumber = txtPayFinesCardNumber.Text;
+            string expiryDate = txtPayFinesExpiryDate.Text;
+            string cardholderName = txtPayFinesCardName.Text;
+            string cvv = txtPayFinesCVV.Text;
+
+            string checkCardNumber = CardValidator.IsValidCardNumber(cardNumber);
+
+            if (checkCardNumber != "Valid")
+            {
+                MessageBox.Show(checkCardNumber, "Invalid Card Number", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string checkExpiryDate = CardValidator.IsValidExpiryDate(expiryDate);
+
+            if (checkExpiryDate != "Valid")
+            {
+                MessageBox.Show(checkExpiryDate, "Invalid Expiry Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string checkCardholderName = CardValidator.IsValidCardholderName(cardholderName);
+
+            if (checkCardholderName != "Valid")
+            {
+                MessageBox.Show(checkCardholderName, "Invalid Cardholder Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string checkCVV = CardValidator.IsValidCVV(cvv);
+
+            if (checkCVV != "Valid")
+            {
+                MessageBox.Show(checkCVV, "Invalid CVV", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Fines.alterFineStatus(Convert.ToInt32(txtPayFinesMemberID.Text), 'P');
-            MessageBox.Show("Fines Paid Successfully!", "Payment Confirmation");
+            MessageBox.Show("Fines Paid Successfully!", "Payment Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }
     }

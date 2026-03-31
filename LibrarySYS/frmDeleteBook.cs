@@ -53,27 +53,25 @@ namespace LibrarySYS
                 return;
             }
 
-            DataSet ds = Book.GetBook(selectedISBN);
+            Book book = Book.GetBook(selectedISBN);
 
-            if (ds == null || ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
+            if (book == null)
             {
                 MessageBox.Show("No book found with the provided ISBN.", "Book Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 grpDeleteBookDetails.Visible = false;
                 return;
             }
 
-            DataRow row = ds.Tables[0].Rows[0];
-
             grpDeleteBookDetails.Visible = true;
             txtDeleteBookISBN.ReadOnly = true;
 
-            txtDeleteBookTitle.Text = row["Title"].ToString();
-            txtDeleteBookAuthor.Text = row["Author"].ToString();
-            txtDeleteBookDescription.Text = row["Description"].ToString();
-            txtDeleteBookGenre.Text = row["Genre"].ToString();
-            txtDeleteBookPublisher.Text = row["Publisher"].ToString();
-            txtDeleteBookPublication.Text = Convert.ToDateTime(row["Publication_Date"]).ToString("dd-MM-yyyy");
-            txtDeleteBookStatus.Text = row["Status"].ToString();
+            txtDeleteBookTitle.Text = book.Title;
+            txtDeleteBookAuthor.Text = book.Author;
+            txtDeleteBookDescription.Text = book.Description;
+            txtDeleteBookGenre.Text = book.Genre;
+            txtDeleteBookPublisher.Text = book.Publisher;
+            txtDeleteBookPublication.Text = Convert.ToDateTime(book.Publication).ToString("dd-MM-yyyy");
+            txtDeleteBookStatus.Text = book.Status.ToString();
         }
 
         private void btnDeleteBookDelete_Click(object sender, EventArgs e)

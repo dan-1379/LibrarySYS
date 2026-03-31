@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Book.cs" />
     <Compile Include="BookValidator.cs" />
+    <Compile Include="CardValidator.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="Fines.cs" />
     <Compile Include="frmAddMember.cs">

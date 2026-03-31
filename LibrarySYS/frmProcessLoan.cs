@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oracle.ManagedDataAccess.Client;
 
 namespace LibrarySYS
 {
     public partial class frmProcessLoan : Form
     {
         frmMainMenu parent;
-        private ArrayList bookItems = new ArrayList();
+        private List<Book> bookItems = new List<Book>();
 
         public frmProcessLoan()
         {
@@ -47,33 +48,6 @@ namespace LibrarySYS
                 return;
             }
 
-            double fetchFine = Fines.GetOutstandingFines(Convert.ToInt32(ID));
-
-            if (fetchFine > 0)
-            {
-                DialogResult dr =  MessageBox.Show("Member currently has: €" + fetchFine + " in unpaid fines. Does the member wish to pay the fine?", 
-                                "Outstanding Fines", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                
-                if (dr == DialogResult.Yes)
-                {
-                    frmPayFines payFineForm = new frmPayFines(ID, this);
-                    payFineForm.ShowDialog();
-
-                    if (Fines.GetOutstandingFines(Convert.ToInt32(ID)) > 0)
-                    {
-                        MessageBox.Show("Member has outstanding fines and cannot loan books until they are paid.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtProcessLoanMemberID.Clear();
-                        return;
-                    }
-                } else
-                {
-                    MessageBox.Show("Member must pay outstanding fines before loaning books.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtProcessLoanMemberID.Clear();
-                    return;
-                }
-            }
-
-
             Member extracted = Member.GetMemberRecord(ID);
 
             if (extracted == null) { 
@@ -95,6 +69,33 @@ namespace LibrarySYS
                 return;
             }
 
+            double fetchFine = Fines.GetOutstandingFines(Convert.ToInt32(ID));
+
+            if (fetchFine > 0)
+            {
+                DialogResult dr = MessageBox.Show("Member currently has: €" + fetchFine + " in unpaid fines. Does the member wish to pay the fine?",
+                                "Outstanding Fines", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (dr == DialogResult.Yes)
+                {
+                    frmPayFines payFineForm = new frmPayFines(ID, this);
+                    payFineForm.ShowDialog();
+
+                    if (Fines.GetOutstandingFines(Convert.ToInt32(ID)) > 0)
+                    {
+                        MessageBox.Show("Member has outstanding fines and cannot loan books until they are paid.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtProcessLoanMemberID.Clear();
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Member must pay outstanding fines before loaning books.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtProcessLoanMemberID.Clear();
+                    return;
+                }
+            }
+
             txtProcessLoanName.Text = extracted.FirstName + " " + extracted.LastName;
             txtProcessLoanAddress.Text = extracted.AddressLine1 + ", " + extracted.AddressLine2 + ", " + extracted.City;
             grpProcessLoan.Visible = true;
@@ -112,35 +113,46 @@ namespace LibrarySYS
                 return;
             }
 
-            DataSet dr = Book.GetBook(ISBN);
+            Book book = Book.GetBook(ISBN);
 
-            if (dr.Tables[0].Rows.Count == 0)
+            if (book == null)
             {
                 MessageBox.Show("No book found with the provided ISBN.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (bookItems.Contains(ISBN))
+            if (book.Status == 'U')
+            {
+                MessageBox.Show("Book is currently unavailable for loan.", "Book Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (bookItems.Any(b => b.ISBN == ISBN))
             {
                 MessageBox.Show("Book already in loan", "Book in loan", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            bookItems.Add(dr.Tables[0].Rows[0]);
-
-            txtProcessLoanTitle.Text = dr.Tables[0].Rows[0]["Title"].ToString();
-            txtProcessLoanAuthor.Text = dr.Tables[0].Rows[0]["Author"].ToString();
-            txtProcessLoanDescription.Text = dr.Tables[0].Rows[0]["Description"].ToString();
-            cboProcessLoanGenre.Text = dr.Tables[0].Rows[0]["Genre"].ToString();
-            txtProcessLoanPublisher.Text = dr.Tables[0].Rows[0]["Publisher"].ToString();
-            dtpProcessLoanPublication.Value = Convert.ToDateTime(dr.Tables[0].Rows[0]["Publication_Date"]);
-            cboProcessLoanStatus.Text = dr.Tables[0].Rows[0]["Status"].ToString();
+            txtProcessLoanTitle.Text = book.Title;
+            txtProcessLoanAuthor.Text = book.Author;
+            txtProcessLoanDescription.Text = book.Description;
+            cboProcessLoanGenre.Text = book.Genre;
+            txtProcessLoanPublisher.Text = book.Publisher;
+            dtpProcessLoanPublication.Value = Convert.ToDateTime(book.Publication);
+            cboProcessLoanStatus.Text = Convert.ToString(book.Status);
         }
 
         private void btnProcessLoanAdd_Click(object sender, EventArgs e)
         {
             string bookTitle = txtProcessLoanTitle.Text;
             string bookISBN = txtProcessLoanISBN.Text;
+
+            if (string.IsNullOrEmpty(bookISBN))
+            {
+                MessageBox.Show("Please search for a book before adding it to the loan.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             char status = cboProcessLoanStatus.Text[0];
 
             if (status == 'U')
@@ -149,16 +161,28 @@ namespace LibrarySYS
                 return;
             }
 
-            for (int i = 0; i < clbProcessLoan.Items.Count; i++)
+            if (bookItems.Any(b => b.ISBN == bookISBN))
             {
-                if (clbProcessLoan.Items[i].ToString() == bookTitle)
-                {
-                    MessageBox.Show("Book already in loan", "Book in loan", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                MessageBox.Show("Book already in loan", "Book in loan", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            clbProcessLoan.Items.Add(bookTitle);
+            if (bookItems.Count >= 5)
+            {
+                MessageBox.Show("Cannot add more than 5 books to a single loan.", "Loan Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Book book = Book.GetBook(bookISBN);
+
+            if (book == null)
+            {
+                MessageBox.Show("No book found with the provided ISBN.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            clbProcessLoan.Items.Add(book.Title);
+            bookItems.Add(book);
 
             txtProcessLoanISBN.Clear();
             txtProcessLoanTitle.Clear();
@@ -172,8 +196,11 @@ namespace LibrarySYS
 
         private void btnProcessLoanRemove_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < clbProcessLoan.CheckedItems.Count; i++)
+            for (int i = clbProcessLoan.CheckedItems.Count - 1; i >= 0; i--)
             {
+                string titleToRemove = clbProcessLoan.CheckedItems[i].ToString();
+                bookItems.RemoveAll(b => b.Title == titleToRemove);
+
                 clbProcessLoan.Items.Remove(clbProcessLoan.CheckedItems[i]);
             }
         }
@@ -204,22 +231,48 @@ namespace LibrarySYS
                         return;
                     }
 
-                    LoanTransaction newLoan = new LoanTransaction(1, Convert.ToInt32(txtProcessLoanMemberID.Text));
-                    newLoan.processTransaction();
+                    OracleConnection con = Database.OpenConnection();
+                    OracleTransaction transaction = null;
 
-                    foreach (DataRow book in bookItems)
+                    try
                     {
-                        LoanItem newItem = new LoanItem(Convert.ToInt32(book["Book_ID"]), newLoan.LoanId);
-                        newItem.AddLoanItem();
-                        Book.UpdateBookStatus(book["ISBN"].ToString());
-                    }
+                        transaction = con.BeginTransaction();
 
-                    MessageBox.Show("Books loaned successfully!", "Loan Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    clbProcessLoan.Items.Clear();
-                    bookItems.Clear();
-                    grpProcessLoan.Visible = false;
-                    txtProcessLoanMemberID.ReadOnly = false;
-                    txtProcessLoanMemberID.Clear();
+                        LoanTransaction newLoan = new LoanTransaction(1, Convert.ToInt32(txtProcessLoanMemberID.Text));
+                        newLoan.processTransaction();
+
+                        foreach (Book book in bookItems)
+                        {
+                            LoanItem newItem = new LoanItem(book.BookID, newLoan.LoanId);
+                            newItem.AddLoanItem();
+                            Book.UpdateBookStatus(book.ISBN);
+                        }
+
+                        transaction.Commit();
+
+                        MessageBox.Show("Books loaned successfully!", "Loan Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        clbProcessLoan.Items.Clear();
+                        bookItems.Clear();
+                        grpProcessLoan.Visible = false;
+                        txtProcessLoanMemberID.ReadOnly = false;
+                        txtProcessLoanMemberID.Clear();
+                        txtProcessLoanMemberID.Focus();
+                        txtProcessLoanName.Clear();
+                        txtProcessLoanAddress.Clear();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (transaction != null)
+                        {
+                            transaction.Rollback();
+                        }
+
+                        MessageBox.Show("An error occurred while processing the loan: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
                 }
             }
         }
