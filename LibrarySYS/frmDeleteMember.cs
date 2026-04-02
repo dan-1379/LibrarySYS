@@ -32,6 +32,7 @@ namespace LibrarySYS
             Utility.styleGrid(grdDeleteMember);
             Utility.ColourRowsByStatus(grdDeleteMember);
             Utility.StyleInputBoxes(grpDeleteMember);
+            Utility.StyleButton(btnDeleteMemberDelete);
         }
 
         private void mnuDeleteMemberExit_Click(object sender, EventArgs e)
@@ -70,7 +71,7 @@ namespace LibrarySYS
                     return;
                 }
 
-                if (txtDeleteMemberLoans.Text != "€0.00")
+                if (txtDeleteMemberLoans.Text != "0")
                 {
                     MessageBox.Show("Cannot delete member with outstanding loans.", "Deletion Error");
                     return;
@@ -114,8 +115,8 @@ namespace LibrarySYS
             DateTime regDate = Convert.ToDateTime(grdDeleteMember.CurrentRow.Cells[11].Value);
             txtDeleteMemberRegDate.Text = regDate.ToString("dd/MM/yyyy");
 
-            txtDeleteMemberFines.Text = Fines.GetOutstandingFines(Convert.ToInt32(grdDeleteMember.CurrentRow.Cells[0].Value)).ToString("C");
-            txtDeleteMemberLoans.Text = "€0.00";
+            txtDeleteMemberFines.Text = Fine.GetOutstandingFines(Convert.ToInt32(grdDeleteMember.CurrentRow.Cells[0].Value)).ToString("C");
+            txtDeleteMemberLoans.Text = LoanItem.GetUnreturnedBooks(Convert.ToInt32(grdDeleteMember.CurrentRow.Cells[0].Value)).Count.ToString();
         }
     }
 }

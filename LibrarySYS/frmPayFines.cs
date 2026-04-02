@@ -28,7 +28,7 @@ namespace LibrarySYS
 
         private void frmPayFines_Load(object sender, EventArgs e)
         {
-            txtPayFinesTotalAmount.Text = Fines.GetOutstandingFines(Convert.ToInt32(txtPayFinesMemberID.Text)).ToString();
+            txtPayFinesTotalAmount.Text = Fine.GetOutstandingFines(Convert.ToInt32(txtPayFinesMemberID.Text)).ToString();
         }
 
         private void txtPayFinesCVV_TextChanged(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace LibrarySYS
                 return;
             }
 
-            Fines.alterFineStatus(Convert.ToInt32(txtPayFinesMemberID.Text), 'P');
+            Fine.alterFineStatus(Convert.ToInt32(txtPayFinesMemberID.Text), 'P');
             MessageBox.Show("Fines Paid Successfully!", "Payment Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }

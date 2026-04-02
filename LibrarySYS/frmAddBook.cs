@@ -26,7 +26,9 @@ namespace LibrarySYS
 
         private void frmAddBook_Load(object sender, EventArgs e)
         {
-
+            Utility.StyleInputBoxesActive(grpAddBook);
+            Utility.StyleButton(btnAddBookSave);
+            Utility.StyleLabel(grpAddBook);
         }
 
         private void mnuExit_Click(object sender, EventArgs e)

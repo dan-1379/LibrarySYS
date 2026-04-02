@@ -30,6 +30,10 @@ namespace LibrarySYS
             dtpViewBookPublication.Enabled = false;
             cboViewBookStatus.Enabled = false;
             cboViewBookGenre.Enabled = false;
+
+            Utility.StyleInputBoxes(grpViewBook);
+            Utility.StyleSearchButton(btnViewBookSearch);
+            Utility.StyleLabel(grpViewBook);
         }
 
         private void mnuViewBookExit_Click(object sender, EventArgs e)

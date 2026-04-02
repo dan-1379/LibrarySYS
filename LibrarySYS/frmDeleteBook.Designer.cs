@@ -34,21 +34,21 @@
             this.txtDeleteBookISBN = new System.Windows.Forms.TextBox();
             this.btnDeleteBookSearch = new System.Windows.Forms.Button();
             this.grpDeleteBookDetails = new System.Windows.Forms.GroupBox();
-            this.lblDeleteBookTitle = new System.Windows.Forms.Label();
-            this.lblDeleteBookAuthor = new System.Windows.Forms.Label();
-            this.lblDeleteBookDescription = new System.Windows.Forms.Label();
-            this.lblDeleteBookGenre = new System.Windows.Forms.Label();
-            this.lblDeleteBookPublisher = new System.Windows.Forms.Label();
-            this.lblDeleteBookPublication = new System.Windows.Forms.Label();
-            this.lblDeleteBookStatus = new System.Windows.Forms.Label();
-            this.btnDeleteBookDelete = new System.Windows.Forms.Button();
-            this.txtDeleteBookTitle = new System.Windows.Forms.TextBox();
-            this.txtDeleteBookAuthor = new System.Windows.Forms.TextBox();
-            this.txtDeleteBookDescription = new System.Windows.Forms.TextBox();
-            this.txtDeleteBookGenre = new System.Windows.Forms.TextBox();
-            this.txtDeleteBookPublisher = new System.Windows.Forms.TextBox();
-            this.txtDeleteBookPublication = new System.Windows.Forms.TextBox();
             this.txtDeleteBookStatus = new System.Windows.Forms.TextBox();
+            this.txtDeleteBookPublication = new System.Windows.Forms.TextBox();
+            this.txtDeleteBookPublisher = new System.Windows.Forms.TextBox();
+            this.txtDeleteBookGenre = new System.Windows.Forms.TextBox();
+            this.txtDeleteBookDescription = new System.Windows.Forms.TextBox();
+            this.txtDeleteBookAuthor = new System.Windows.Forms.TextBox();
+            this.txtDeleteBookTitle = new System.Windows.Forms.TextBox();
+            this.btnDeleteBookDelete = new System.Windows.Forms.Button();
+            this.lblDeleteBookStatus = new System.Windows.Forms.Label();
+            this.lblDeleteBookPublication = new System.Windows.Forms.Label();
+            this.lblDeleteBookPublisher = new System.Windows.Forms.Label();
+            this.lblDeleteBookGenre = new System.Windows.Forms.Label();
+            this.lblDeleteBookDescription = new System.Windows.Forms.Label();
+            this.lblDeleteBookAuthor = new System.Windows.Forms.Label();
+            this.lblDeleteBookTitle = new System.Windows.Forms.Label();
             this.mnuDeleteBook.SuspendLayout();
             this.grpDeleteBookDetails.SuspendLayout();
             this.SuspendLayout();
@@ -89,9 +89,9 @@
             // 
             // btnDeleteBookSearch
             // 
-            this.btnDeleteBookSearch.Location = new System.Drawing.Point(226, 35);
+            this.btnDeleteBookSearch.Location = new System.Drawing.Point(212, 35);
             this.btnDeleteBookSearch.Name = "btnDeleteBookSearch";
-            this.btnDeleteBookSearch.Size = new System.Drawing.Size(84, 20);
+            this.btnDeleteBookSearch.Size = new System.Drawing.Size(115, 20);
             this.btnDeleteBookSearch.TabIndex = 3;
             this.btnDeleteBookSearch.Text = "Search";
             this.btnDeleteBookSearch.UseVisualStyleBackColor = true;
@@ -121,69 +121,62 @@
             this.grpDeleteBookDetails.TabStop = false;
             this.grpDeleteBookDetails.Text = "Book Details";
             // 
-            // lblDeleteBookTitle
+            // txtDeleteBookStatus
             // 
-            this.lblDeleteBookTitle.AutoSize = true;
-            this.lblDeleteBookTitle.Location = new System.Drawing.Point(6, 33);
-            this.lblDeleteBookTitle.Name = "lblDeleteBookTitle";
-            this.lblDeleteBookTitle.Size = new System.Drawing.Size(30, 13);
-            this.lblDeleteBookTitle.TabIndex = 0;
-            this.lblDeleteBookTitle.Text = "Title:";
+            this.txtDeleteBookStatus.Location = new System.Drawing.Point(96, 290);
+            this.txtDeleteBookStatus.Name = "txtDeleteBookStatus";
+            this.txtDeleteBookStatus.ReadOnly = true;
+            this.txtDeleteBookStatus.Size = new System.Drawing.Size(184, 20);
+            this.txtDeleteBookStatus.TabIndex = 14;
             // 
-            // lblDeleteBookAuthor
+            // txtDeleteBookPublication
             // 
-            this.lblDeleteBookAuthor.AutoSize = true;
-            this.lblDeleteBookAuthor.Location = new System.Drawing.Point(6, 71);
-            this.lblDeleteBookAuthor.Name = "lblDeleteBookAuthor";
-            this.lblDeleteBookAuthor.Size = new System.Drawing.Size(41, 13);
-            this.lblDeleteBookAuthor.TabIndex = 1;
-            this.lblDeleteBookAuthor.Text = "Author:";
+            this.txtDeleteBookPublication.Location = new System.Drawing.Point(96, 251);
+            this.txtDeleteBookPublication.Name = "txtDeleteBookPublication";
+            this.txtDeleteBookPublication.ReadOnly = true;
+            this.txtDeleteBookPublication.Size = new System.Drawing.Size(184, 20);
+            this.txtDeleteBookPublication.TabIndex = 13;
             // 
-            // lblDeleteBookDescription
+            // txtDeleteBookPublisher
             // 
-            this.lblDeleteBookDescription.AutoSize = true;
-            this.lblDeleteBookDescription.Location = new System.Drawing.Point(6, 109);
-            this.lblDeleteBookDescription.Name = "lblDeleteBookDescription";
-            this.lblDeleteBookDescription.Size = new System.Drawing.Size(63, 13);
-            this.lblDeleteBookDescription.TabIndex = 2;
-            this.lblDeleteBookDescription.Text = "Description:";
+            this.txtDeleteBookPublisher.Location = new System.Drawing.Point(96, 211);
+            this.txtDeleteBookPublisher.Name = "txtDeleteBookPublisher";
+            this.txtDeleteBookPublisher.ReadOnly = true;
+            this.txtDeleteBookPublisher.Size = new System.Drawing.Size(184, 20);
+            this.txtDeleteBookPublisher.TabIndex = 12;
             // 
-            // lblDeleteBookGenre
+            // txtDeleteBookGenre
             // 
-            this.lblDeleteBookGenre.AutoSize = true;
-            this.lblDeleteBookGenre.Location = new System.Drawing.Point(6, 177);
-            this.lblDeleteBookGenre.Name = "lblDeleteBookGenre";
-            this.lblDeleteBookGenre.Size = new System.Drawing.Size(39, 13);
-            this.lblDeleteBookGenre.TabIndex = 3;
-            this.lblDeleteBookGenre.Text = "Genre:";
+            this.txtDeleteBookGenre.Location = new System.Drawing.Point(96, 174);
+            this.txtDeleteBookGenre.Name = "txtDeleteBookGenre";
+            this.txtDeleteBookGenre.ReadOnly = true;
+            this.txtDeleteBookGenre.Size = new System.Drawing.Size(184, 20);
+            this.txtDeleteBookGenre.TabIndex = 11;
             // 
-            // lblDeleteBookPublisher
+            // txtDeleteBookDescription
             // 
-            this.lblDeleteBookPublisher.AutoSize = true;
-            this.lblDeleteBookPublisher.Location = new System.Drawing.Point(6, 214);
-            this.lblDeleteBookPublisher.Name = "lblDeleteBookPublisher";
-            this.lblDeleteBookPublisher.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblDeleteBookPublisher.Size = new System.Drawing.Size(53, 13);
-            this.lblDeleteBookPublisher.TabIndex = 4;
-            this.lblDeleteBookPublisher.Text = "Publisher:";
+            this.txtDeleteBookDescription.Location = new System.Drawing.Point(96, 106);
+            this.txtDeleteBookDescription.Multiline = true;
+            this.txtDeleteBookDescription.Name = "txtDeleteBookDescription";
+            this.txtDeleteBookDescription.ReadOnly = true;
+            this.txtDeleteBookDescription.Size = new System.Drawing.Size(184, 50);
+            this.txtDeleteBookDescription.TabIndex = 10;
             // 
-            // lblDeleteBookPublication
+            // txtDeleteBookAuthor
             // 
-            this.lblDeleteBookPublication.AutoSize = true;
-            this.lblDeleteBookPublication.Location = new System.Drawing.Point(6, 251);
-            this.lblDeleteBookPublication.Name = "lblDeleteBookPublication";
-            this.lblDeleteBookPublication.Size = new System.Drawing.Size(88, 13);
-            this.lblDeleteBookPublication.TabIndex = 5;
-            this.lblDeleteBookPublication.Text = "Publication Date:";
+            this.txtDeleteBookAuthor.Location = new System.Drawing.Point(96, 68);
+            this.txtDeleteBookAuthor.Name = "txtDeleteBookAuthor";
+            this.txtDeleteBookAuthor.ReadOnly = true;
+            this.txtDeleteBookAuthor.Size = new System.Drawing.Size(184, 20);
+            this.txtDeleteBookAuthor.TabIndex = 9;
             // 
-            // lblDeleteBookStatus
+            // txtDeleteBookTitle
             // 
-            this.lblDeleteBookStatus.AutoSize = true;
-            this.lblDeleteBookStatus.Location = new System.Drawing.Point(6, 290);
-            this.lblDeleteBookStatus.Name = "lblDeleteBookStatus";
-            this.lblDeleteBookStatus.Size = new System.Drawing.Size(40, 13);
-            this.lblDeleteBookStatus.TabIndex = 6;
-            this.lblDeleteBookStatus.Text = "Status:";
+            this.txtDeleteBookTitle.Location = new System.Drawing.Point(96, 30);
+            this.txtDeleteBookTitle.Name = "txtDeleteBookTitle";
+            this.txtDeleteBookTitle.ReadOnly = true;
+            this.txtDeleteBookTitle.Size = new System.Drawing.Size(184, 20);
+            this.txtDeleteBookTitle.TabIndex = 8;
             // 
             // btnDeleteBookDelete
             // 
@@ -195,62 +188,69 @@
             this.btnDeleteBookDelete.UseVisualStyleBackColor = true;
             this.btnDeleteBookDelete.Click += new System.EventHandler(this.btnDeleteBookDelete_Click);
             // 
-            // txtDeleteBookTitle
+            // lblDeleteBookStatus
             // 
-            this.txtDeleteBookTitle.Location = new System.Drawing.Point(96, 30);
-            this.txtDeleteBookTitle.Name = "txtDeleteBookTitle";
-            this.txtDeleteBookTitle.ReadOnly = true;
-            this.txtDeleteBookTitle.Size = new System.Drawing.Size(184, 20);
-            this.txtDeleteBookTitle.TabIndex = 8;
+            this.lblDeleteBookStatus.AutoSize = true;
+            this.lblDeleteBookStatus.Location = new System.Drawing.Point(6, 290);
+            this.lblDeleteBookStatus.Name = "lblDeleteBookStatus";
+            this.lblDeleteBookStatus.Size = new System.Drawing.Size(40, 13);
+            this.lblDeleteBookStatus.TabIndex = 6;
+            this.lblDeleteBookStatus.Text = "Status:";
             // 
-            // txtDeleteBookAuthor
+            // lblDeleteBookPublication
             // 
-            this.txtDeleteBookAuthor.Location = new System.Drawing.Point(96, 68);
-            this.txtDeleteBookAuthor.Name = "txtDeleteBookAuthor";
-            this.txtDeleteBookAuthor.ReadOnly = true;
-            this.txtDeleteBookAuthor.Size = new System.Drawing.Size(184, 20);
-            this.txtDeleteBookAuthor.TabIndex = 9;
+            this.lblDeleteBookPublication.AutoSize = true;
+            this.lblDeleteBookPublication.Location = new System.Drawing.Point(6, 251);
+            this.lblDeleteBookPublication.Name = "lblDeleteBookPublication";
+            this.lblDeleteBookPublication.Size = new System.Drawing.Size(88, 13);
+            this.lblDeleteBookPublication.TabIndex = 5;
+            this.lblDeleteBookPublication.Text = "Publication Date:";
             // 
-            // txtDeleteBookDescription
+            // lblDeleteBookPublisher
             // 
-            this.txtDeleteBookDescription.Location = new System.Drawing.Point(96, 106);
-            this.txtDeleteBookDescription.Multiline = true;
-            this.txtDeleteBookDescription.Name = "txtDeleteBookDescription";
-            this.txtDeleteBookDescription.ReadOnly = true;
-            this.txtDeleteBookDescription.Size = new System.Drawing.Size(184, 50);
-            this.txtDeleteBookDescription.TabIndex = 10;
+            this.lblDeleteBookPublisher.AutoSize = true;
+            this.lblDeleteBookPublisher.Location = new System.Drawing.Point(6, 214);
+            this.lblDeleteBookPublisher.Name = "lblDeleteBookPublisher";
+            this.lblDeleteBookPublisher.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblDeleteBookPublisher.Size = new System.Drawing.Size(53, 13);
+            this.lblDeleteBookPublisher.TabIndex = 4;
+            this.lblDeleteBookPublisher.Text = "Publisher:";
             // 
-            // txtDeleteBookGenre
+            // lblDeleteBookGenre
             // 
-            this.txtDeleteBookGenre.Location = new System.Drawing.Point(96, 174);
-            this.txtDeleteBookGenre.Name = "txtDeleteBookGenre";
-            this.txtDeleteBookGenre.ReadOnly = true;
-            this.txtDeleteBookGenre.Size = new System.Drawing.Size(184, 20);
-            this.txtDeleteBookGenre.TabIndex = 11;
+            this.lblDeleteBookGenre.AutoSize = true;
+            this.lblDeleteBookGenre.Location = new System.Drawing.Point(6, 177);
+            this.lblDeleteBookGenre.Name = "lblDeleteBookGenre";
+            this.lblDeleteBookGenre.Size = new System.Drawing.Size(39, 13);
+            this.lblDeleteBookGenre.TabIndex = 3;
+            this.lblDeleteBookGenre.Text = "Genre:";
             // 
-            // txtDeleteBookPublisher
+            // lblDeleteBookDescription
             // 
-            this.txtDeleteBookPublisher.Location = new System.Drawing.Point(96, 211);
-            this.txtDeleteBookPublisher.Name = "txtDeleteBookPublisher";
-            this.txtDeleteBookPublisher.ReadOnly = true;
-            this.txtDeleteBookPublisher.Size = new System.Drawing.Size(184, 20);
-            this.txtDeleteBookPublisher.TabIndex = 12;
+            this.lblDeleteBookDescription.AutoSize = true;
+            this.lblDeleteBookDescription.Location = new System.Drawing.Point(6, 109);
+            this.lblDeleteBookDescription.Name = "lblDeleteBookDescription";
+            this.lblDeleteBookDescription.Size = new System.Drawing.Size(63, 13);
+            this.lblDeleteBookDescription.TabIndex = 2;
+            this.lblDeleteBookDescription.Text = "Description:";
             // 
-            // txtDeleteBookPublication
+            // lblDeleteBookAuthor
             // 
-            this.txtDeleteBookPublication.Location = new System.Drawing.Point(96, 251);
-            this.txtDeleteBookPublication.Name = "txtDeleteBookPublication";
-            this.txtDeleteBookPublication.ReadOnly = true;
-            this.txtDeleteBookPublication.Size = new System.Drawing.Size(184, 20);
-            this.txtDeleteBookPublication.TabIndex = 13;
+            this.lblDeleteBookAuthor.AutoSize = true;
+            this.lblDeleteBookAuthor.Location = new System.Drawing.Point(6, 71);
+            this.lblDeleteBookAuthor.Name = "lblDeleteBookAuthor";
+            this.lblDeleteBookAuthor.Size = new System.Drawing.Size(41, 13);
+            this.lblDeleteBookAuthor.TabIndex = 1;
+            this.lblDeleteBookAuthor.Text = "Author:";
             // 
-            // txtDeleteBookStatus
+            // lblDeleteBookTitle
             // 
-            this.txtDeleteBookStatus.Location = new System.Drawing.Point(96, 290);
-            this.txtDeleteBookStatus.Name = "txtDeleteBookStatus";
-            this.txtDeleteBookStatus.ReadOnly = true;
-            this.txtDeleteBookStatus.Size = new System.Drawing.Size(184, 20);
-            this.txtDeleteBookStatus.TabIndex = 14;
+            this.lblDeleteBookTitle.AutoSize = true;
+            this.lblDeleteBookTitle.Location = new System.Drawing.Point(6, 33);
+            this.lblDeleteBookTitle.Name = "lblDeleteBookTitle";
+            this.lblDeleteBookTitle.Size = new System.Drawing.Size(30, 13);
+            this.lblDeleteBookTitle.TabIndex = 0;
+            this.lblDeleteBookTitle.Text = "Title:";
             // 
             // frmDeleteBook
             // 

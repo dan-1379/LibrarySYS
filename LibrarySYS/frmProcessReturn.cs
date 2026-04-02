@@ -75,21 +75,16 @@ namespace LibrarySYS
                 return;
             }
 
-            if (extracted.Status == 'I')
+            int currentLoanCount = LoanItem.fetchCurrentLoanCount(extracted.MemberID);
+
+            if (currentLoanCount == 0)
             {
-                MessageBox.Show("Member is currently inactive and cannot loan books.", "Inactive Member", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Member has no books currently on loan.", "No Books", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProcessReturnMemberID.Clear();
                 return;
             }
 
-            if (LoanItem.fetchOverdueBooksCount(extracted.MemberID) > 0)
-            {
-                MessageBox.Show("Member has overdue books and cannot loan more until they are returned.", "Overdue Books", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtProcessReturnMemberID.Clear();
-                return;
-            }
-
-            double fetchFine = Fines.GetOutstandingFines(Convert.ToInt32(ID));
+            double fetchFine = Fine.GetOutstandingFines(Convert.ToInt32(ID));
 
             if (fetchFine > 0)
             {
@@ -101,7 +96,7 @@ namespace LibrarySYS
                     frmPayFines payFineForm = new frmPayFines(ID, this);
                     payFineForm.ShowDialog();
 
-                    if (Fines.GetOutstandingFines(Convert.ToInt32(ID)) > 0)
+                    if (Fine.GetOutstandingFines(Convert.ToInt32(ID)) > 0)
                     {
                         MessageBox.Show("Member has outstanding fines and cannot loan books until they are paid.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtProcessReturnMemberID.Clear();
@@ -156,36 +151,37 @@ namespace LibrarySYS
 
             if (confirmReturn == DialogResult.Yes)
             {
-                OracleConnection con = Database.OpenConnection();
-                OracleTransaction transaction = null;
-
                 try
                 {
-                    transaction = con.BeginTransaction();
+                    int memberID = Convert.ToInt32(txtProcessReturnMemberID.Text);
 
-                    foreach (Book book in bookItems)
+                    foreach (int checkedIndex in clbProcessReturn.CheckedIndices)
                     {
-                        ReturnTransaction returnTransaction = new ReturnTransaction(book.BookID, Convert.ToInt32(txtProcessReturnMemberID.Text));
-                        ReturnTransaction.processTransaction(book.BookID);
-                        Book.UpdateBookStatus(book.ISBN, 'A');
+                        Book book = bookItems[checkedIndex];
+                        int loanID = LoanItem.getLoanID(memberID, book.BookID);
+
+                        ReturnTransaction returnTransaction = new ReturnTransaction(loanID, book.BookID, memberID);
+                        returnTransaction.processTransaction();
+
+                        Book.UpdateBookStatus(book.BookID, 'A');
                     }
 
-                    transaction.Commit();
+                    MessageBox.Show("Books returned successfully!", "Return Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bookItems.Clear();
+                    clbProcessReturn.Items.Clear();
 
-                    MessageBox.Show("Books loaned successfully!", "Loan Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    List<Book> loanedItems = LoanItem.GetUnreturnedBooks(memberID);
+
+                    foreach(Book book in loanedItems)
+                    {
+                        clbProcessReturn.Items.Add(book.Title);
+                        bookItems.Add(book);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    if (transaction != null)
-                    {
-                        transaction.Rollback();
-                    }
 
-                    MessageBox.Show("An error occurred while processing the loan: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    con.Close();
+                    MessageBox.Show("An error occurred while processing the return: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

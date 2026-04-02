@@ -69,7 +69,7 @@ namespace LibrarySYS
                 return;
             }
 
-            double fetchFine = Fines.GetOutstandingFines(Convert.ToInt32(ID));
+            double fetchFine = Fine.GetOutstandingFines(Convert.ToInt32(ID));
 
             if (fetchFine > 0)
             {
@@ -81,7 +81,7 @@ namespace LibrarySYS
                     frmPayFines payFineForm = new frmPayFines(ID, this);
                     payFineForm.ShowDialog();
 
-                    if (Fines.GetOutstandingFines(Convert.ToInt32(ID)) > 0)
+                    if (Fine.GetOutstandingFines(Convert.ToInt32(ID)) > 0)
                     {
                         MessageBox.Show("Member has outstanding fines and cannot loan books until they are paid.", "Outstanding Fines", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtProcessLoanMemberID.Clear();
@@ -245,7 +245,7 @@ namespace LibrarySYS
                         {
                             LoanItem newItem = new LoanItem(book.BookID, newLoan.LoanId);
                             newItem.AddLoanItem();
-                            Book.UpdateBookStatus(book.ISBN, 'U');
+                            Book.UpdateBookStatus(book.BookID, 'U');
                         }
 
                         transaction.Commit();

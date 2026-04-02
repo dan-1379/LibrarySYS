@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace LibrarySYS
 {
-    public class Fines
+    public class Fine
     {
         public int Fine_ID { get; set; }
         public double Fine_Amount { get; set; }
@@ -17,7 +17,7 @@ namespace LibrarySYS
         public int Loan_ID { get; set; }
         public int Book_ID { get; set; }
 
-        public Fines(double fineAmount, int loanID, int bookID)
+        public Fine(double fineAmount, int loanID, int bookID)
         {
             Fine_Amount = fineAmount;
             Loan_ID = loanID;
@@ -63,6 +63,16 @@ namespace LibrarySYS
         public static void alterFineStatus(int fineID, char newStatus)
         {
             string sqlQuery = $"UPDATE Fines SET STATUS = '{newStatus}' WHERE FINE_ID = {fineID}";
+            Database.ExecuteNonQuery(sqlQuery);
+        }
+
+        public void insertFine()
+        {
+            int nextFineID = GetNextFineID();
+            string fine = ((decimal)Fine_Amount).ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
+
+            string sqlQuery = $"INSERT INTO Fines (Fine_ID, Fine_Amount, Status, Loan_ID, Book_ID) " +
+                              $"VALUES ({nextFineID}, {fine}, '{Status}', {Loan_ID}, {Book_ID})";
             Database.ExecuteNonQuery(sqlQuery);
         }
     }

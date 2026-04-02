@@ -90,5 +90,36 @@ namespace LibrarySYS
             dr.Close();
             return unreturnedBooks;
         }
+
+        public static int getLoanID(int memberID, int bookID)
+        {
+            string sql = $"SELECT li.Loan_ID " +
+                         $"FROM LoanItems li " +
+                         $"JOIN Loans l ON li.Loan_ID = l.Loan_ID " +
+                         $"WHERE l.Member_ID = {memberID} AND li.Book_ID = {bookID} AND li.ReturnDate IS NULL";
+
+            OracleDataReader result = Database.ExecuteSingleRowQuery(sql);
+            result.Read();
+            return Convert.ToInt32(result[0]);
+        }
+
+        public static int fetchCurrentLoanCount(int memberID)
+        {
+            string sql = $"SELECT COUNT(*) " +
+                         $"FROM LoanItems li " +
+                         $"JOIN Loans l ON li.Loan_ID = l.Loan_ID " +
+                         $"WHERE l.Member_ID = {memberID} AND li.ReturnDate IS NULL";
+            
+            OracleDataReader result = Database.ExecuteSingleRowQuery(sql);
+            int count = 0;
+
+            if (result.Read())
+            {
+                count = Convert.ToInt32(result[0]);
+            }
+
+            result.Close();
+            return count;
+        }
     }
 }

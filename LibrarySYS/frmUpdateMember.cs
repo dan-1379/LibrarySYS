@@ -44,7 +44,8 @@ namespace LibrarySYS
             Utility.constructGrid(grdUpdateMember);
             Utility.styleGrid(grdUpdateMember);
             Utility.ColourRowsByStatus(grdUpdateMember);
-            Utility.StyleInputBoxes(grpUpdateMember);
+            Utility.StyleInputBoxesActive(grpUpdateMember);
+            Utility.StyleButton(btnUpdateMemberUpdate);
 
             foreach (Control control in grpUpdateMember.Controls)
             {

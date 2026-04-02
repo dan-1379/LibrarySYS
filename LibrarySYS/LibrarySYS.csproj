@@ -88,7 +88,7 @@
     <Compile Include="BookValidator.cs" />
     <Compile Include="CardValidator.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="Fines.cs" />
+    <Compile Include="Fine.cs" />
     <Compile Include="frmAddMember.cs">
       <SubType>Form</SubType>
     </Compile>

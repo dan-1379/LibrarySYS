@@ -31,7 +31,9 @@ namespace LibrarySYS
 
         private void frmAddMember_Load(object sender, EventArgs e)
         {
-          
+            Utility.StyleLabel(grpAddMember);
+            Utility.StyleInputBoxes(grpAddMember);
+            Utility.StyleButton(btnAddMember);
         }
 
         private void mnuAddMemberExit_Click(object sender, EventArgs e)

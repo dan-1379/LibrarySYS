@@ -132,5 +132,53 @@ namespace LibrarySYS
                 }
             }
         }
-     }
+
+        public static void StyleInputBoxesActive(GroupBox grp)
+        {
+            foreach (Control control in grp.Controls)
+            {
+                if (control is TextBox)
+                {
+                    TextBox txt = (TextBox)control;
+                    txt.Height = 25;
+                    txt.BackColor = Color.White;
+                    txt.ForeColor = Color.Black;
+                    txt.BorderStyle = BorderStyle.FixedSingle;
+                }
+            }
+        }
+
+        public static void StyleButton(Button b)
+        {
+            b.BackColor = Color.FromArgb(52, 73, 94);
+            b.ForeColor = Color.White;
+            b.FlatStyle = FlatStyle.Flat;
+            b.FlatAppearance.BorderSize = 0;
+            b.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            b.Cursor = Cursors.Hand;
+        }
+
+        public static void StyleLabel(GroupBox grp)
+        {
+            foreach (Control control in grp.Controls)
+            {
+                if (control is Label)
+                {
+                    Label lbl = (Label)control;
+                    lbl.ForeColor = Color.FromArgb(0, 120, 215);
+                    lbl.BackColor = Color.Transparent;
+                }
+            }
+        }
+
+        public static void StyleSearchButton(Button b)
+        {
+            b.BackColor = Color.FromArgb(0, 120, 215);
+            b.ForeColor = Color.White;
+            b.FlatStyle = FlatStyle.Flat;
+            b.FlatAppearance.BorderSize = 0;
+            b.Cursor = Cursors.Hand;
+            b.Font = new Font("Segoe UI", 8, FontStyle.Bold);
+        }
+    }
 }

@@ -33,6 +33,7 @@ namespace LibrarySYS
             Utility.constructGrid(grdViewMember);
             Utility.styleGrid(grdViewMember);
             Utility.ColourRowsByStatus(grdViewMember);
+            Utility.StyleSearchButton(btnViewMembersSearch);
         }
 
         private void btnViewMemberSearch_Click(object sender, EventArgs e)

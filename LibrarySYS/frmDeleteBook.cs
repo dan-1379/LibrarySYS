@@ -14,6 +14,7 @@ namespace LibrarySYS
     {
         frmMainMenu parent;
         private string selectedISBN;
+        private int selectedBookID;
         public frmDeleteBook()
         {
             InitializeComponent();
@@ -28,6 +29,10 @@ namespace LibrarySYS
         private void frmDeleteBook_Load(object sender, EventArgs e)
         {
             grpDeleteBookDetails.Visible = false;
+            Utility.StyleInputBoxes(grpDeleteBookDetails);
+            Utility.StyleButton(btnDeleteBookDelete);
+            Utility.StyleSearchButton(btnDeleteBookSearch);
+            Utility.StyleLabel(grpDeleteBookDetails);
         }
 
         private void mnuExit_Click(object sender, EventArgs e)
@@ -64,6 +69,7 @@ namespace LibrarySYS
 
             grpDeleteBookDetails.Visible = true;
             txtDeleteBookISBN.ReadOnly = true;
+            selectedBookID = book.BookID;
 
             txtDeleteBookTitle.Text = book.Title;
             txtDeleteBookAuthor.Text = book.Author;
@@ -89,7 +95,7 @@ namespace LibrarySYS
 
             if (confirmDelete == DialogResult.Yes)
             {
-                Book.UpdateBookStatus(selectedISBN, 'U');
+                Book.UpdateBookStatus(selectedBookID, 'U');
 
                 MessageBox.Show("Book deleted successfully.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 grpDeleteBookDetails.Visible = false;
@@ -99,6 +105,7 @@ namespace LibrarySYS
                 txtDeleteBookISBN.Focus();
 
                 selectedISBN = null;
+                selectedBookID = 0;
             }
         }
     }

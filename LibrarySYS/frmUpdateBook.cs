@@ -30,6 +30,10 @@ namespace LibrarySYS
         private void frmUpdateBook_Load(object sender, EventArgs e)
         {
             grpUpdateBook.Visible = false;
+            Utility.StyleInputBoxesActive(grpUpdateBook);
+            Utility.StyleButton(btnUpdateBookUpdate);
+            Utility.StyleSearchButton(btnUpdateBookSearch);
+            Utility.StyleLabel(grpUpdateBook);
         }
 
         private void mnuUpdateBookExit_Click(object sender, EventArgs e)
