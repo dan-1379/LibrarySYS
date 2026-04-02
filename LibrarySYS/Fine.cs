@@ -60,9 +60,11 @@ namespace LibrarySYS
             return total;
         }
 
-        public static void alterFineStatus(int fineID, char newStatus)
+        public static void alterFineStatus(int memberID, char newStatus)
         {
-            string sqlQuery = $"UPDATE Fines SET STATUS = '{newStatus}' WHERE FINE_ID = {fineID}";
+            string sqlQuery = $"UPDATE Fines " +
+                              $"SET STATUS = '{newStatus}' " +
+                              $"WHERE Loan_ID IN (SELECT Loan_ID FROM LOANS WHERE MEMBER_ID = {memberID})";
             Database.ExecuteNonQuery(sqlQuery);
         }
 
@@ -74,6 +76,31 @@ namespace LibrarySYS
             string sqlQuery = $"INSERT INTO Fines (Fine_ID, Fine_Amount, Status, Loan_ID, Book_ID) " +
                               $"VALUES ({nextFineID}, {fine}, '{Status}', {Loan_ID}, {Book_ID})";
             Database.ExecuteNonQuery(sqlQuery);
+        }
+
+        public static double[] GetFinesByMonth(int year)
+        {
+            double[] finesByMonth = new double[12];
+
+            string sql = "SELECT EXTRACT(MONTH FROM l.Loan_Date) , SUM(Fine_Amount) " +
+                         "FROM Fines f " +
+                         "JOIN Loans l ON f.Loan_ID = l.Loan_ID " +
+                         $"WHERE EXTRACT(YEAR FROM l.Loan_Date) = {year} " +
+                         "GROUP BY EXTRACT(MONTH FROM l.Loan_Date)";
+
+            OracleDataReader dr = Database.ExecuteSingleRowQuery(sql);
+
+            while (dr.Read())
+            {
+                int monthIndex = Convert.ToInt32(dr[0]);
+                double fineAmount = Convert.ToDouble(dr[1]);
+
+                finesByMonth[monthIndex - 1] = fineAmount;
+            }
+
+            dr.Close();
+
+            return finesByMonth;
         }
     }
 }

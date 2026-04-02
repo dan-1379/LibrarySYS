@@ -28,29 +28,26 @@ namespace LibrarySYS
         private void frmProduceYearlyGenreReport_Load(object sender, EventArgs e)
         {
             crtProduceYearlyGenreReportChart.Visible = false;
-        }
-
-        private void cboProduceYearlyGenreReportYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            crtProduceYearlyGenreReportChart.Visible = true;
 
             crtProduceYearlyGenreReportChart.Series.Clear();
             crtProduceYearlyGenreReportChart.Series.Add("Genre Popularity");
 
             crtProduceYearlyGenreReportChart.Series["Genre Popularity"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Label = "#VALX (#VAL)";
 
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Young Adult", 250);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Fantasy", 350);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Horror", 160);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Mystery", 180);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Thriller", 450);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Science Fiction", 500);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Action", 400);
-            crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY("Historical", 500);
+            Dictionary<string, int> genreCounts = Book.GetBooksByGenre();
 
-            crtProduceYearlyGenreReportChart.ChartAreas[0].AxisX.Interval = 1;
-            crtProduceYearlyGenreReportChart.ChartAreas[0].AxisX.Title = "Month";
-            crtProduceYearlyGenreReportChart.ChartAreas[0].AxisY.Title = "Number of books";
+            foreach (KeyValuePair<string, int> value in genreCounts)
+            {
+                crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY(value.Key, value.Value);
+            }
+
+            crtProduceYearlyGenreReportChart.Visible = true;
+        }
+
+        private void cboProduceYearlyGenreReportYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+     
         }
 
         private void mnuProduceYearlyGenreReportExit_Click(object sender, EventArgs e)

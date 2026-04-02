@@ -43,29 +43,27 @@ namespace LibrarySYS
 
         private void cboProduceYearlyFineReportYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            crtProduceYearlyFineReportChart.Visible = true;
-
+            crtProduceYearlyFineReportChart.Visible = false;
             crtProduceYearlyFineReportChart.Series.Clear();
-            crtProduceYearlyFineReportChart.Series.Add("Fines Collected");
-
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("January", 10);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("Febuary", 30);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("March", 40);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("April", 60);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("May", 100);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("June", 120);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("July", 150);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("August", 250);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("September", 70);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("October", 20);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("November", 30);
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY("December", 10);
-
             crtProduceYearlyFineReportChart.ChartAreas[0].AxisX.Interval = 1;
             crtProduceYearlyFineReportChart.ChartAreas[0].AxisX.Title = "Month";
             crtProduceYearlyFineReportChart.ChartAreas[0].AxisY.Title = "€";
+
+            int selectedYear = Convert.ToInt32(cboProduceYearlyFineReportYear.SelectedItem);
+            double[] monthlyFines = Fine.GetFinesByMonth(selectedYear);
+
+            string[] monthsOfYear = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+            crtProduceYearlyFineReportChart.Series.Add("Fines Collected");
+            crtProduceYearlyFineReportChart.Series["Fines Collected"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+
+            for (int i = 0; i < 12; i++)
+            {
+                crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY(monthsOfYear[i], monthlyFines[i]);
+            }
+
+            crtProduceYearlyFineReportChart.Visible = true;
+            crtProduceYearlyFineReportChart.Update();
         }
     }
 }

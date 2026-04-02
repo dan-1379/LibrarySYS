@@ -28,64 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.crtProduceYearlyGenreReportChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.lblProduceYearlyGenreReportYear = new System.Windows.Forms.Label();
-            this.cboProduceYearlyGenreReportYear = new System.Windows.Forms.ComboBox();
             this.mnuProduceYearlyGenreReport = new System.Windows.Forms.MenuStrip();
             this.mnuProduceYearlyGenreReportExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.crtProduceYearlyGenreReportChart)).BeginInit();
             this.mnuProduceYearlyGenreReport.SuspendLayout();
             this.SuspendLayout();
             // 
             // crtProduceYearlyGenreReportChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.crtProduceYearlyGenreReportChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.crtProduceYearlyGenreReportChart.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.crtProduceYearlyGenreReportChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.crtProduceYearlyGenreReportChart.Legends.Add(legend3);
             this.crtProduceYearlyGenreReportChart.Location = new System.Drawing.Point(15, 111);
             this.crtProduceYearlyGenreReportChart.Name = "crtProduceYearlyGenreReportChart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.crtProduceYearlyGenreReportChart.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.crtProduceYearlyGenreReportChart.Series.Add(series3);
             this.crtProduceYearlyGenreReportChart.Size = new System.Drawing.Size(691, 313);
             this.crtProduceYearlyGenreReportChart.TabIndex = 8;
             this.crtProduceYearlyGenreReportChart.Text = "Fine Report";
-            // 
-            // lblProduceYearlyGenreReportYear
-            // 
-            this.lblProduceYearlyGenreReportYear.AutoSize = true;
-            this.lblProduceYearlyGenreReportYear.Location = new System.Drawing.Point(12, 57);
-            this.lblProduceYearlyGenreReportYear.Name = "lblProduceYearlyGenreReportYear";
-            this.lblProduceYearlyGenreReportYear.Size = new System.Drawing.Size(65, 13);
-            this.lblProduceYearlyGenreReportYear.TabIndex = 7;
-            this.lblProduceYearlyGenreReportYear.Text = "Select Year:";
-            // 
-            // cboProduceYearlyGenreReportYear
-            // 
-            this.cboProduceYearlyGenreReportYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboProduceYearlyGenreReportYear.FormattingEnabled = true;
-            this.cboProduceYearlyGenreReportYear.Items.AddRange(new object[] {
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2023",
-            "2024",
-            "2025"});
-            this.cboProduceYearlyGenreReportYear.Location = new System.Drawing.Point(83, 54);
-            this.cboProduceYearlyGenreReportYear.Name = "cboProduceYearlyGenreReportYear";
-            this.cboProduceYearlyGenreReportYear.Size = new System.Drawing.Size(121, 21);
-            this.cboProduceYearlyGenreReportYear.TabIndex = 6;
-            this.cboProduceYearlyGenreReportYear.SelectedIndexChanged += new System.EventHandler(this.cboProduceYearlyGenreReportYear_SelectedIndexChanged);
             // 
             // mnuProduceYearlyGenreReport
             // 
@@ -105,14 +74,22 @@
             this.mnuProduceYearlyGenreReportExit.Text = "Exit";
             this.mnuProduceYearlyGenreReportExit.Click += new System.EventHandler(this.mnuProduceYearlyGenreReportExit_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(158, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Current Book Genre Breakdown";
+            // 
             // frmProduceYearlyGenreReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 444);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.crtProduceYearlyGenreReportChart);
-            this.Controls.Add(this.lblProduceYearlyGenreReportYear);
-            this.Controls.Add(this.cboProduceYearlyGenreReportYear);
             this.Controls.Add(this.mnuProduceYearlyGenreReport);
             this.Name = "frmProduceYearlyGenreReport";
             this.Text = "Admin - [Produce Yearly Genre Report]";
@@ -128,9 +105,8 @@
         #endregion
 
         private System.Windows.Forms.DataVisualization.Charting.Chart crtProduceYearlyGenreReportChart;
-        private System.Windows.Forms.Label lblProduceYearlyGenreReportYear;
-        private System.Windows.Forms.ComboBox cboProduceYearlyGenreReportYear;
         private System.Windows.Forms.MenuStrip mnuProduceYearlyGenreReport;
         private System.Windows.Forms.ToolStripMenuItem mnuProduceYearlyGenreReportExit;
+        private System.Windows.Forms.Label label1;
     }
 }

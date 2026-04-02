@@ -36,7 +36,19 @@ namespace LibrarySYS
         private void frmProcessLoan_Load(object sender, EventArgs e)
         {
             grpProcessLoan.Visible = false;
+            grpProcessLoanMemberDetails.Visible = false;
             bookItems.Clear();
+
+            Utility.StyleButton(btnProcessLoanAdd);
+            Utility.StyleButton(btnProcessLoanLoanBooks);
+            Utility.StyleSearchButton(btnProcessLoanSearchID);
+            Utility.StyleSearchButton(btnProcessLoanSearchISBN);
+            Utility.StyleDeleteButton(btnProcessLoanRemove);
+
+            Utility.StyleInputBoxesActive(grpProcessLoan);
+            Utility.StyleInputBoxes(grpProcessLoanMemberDetails);
+
+            Utility.StyleCheckedListBox(clbProcessLoan);
         }
 
         private void btnProcessLoanSearchID_Click(object sender, EventArgs e)
@@ -98,7 +110,10 @@ namespace LibrarySYS
 
             txtProcessLoanName.Text = extracted.FirstName + " " + extracted.LastName;
             txtProcessLoanAddress.Text = extracted.AddressLine1 + ", " + extracted.AddressLine2 + ", " + extracted.City;
+            txtProcessLoanBooksLoaned.Text = LoanItem.fetchUnreturnedBooks(extracted.MemberID).ToString();
+
             grpProcessLoan.Visible = true;
+            grpProcessLoanMemberDetails.Visible = true;
             txtProcessLoanMemberID.ReadOnly = true;
         }
 

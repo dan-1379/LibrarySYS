@@ -20,7 +20,8 @@ namespace LibrarySYS
 
         private void frmMainMenu_Load(object sender, EventArgs e)
         {
-
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
         }
 
         private void mnuAddBook_Click(object sender, EventArgs e)

@@ -34,14 +34,17 @@
             this.txtProcessReturnMemberID = new System.Windows.Forms.TextBox();
             this.lblProcessReturnMemberID = new System.Windows.Forms.Label();
             this.grpProcessReturn = new System.Windows.Forms.GroupBox();
+            this.btnProcessReturnReturn = new System.Windows.Forms.Button();
             this.clbProcessReturn = new System.Windows.Forms.CheckedListBox();
             this.txtProcessReturnMemberName = new System.Windows.Forms.TextBox();
             this.txtProcessReturnMemberAddress = new System.Windows.Forms.TextBox();
             this.lblProcessReturnMemberName = new System.Windows.Forms.Label();
             this.lblProcessReturnMemberAddress = new System.Windows.Forms.Label();
-            this.btnProcessReturnReturn = new System.Windows.Forms.Button();
+            this.grpProcessReturnMemberDetails = new System.Windows.Forms.GroupBox();
+            this.btnProcessReturnCancel = new System.Windows.Forms.Button();
             this.mnuProcessReturn.SuspendLayout();
             this.grpProcessReturn.SuspendLayout();
+            this.grpProcessReturnMemberDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuProcessReturn
@@ -91,14 +94,25 @@
             // 
             // grpProcessReturn
             // 
+            this.grpProcessReturn.Controls.Add(this.btnProcessReturnCancel);
             this.grpProcessReturn.Controls.Add(this.btnProcessReturnReturn);
             this.grpProcessReturn.Controls.Add(this.clbProcessReturn);
-            this.grpProcessReturn.Location = new System.Drawing.Point(19, 150);
+            this.grpProcessReturn.Location = new System.Drawing.Point(19, 237);
             this.grpProcessReturn.Name = "grpProcessReturn";
-            this.grpProcessReturn.Size = new System.Drawing.Size(746, 317);
+            this.grpProcessReturn.Size = new System.Drawing.Size(746, 314);
             this.grpProcessReturn.TabIndex = 25;
             this.grpProcessReturn.TabStop = false;
             this.grpProcessReturn.Text = "Member Loans";
+            // 
+            // btnProcessReturnReturn
+            // 
+            this.btnProcessReturnReturn.Location = new System.Drawing.Point(277, 247);
+            this.btnProcessReturnReturn.Name = "btnProcessReturnReturn";
+            this.btnProcessReturnReturn.Size = new System.Drawing.Size(247, 40);
+            this.btnProcessReturnReturn.TabIndex = 1;
+            this.btnProcessReturnReturn.Text = "Return Books";
+            this.btnProcessReturnReturn.UseVisualStyleBackColor = true;
+            this.btnProcessReturnReturn.Click += new System.EventHandler(this.btnProcessReturnReturn_Click);
             // 
             // clbProcessReturn
             // 
@@ -110,14 +124,14 @@
             // 
             // txtProcessReturnMemberName
             // 
-            this.txtProcessReturnMemberName.Location = new System.Drawing.Point(84, 60);
+            this.txtProcessReturnMemberName.Location = new System.Drawing.Point(71, 28);
             this.txtProcessReturnMemberName.Name = "txtProcessReturnMemberName";
             this.txtProcessReturnMemberName.Size = new System.Drawing.Size(243, 20);
             this.txtProcessReturnMemberName.TabIndex = 26;
             // 
             // txtProcessReturnMemberAddress
             // 
-            this.txtProcessReturnMemberAddress.Location = new System.Drawing.Point(84, 107);
+            this.txtProcessReturnMemberAddress.Location = new System.Drawing.Point(71, 75);
             this.txtProcessReturnMemberAddress.Name = "txtProcessReturnMemberAddress";
             this.txtProcessReturnMemberAddress.Size = new System.Drawing.Size(243, 20);
             this.txtProcessReturnMemberAddress.TabIndex = 27;
@@ -125,7 +139,7 @@
             // lblProcessReturnMemberName
             // 
             this.lblProcessReturnMemberName.AutoSize = true;
-            this.lblProcessReturnMemberName.Location = new System.Drawing.Point(19, 63);
+            this.lblProcessReturnMemberName.Location = new System.Drawing.Point(6, 31);
             this.lblProcessReturnMemberName.Name = "lblProcessReturnMemberName";
             this.lblProcessReturnMemberName.Size = new System.Drawing.Size(38, 13);
             this.lblProcessReturnMemberName.TabIndex = 28;
@@ -134,31 +148,41 @@
             // lblProcessReturnMemberAddress
             // 
             this.lblProcessReturnMemberAddress.AutoSize = true;
-            this.lblProcessReturnMemberAddress.Location = new System.Drawing.Point(19, 107);
+            this.lblProcessReturnMemberAddress.Location = new System.Drawing.Point(6, 75);
             this.lblProcessReturnMemberAddress.Name = "lblProcessReturnMemberAddress";
             this.lblProcessReturnMemberAddress.Size = new System.Drawing.Size(48, 13);
             this.lblProcessReturnMemberAddress.TabIndex = 29;
             this.lblProcessReturnMemberAddress.Text = "Address:";
             // 
-            // btnProcessReturnReturn
+            // grpProcessReturnMemberDetails
             // 
-            this.btnProcessReturnReturn.Location = new System.Drawing.Point(306, 247);
-            this.btnProcessReturnReturn.Name = "btnProcessReturnReturn";
-            this.btnProcessReturnReturn.Size = new System.Drawing.Size(92, 40);
-            this.btnProcessReturnReturn.TabIndex = 1;
-            this.btnProcessReturnReturn.Text = "Return Books";
-            this.btnProcessReturnReturn.UseVisualStyleBackColor = true;
-            this.btnProcessReturnReturn.Click += new System.EventHandler(this.btnProcessReturnReturn_Click);
+            this.grpProcessReturnMemberDetails.Controls.Add(this.lblProcessReturnMemberName);
+            this.grpProcessReturnMemberDetails.Controls.Add(this.lblProcessReturnMemberAddress);
+            this.grpProcessReturnMemberDetails.Controls.Add(this.txtProcessReturnMemberName);
+            this.grpProcessReturnMemberDetails.Controls.Add(this.txtProcessReturnMemberAddress);
+            this.grpProcessReturnMemberDetails.Location = new System.Drawing.Point(19, 76);
+            this.grpProcessReturnMemberDetails.Name = "grpProcessReturnMemberDetails";
+            this.grpProcessReturnMemberDetails.Size = new System.Drawing.Size(342, 114);
+            this.grpProcessReturnMemberDetails.TabIndex = 30;
+            this.grpProcessReturnMemberDetails.TabStop = false;
+            this.grpProcessReturnMemberDetails.Text = "Member Details";
+            // 
+            // btnProcessReturnCancel
+            // 
+            this.btnProcessReturnCancel.Location = new System.Drawing.Point(177, 247);
+            this.btnProcessReturnCancel.Name = "btnProcessReturnCancel";
+            this.btnProcessReturnCancel.Size = new System.Drawing.Size(94, 40);
+            this.btnProcessReturnCancel.TabIndex = 2;
+            this.btnProcessReturnCancel.Text = "Cancel Return";
+            this.btnProcessReturnCancel.UseVisualStyleBackColor = true;
+            this.btnProcessReturnCancel.Click += new System.EventHandler(this.btnProcessReturnCancel_Click);
             // 
             // frmProcessReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 502);
-            this.Controls.Add(this.lblProcessReturnMemberAddress);
-            this.Controls.Add(this.lblProcessReturnMemberName);
-            this.Controls.Add(this.txtProcessReturnMemberAddress);
-            this.Controls.Add(this.txtProcessReturnMemberName);
+            this.ClientSize = new System.Drawing.Size(800, 576);
+            this.Controls.Add(this.grpProcessReturnMemberDetails);
             this.Controls.Add(this.grpProcessReturn);
             this.Controls.Add(this.btnProcessReturnSearchID);
             this.Controls.Add(this.txtProcessReturnMemberID);
@@ -170,6 +194,8 @@
             this.mnuProcessReturn.ResumeLayout(false);
             this.mnuProcessReturn.PerformLayout();
             this.grpProcessReturn.ResumeLayout(false);
+            this.grpProcessReturnMemberDetails.ResumeLayout(false);
+            this.grpProcessReturnMemberDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,5 +215,7 @@
         private System.Windows.Forms.Label lblProcessReturnMemberName;
         private System.Windows.Forms.Label lblProcessReturnMemberAddress;
         private System.Windows.Forms.Button btnProcessReturnReturn;
+        private System.Windows.Forms.GroupBox grpProcessReturnMemberDetails;
+        private System.Windows.Forms.Button btnProcessReturnCancel;
     }
 }

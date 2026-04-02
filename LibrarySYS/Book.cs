@@ -132,5 +132,26 @@ namespace LibrarySYS
             return fetchedBook;
         }
 
+
+        public static Dictionary<string, int> GetBooksByGenre()
+        {
+            Dictionary<string, int> genreCounts = new Dictionary<string, int>();
+
+            string sql = "SELECT Genre, COUNT(*) " +
+                         "FROM Books " +
+                         "GROUP BY Genre";
+
+            OracleDataReader dr = Database.ExecuteSingleRowQuery(sql);
+
+            while (dr.Read())
+            {
+                string genre = dr[0].ToString();
+                int count = Convert.ToInt32(dr[1]);
+                genreCounts[genre] = count;
+            }
+
+            dr.Close();
+            return genreCounts;
+        }
     }
 }

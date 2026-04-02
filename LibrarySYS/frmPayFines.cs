@@ -56,7 +56,7 @@ namespace LibrarySYS
 
             string checkCardNumber = CardValidator.IsValidCardNumber(cardNumber);
 
-            if (checkCardNumber != "Valid")
+            if (checkCardNumber != "valid")
             {
                 MessageBox.Show(checkCardNumber, "Invalid Card Number", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -64,7 +64,7 @@ namespace LibrarySYS
 
             string checkExpiryDate = CardValidator.IsValidExpiryDate(expiryDate);
 
-            if (checkExpiryDate != "Valid")
+            if (checkExpiryDate != "valid")
             {
                 MessageBox.Show(checkExpiryDate, "Invalid Expiry Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -72,7 +72,7 @@ namespace LibrarySYS
 
             string checkCardholderName = CardValidator.IsValidCardholderName(cardholderName);
 
-            if (checkCardholderName != "Valid")
+            if (checkCardholderName != "valid")
             {
                 MessageBox.Show(checkCardholderName, "Invalid Cardholder Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -80,7 +80,7 @@ namespace LibrarySYS
 
             string checkCVV = CardValidator.IsValidCVV(cvv);
 
-            if (checkCVV != "Valid")
+            if (checkCVV != "valid")
             {
                 MessageBox.Show(checkCVV, "Invalid CVV", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

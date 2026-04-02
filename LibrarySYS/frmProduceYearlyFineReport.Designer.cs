@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mnuProduceYearlyFineReport = new System.Windows.Forms.MenuStrip();
             this.mnuProduceYearlyFineReportExit = new System.Windows.Forms.ToolStripMenuItem();
             this.cboProduceYearlyFineReportYear = new System.Windows.Forms.ComboBox();
@@ -72,7 +72,8 @@
             "2022",
             "2023",
             "2024",
-            "2025"});
+            "2025",
+            "2026"});
             this.cboProduceYearlyFineReportYear.Location = new System.Drawing.Point(83, 33);
             this.cboProduceYearlyFineReportYear.Name = "cboProduceYearlyFineReportYear";
             this.cboProduceYearlyFineReportYear.Size = new System.Drawing.Size(121, 21);
@@ -90,16 +91,16 @@
             // 
             // crtProduceYearlyFineReportChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.crtProduceYearlyFineReportChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.crtProduceYearlyFineReportChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.crtProduceYearlyFineReportChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.crtProduceYearlyFineReportChart.Legends.Add(legend1);
             this.crtProduceYearlyFineReportChart.Location = new System.Drawing.Point(15, 90);
             this.crtProduceYearlyFineReportChart.Name = "crtProduceYearlyFineReportChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.crtProduceYearlyFineReportChart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.crtProduceYearlyFineReportChart.Series.Add(series1);
             this.crtProduceYearlyFineReportChart.Size = new System.Drawing.Size(691, 313);
             this.crtProduceYearlyFineReportChart.TabIndex = 4;
             this.crtProduceYearlyFineReportChart.Text = "Fine Report";

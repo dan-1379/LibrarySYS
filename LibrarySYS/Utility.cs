@@ -125,7 +125,6 @@ namespace LibrarySYS
                     ((TextBox)control).ReadOnly = true;
                     TextBox txt = (TextBox)control;
                     txt.Height = 25;
-                    txt.Width = 200;
                     txt.BackColor = Color.FromArgb(245, 245, 245);
                     txt.ForeColor = Color.Black;
                     txt.BorderStyle = BorderStyle.FixedSingle;
@@ -165,7 +164,7 @@ namespace LibrarySYS
                 if (control is Label)
                 {
                     Label lbl = (Label)control;
-                    lbl.ForeColor = Color.FromArgb(0, 120, 215);
+                    lbl.ForeColor = Color.Black;
                     lbl.BackColor = Color.Transparent;
                 }
             }
@@ -179,6 +178,26 @@ namespace LibrarySYS
             b.FlatAppearance.BorderSize = 0;
             b.Cursor = Cursors.Hand;
             b.Font = new Font("Segoe UI", 8, FontStyle.Bold);
+        }
+
+        public static void StyleDeleteButton(Button b)
+        {
+            b.BackColor = Color.FromArgb(192, 0, 0);
+            b.ForeColor = Color.White;
+            b.FlatStyle = FlatStyle.Flat;
+            b.FlatAppearance.BorderSize = 0;
+            b.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 0, 0);
+            b.FlatAppearance.MouseDownBackColor = Color.FromArgb(160, 0, 0);
+            b.Cursor = Cursors.Hand;
+        }
+
+        public static void StyleCheckedListBox(CheckedListBox clb)
+        {
+            clb.BackColor = Color.FromArgb(245, 245, 245);
+            clb.ForeColor = Color.FromArgb(30, 30, 30);
+            clb.Font = new Font("Segoe UI", 9.5f);
+            clb.BorderStyle = BorderStyle.FixedSingle;
+            clb.CheckOnClick = true;
         }
     }
 }

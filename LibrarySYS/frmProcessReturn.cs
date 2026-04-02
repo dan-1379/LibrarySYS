@@ -33,6 +33,7 @@ namespace LibrarySYS
         private void frmProcessReturn_Load(object sender, EventArgs e)
         {
             grpProcessReturn.Visible = false;
+            grpProcessReturnMemberDetails.Visible = false;
             txtProcessReturnMemberID.Focus();
 
             lblProcessReturnMemberName.Visible = false;
@@ -43,6 +44,12 @@ namespace LibrarySYS
 
             txtProcessReturnMemberName.Visible = false;
             txtProcessReturnMemberName.ReadOnly = true;
+
+            Utility.StyleSearchButton(btnProcessReturnSearchID);
+            Utility.StyleButton(btnProcessReturnReturn);
+            Utility.StyleInputBoxes(grpProcessReturnMemberDetails);
+            Utility.StyleDeleteButton(btnProcessReturnCancel);
+            Utility.StyleCheckedListBox(clbProcessReturn);
 
         }
 
@@ -114,6 +121,7 @@ namespace LibrarySYS
             txtProcessReturnMemberName.Text = extracted.FirstName + " " + extracted.LastName;
             txtProcessReturnMemberAddress.Text = extracted.AddressLine1 + ", " + extracted.AddressLine2 + ", " + extracted.City;
             grpProcessReturn.Visible = true;
+            grpProcessReturnMemberDetails.Visible = true;
             txtProcessReturnMemberID.ReadOnly = true;
 
 
@@ -184,6 +192,27 @@ namespace LibrarySYS
                     MessageBox.Show("An error occurred while processing the return: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnProcessReturnCancel_Click(object sender, EventArgs e)
+        {
+            bookItems.Clear();
+            clbProcessReturn.Items.Clear();
+
+            grpProcessReturn.Visible = false;
+            grpProcessReturnMemberDetails.Visible = false;
+            txtProcessReturnMemberID.Focus();
+
+            lblProcessReturnMemberName.Visible = false;
+            lblProcessReturnMemberAddress.Visible = false;
+
+            txtProcessReturnMemberAddress.Visible = false;
+            txtProcessReturnMemberAddress.ReadOnly = true;
+
+            txtProcessReturnMemberName.Visible = false;
+            txtProcessReturnMemberName.ReadOnly = true;
+
+            txtProcessReturnMemberID.ReadOnly = false;
         }
     }
 }
