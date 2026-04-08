@@ -26,6 +26,9 @@ namespace LibrarySYS
 
         private void frmViewBook_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             grpViewBook.Visible = false;
             dtpViewBookPublication.Enabled = false;
             cboViewBookStatus.Enabled = false;
@@ -34,6 +37,7 @@ namespace LibrarySYS
             Utility.StyleInputBoxes(grpViewBook);
             Utility.StyleSearchButton(btnViewBookSearch);
             Utility.StyleLabel(grpViewBook);
+            Utility.StyleExitButton(mnuViewBookExit);
         }
 
         private void mnuViewBookExit_Click(object sender, EventArgs e)

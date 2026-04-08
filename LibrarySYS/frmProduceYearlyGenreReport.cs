@@ -27,6 +27,9 @@ namespace LibrarySYS
 
         private void frmProduceYearlyGenreReport_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             crtProduceYearlyGenreReportChart.Visible = false;
 
             crtProduceYearlyGenreReportChart.Series.Clear();
@@ -43,6 +46,7 @@ namespace LibrarySYS
             }
 
             crtProduceYearlyGenreReportChart.Visible = true;
+            Utility.StyleExitButton(mnuProduceYearlyGenreReportExit);
         }
 
         private void cboProduceYearlyGenreReportYear_SelectedIndexChanged(object sender, EventArgs e)

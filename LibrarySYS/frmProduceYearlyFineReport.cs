@@ -38,7 +38,11 @@ namespace LibrarySYS
 
         private void frmProduceYearlyFineReport_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             crtProduceYearlyFineReportChart.Visible = false;
+            Utility.StyleExitButton(mnuProduceYearlyFineReportExit);
         }
 
         private void cboProduceYearlyFineReportYear_SelectedIndexChanged(object sender, EventArgs e)

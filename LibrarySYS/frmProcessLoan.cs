@@ -35,6 +35,9 @@ namespace LibrarySYS
 
         private void frmProcessLoan_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             grpProcessLoan.Visible = false;
             grpProcessLoanMemberDetails.Visible = false;
             bookItems.Clear();
@@ -49,6 +52,7 @@ namespace LibrarySYS
             Utility.StyleInputBoxes(grpProcessLoanMemberDetails);
 
             Utility.StyleCheckedListBox(clbProcessLoan);
+            Utility.StyleExitButton(mnuProcessLoanExit);
         }
 
         private void btnProcessLoanSearchID_Click(object sender, EventArgs e)

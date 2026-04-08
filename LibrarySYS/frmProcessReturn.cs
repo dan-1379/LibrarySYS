@@ -32,6 +32,9 @@ namespace LibrarySYS
 
         private void frmProcessReturn_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             grpProcessReturn.Visible = false;
             grpProcessReturnMemberDetails.Visible = false;
             txtProcessReturnMemberID.Focus();
@@ -50,7 +53,7 @@ namespace LibrarySYS
             Utility.StyleInputBoxes(grpProcessReturnMemberDetails);
             Utility.StyleDeleteButton(btnProcessReturnCancel);
             Utility.StyleCheckedListBox(clbProcessReturn);
-
+            Utility.StyleExitButton(mnuProcessLoanExit);
         }
 
         private void mnuProcessLoanExit_Click(object sender, EventArgs e)

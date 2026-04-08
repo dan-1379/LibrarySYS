@@ -26,9 +26,13 @@ namespace LibrarySYS
 
         private void frmAddBook_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             Utility.StyleInputBoxesActive(grpAddBook);
             Utility.StyleButton(btnAddBookSave);
             Utility.StyleLabel(grpAddBook);
+            Utility.StyleExitButton(mnuExit);
         }
 
         private void mnuExit_Click(object sender, EventArgs e)
@@ -44,8 +48,12 @@ namespace LibrarySYS
 
         private void frmAddBook_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (parent != null)
-                parent.Visible = true;
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+
+            if (confirmExit == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void cboAddBookGenre_SelectedIndexChanged(object sender, EventArgs e)

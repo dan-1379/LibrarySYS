@@ -22,6 +22,7 @@ namespace LibrarySYS
         {
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
+            Utility.StyleExitButton(mnuExit);
         }
 
         private void mnuAddBook_Click(object sender, EventArgs e)

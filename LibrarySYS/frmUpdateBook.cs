@@ -29,11 +29,15 @@ namespace LibrarySYS
 
         private void frmUpdateBook_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             grpUpdateBook.Visible = false;
             Utility.StyleInputBoxesActive(grpUpdateBook);
             Utility.StyleButton(btnUpdateBookUpdate);
             Utility.StyleSearchButton(btnUpdateBookSearch);
             Utility.StyleLabel(grpUpdateBook);
+            Utility.StyleExitButton(mnuUpdateBookExit);
         }
 
         private void mnuUpdateBookExit_Click(object sender, EventArgs e)

@@ -28,12 +28,16 @@ namespace LibrarySYS
 
         private void frmViewMember_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             grdViewMember.DataSource = Member.getAllMembers().Tables[0];
 
             Utility.constructGrid(grdViewMember);
             Utility.styleGrid(grdViewMember);
             Utility.ColourRowsByStatus(grdViewMember);
             Utility.StyleSearchButton(btnViewMembersSearch);
+            Utility.StyleExitButton(mnuViewMemberExit);
         }
 
         private void btnViewMemberSearch_Click(object sender, EventArgs e)

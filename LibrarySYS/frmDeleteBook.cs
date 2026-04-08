@@ -28,11 +28,15 @@ namespace LibrarySYS
 
         private void frmDeleteBook_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             grpDeleteBookDetails.Visible = false;
             Utility.StyleInputBoxes(grpDeleteBookDetails);
             Utility.StyleButton(btnDeleteBookDelete);
             Utility.StyleSearchButton(btnDeleteBookSearch);
             Utility.StyleLabel(grpDeleteBookDetails);
+            Utility.StyleExitButton(mnuExit);
         }
 
         private void mnuExit_Click(object sender, EventArgs e)

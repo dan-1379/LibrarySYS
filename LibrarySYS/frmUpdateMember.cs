@@ -39,6 +39,9 @@ namespace LibrarySYS
 
         private void frmUpdateMember_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             grdUpdateMember.DataSource = Member.getAllMembers().Tables[0];
 
             Utility.constructGrid(grdUpdateMember);
@@ -233,7 +236,7 @@ namespace LibrarySYS
             txtUpdateMemberEircode.Text = grdUpdateMember.CurrentRow.Cells[10].Value.ToString();
             cboUpdateMemberStatus.Text = grdUpdateMember.CurrentRow.Cells[12].Value.ToString();
 
-            txtUpdateMemberFines.Text = "€0.00";
+            txtUpdateMemberFines.Text = Fine.GetOutstandingFines(Convert.ToInt32(grdUpdateMember.CurrentRow.Cells[0].Value)).ToString("C");
         }
     }
 }

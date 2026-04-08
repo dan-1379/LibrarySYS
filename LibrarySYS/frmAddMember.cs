@@ -31,9 +31,13 @@ namespace LibrarySYS
 
         private void frmAddMember_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             Utility.StyleLabel(grpAddMember);
-            Utility.StyleInputBoxes(grpAddMember);
+            Utility.StyleInputBoxesActive(grpAddMember);
             Utility.StyleButton(btnAddMember);
+            Utility.StyleExitButton(mnuAddMemberExit);
         }
 
         private void mnuAddMemberExit_Click(object sender, EventArgs e)

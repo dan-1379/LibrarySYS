@@ -199,5 +199,11 @@ namespace LibrarySYS
             clb.BorderStyle = BorderStyle.FixedSingle;
             clb.CheckOnClick = true;
         }
+
+        public static void StyleExitButton(ToolStripMenuItem b)
+        {
+            b.BackColor = Color.FromArgb(192, 0, 0);
+            b.ForeColor = Color.White;
+        }
     }
 }

@@ -55,6 +55,18 @@ namespace LibrarySYS
             return !string.IsNullOrWhiteSpace(description) && description.Length <= 30;
         }
 
+        /*******************************************************************************
+        * Title: What is an ISBN?  
+        * Author: International ISBN Agency
+        * Site: https://www.isbn-international.org/
+        * Date: 31/03/2026
+        * Code Version: -
+        * Availability: https://www.isbn-international.org/content/what-isbn/10
+        * Accessed: 31/03/26
+        * Modified: No modifications made. Information taken to understand structure of
+        * ISBN for validation purposes.
+        *******************************************************************************/
+
         /// <summary>
         /// Determines if the provided ISBN is valid according to ISBN-13 standards.
         /// </summary>
@@ -75,7 +87,7 @@ namespace LibrarySYS
             }
 
             /* https://stackoverflow.com/questions/12350801/check-string-for-invalid-characters-smartest-way */
-            Regex r = new Regex("^[0-9-]+$"); // REFERENCE THIS LATER
+            Regex r = new Regex("^[0-9-]+$");
 
             if (!r.IsMatch(isbn))
             {
@@ -159,6 +171,7 @@ namespace LibrarySYS
 
             return true;
         }
+        /* END OF REFERENCED CONTENT */
 
         /// <summary>
         /// Helper method to check if the provided ISBN is unique in the database.

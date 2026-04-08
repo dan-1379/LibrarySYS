@@ -28,7 +28,11 @@ namespace LibrarySYS
 
         private void frmPayFines_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             txtPayFinesTotalAmount.Text = Fine.GetOutstandingFines(Convert.ToInt32(txtPayFinesMemberID.Text)).ToString();
+            Utility.StyleExitButton(mnuPayFinesExit);
         }
 
         private void txtPayFinesCVV_TextChanged(object sender, EventArgs e)

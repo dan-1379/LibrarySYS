@@ -26,6 +26,9 @@ namespace LibrarySYS
 
         private void frmDeleteMember_Load(object sender, EventArgs e)
         {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+
             grdDeleteMember.DataSource = Member.getAllMembers().Tables[0];
 
             Utility.constructGrid(grdDeleteMember);
@@ -33,6 +36,7 @@ namespace LibrarySYS
             Utility.ColourRowsByStatus(grdDeleteMember);
             Utility.StyleInputBoxes(grpDeleteMember);
             Utility.StyleButton(btnDeleteMemberDelete);
+            Utility.StyleExitButton(mnuDeleteMemberExit);
         }
 
         private void mnuDeleteMemberExit_Click(object sender, EventArgs e)
