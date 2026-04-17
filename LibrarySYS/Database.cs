@@ -58,36 +58,57 @@ namespace LibrarySYS
 
         public static DataSet ExecuteMultiRowQuery(string query)
         {
-            OracleConnection conn = OpenConnection();
-            OracleCommand cmd = new OracleCommand(query, conn);
+            try
+            {
+                OracleConnection conn = OpenConnection();
+                OracleCommand cmd = new OracleCommand(query, conn);
 
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataSet ds = new DataSet();
 
-            da.Fill(ds);
-            conn.Close();
+                da.Fill(ds);
+                conn.Close();
 
-            return ds;
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error executing multi-row query: " + ex);
+            }
         }
+
 
 
         public static OracleDataReader ExecuteSingleRowQuery(string query)
         {
-            OracleConnection conn = OpenConnection();
+            try
+            {
+                OracleConnection conn = OpenConnection();
 
-            OracleCommand cmd = new OracleCommand(query, conn);
-            OracleDataReader dr = cmd.ExecuteReader();
+                OracleCommand cmd = new OracleCommand(query, conn);
+                OracleDataReader dr = cmd.ExecuteReader();
 
-            return dr;
+                return dr;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error executing single-row query: " + ex);
+            }
         }
 
         public static void ExecuteNonQuery(string query)
         {
-            OracleConnection conn = OpenConnection();
-            OracleCommand cmd = new OracleCommand(query, conn);
+            try
+            {
+                OracleConnection conn = OpenConnection();
+                OracleCommand cmd = new OracleCommand(query, conn);
 
-            cmd.ExecuteNonQuery();
-            conn.Close();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            } catch (Exception ex)
+            {
+                throw new Exception("Error executing non-query: " + ex);
+            }
         }
     }
 }

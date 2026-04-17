@@ -62,24 +62,31 @@ namespace LibrarySYS
                 return;
             }
 
-            Book book = Book.GetBook(isbn);
-
-            if (book == null)
+            try
             {
-                MessageBox.Show("Book not found.", "Error");
-                grpViewBook.Visible = false;
+                Book book = Book.GetBook(isbn);
+
+                if (book == null)
+                {
+                    MessageBox.Show("Book not found.", "Error");
+                    grpViewBook.Visible = false;
+                    return;
+                }
+
+                grpViewBook.Visible = true;
+
+                txtViewBookTitle.Text = book.Title;
+                txtViewBookAuthor.Text = book.Author;
+                txtViewBookDescription.Text = book.Description;
+                cboViewBookGenre.Text = book.Genre;
+                txtViewBookPublisher.Text = book.Publisher;
+                dtpViewBookPublication.Value = Convert.ToDateTime(book.Publication);
+                cboViewBookStatus.Text = Convert.ToString(book.Status);
+            } catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while retrieving the book: " + ex.Message, "Error");
                 return;
             }
-
-            grpViewBook.Visible = true;
-
-            txtViewBookTitle.Text = book.Title;
-            txtViewBookAuthor.Text = book.Author;
-            txtViewBookDescription.Text = book.Description;
-            cboViewBookGenre.Text = book.Genre;
-            txtViewBookPublisher.Text = book.Publisher;
-            dtpViewBookPublication.Value = Convert.ToDateTime(book.Publication);
-            cboViewBookStatus.Text = Convert.ToString(book.Status);
         }
     }
 }

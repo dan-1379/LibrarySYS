@@ -53,7 +53,7 @@ namespace LibrarySYS
 
         private void btnUpdateBookSearch_Click(object sender, EventArgs e)
         {
-            selectedISBN = txtUpdateBookISBN.Text;
+            selectedISBN = txtUpdateBookISBN.Text.Trim();
             string isValidISBN = BookValidator.IsValidISBN(selectedISBN);
 
             if (isValidISBN != "Valid ISBN")
@@ -62,32 +62,88 @@ namespace LibrarySYS
                 return;
             }
 
-            Book book = Book.GetBook(selectedISBN);
-
-            if (book == null)
+            try
             {
-                MessageBox.Show("No book found with the provided ISBN.", "Book Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                grpUpdateBook.Visible = false;
-                return;
+                Book book = Book.GetBook(selectedISBN);
+
+                if (book == null)
+                {
+                    MessageBox.Show("No book found with the provided ISBN.", "Book Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    grpUpdateBook.Visible = false;
+                    return;
+                }
+
+                grpUpdateBook.Visible = true;
+                txtUpdateBookISBN.ReadOnly = true;
+
+                bookID = book.BookID;
+
+                txtUpdateBookTitle.Text = book.Title;
+                txtUpdateBookAuthor.Text = book.Author;
+                txtUpdateBookDescription.Text = book.Description;
+                cboUpdateBookGenre.Text = book.Genre;
+                txtUpdateBookPublisher.Text = book.Publisher;
+                dtpUpdateBookPublication.Value = Convert.ToDateTime(book.Publication);
+                cboUpdateBookStatus.Text = book.Status.ToString();
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while retrieving the book: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            grpUpdateBook.Visible = true;
-            txtUpdateBookISBN.ReadOnly = true;
-
-            bookID = Convert.ToInt32(book.BookID.ToString());
-
-            txtUpdateBookTitle.Text = book.Title;
-            txtUpdateBookAuthor.Text = book.Author;
-            txtUpdateBookDescription.Text = book.Description;
-            cboUpdateBookGenre.Text = book.Genre;
-            txtUpdateBookPublisher.Text = book.Publisher;
-            dtpUpdateBookPublication.Value = Convert.ToDateTime(book.Publication);
-            cboUpdateBookStatus.Text = book.Status.ToString();
-
         }
 
         private void btnUpdateBookUpdate_Click(object sender, EventArgs e)
         {
+            string title = txtUpdateBookTitle.Text.Trim();
+            string author = txtUpdateBookAuthor.Text.Trim();
+            string description = txtUpdateBookDescription.Text.Trim();
+            string isbn = txtUpdateBookISBN.Text.Trim();
+            string genre = cboUpdateBookGenre.SelectedItem?.ToString();
+            string publisher = txtUpdateBookPublisher.Text.Trim();
+            DateTime publicationDate = dtpUpdateBookPublication.Value;
+            char status = cboUpdateBookStatus.SelectedItem.ToString()[0];
+
+            if (!BookValidator.IsValidTitle(title))
+            {
+                MessageBox.Show("Invalid Title. Please enter a valid title.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!BookValidator.IsValidAuthor(author))
+            {
+                MessageBox.Show("Invalid Author. Please enter a valid author.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!BookValidator.IsValidDescription(description))
+            {
+                MessageBox.Show("Invalid Description. Please enter a valid description.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!BookValidator.IsValidGenre(genre))
+            {
+                MessageBox.Show("Invalid Genre. Please enter a valid genre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!BookValidator.IsValidPublisher(publisher))
+            {
+                MessageBox.Show("Invalid Publisher. Please enter a valid publisher.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!BookValidator.IsValidPublicationDate(publicationDate))
+            {
+                MessageBox.Show("Invalid Publication Date. Please enter a valid publication date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!BookValidator.IsValidStatus(status))
+            {
+                MessageBox.Show("Invalid Status. Please enter a valid status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             DialogResult confirmExit = MessageBox.Show(
                 $"Are you sure you want to update?\n\nUpdated Details:" +
                 $"\n\tTitle: {txtUpdateBookTitle.Text}" +
@@ -101,70 +157,24 @@ namespace LibrarySYS
 
             if (confirmExit == DialogResult.Yes)
             {
-
-                string title = txtUpdateBookTitle.Text.Trim();
-                string author = txtUpdateBookAuthor.Text.Trim();
-                string description = txtUpdateBookDescription.Text.Trim();
-                string isbn = txtUpdateBookISBN.Text.Trim();
-                string genre = cboUpdateBookGenre.SelectedItem?.ToString();
-                string publisher = txtUpdateBookPublisher.Text.Trim();
-                DateTime publicationDate = dtpUpdateBookPublication.Value;
-                string dateOnly = publicationDate.ToString("yyyy-MM-dd");
-                char status = cboUpdateBookStatus.SelectedItem.ToString()[0];
-
-                if (!BookValidator.IsValidTitle(title))
+                try
                 {
-                    MessageBox.Show("Invalid Title. Please enter a valid title.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    Book newBook = new Book(bookID, title, author, description, isbn, genre, publisher, publicationDate, status);
+                    newBook.UpdateBook(isbn);
 
-                if (!BookValidator.IsValidAuthor(author))
+                    MessageBox.Show($"Book updated successfully.", "Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    grpUpdateBook.Visible = false;
+                    txtUpdateBookISBN.ReadOnly = false;
+
+                    txtUpdateBookISBN.Clear();
+                    txtUpdateBookISBN.Focus();
+
+                    selectedISBN = null;
+                }
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Invalid Author. Please enter a valid author.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    MessageBox.Show($"An error occurred while updating the book: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                if (!BookValidator.IsValidDescription(description))
-                {
-                    MessageBox.Show("Invalid Description. Please enter a valid description.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (!BookValidator.IsValidGenre(genre))
-                {
-                    MessageBox.Show("Invalid Genre. Please enter a valid genre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (!BookValidator.IsValidPublisher(publisher))
-                {
-                    MessageBox.Show("Invalid Publisher. Please enter a valid publisher.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (!BookValidator.IsValidPublicationDate(publicationDate))
-                {
-                    MessageBox.Show("Invalid Publication Date. Please enter a valid publication date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                if (!BookValidator.IsValidStatus(status))
-                {
-                    MessageBox.Show("Invalid Publication Date. Please enter a valid publication date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                Book newBook = new Book(bookID, title, author, description, isbn, genre, publisher, publicationDate, status);
-                newBook.UpdateBook(isbn);
-
-                MessageBox.Show($"Book updated successfully.", "Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                grpUpdateBook.Visible = false;
-                txtUpdateBookISBN.ReadOnly = false;
-
-                txtUpdateBookISBN.Clear();
-                txtUpdateBookISBN.Focus();
-
-                selectedISBN = null;
             }
         }
     }
