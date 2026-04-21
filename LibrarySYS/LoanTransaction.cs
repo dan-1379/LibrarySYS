@@ -21,7 +21,6 @@ namespace LibrarySYS
         }
         public override void processTransaction()
         {
-            // ALSO NEED TO UPDATE THE BOOKS TABLE TO CHANGE THE STATUS TO U AND INSERT RECORDS INTO LOANITEMS TABLE
             string sqlQuery = $"INSERT INTO Loans (Loan_ID, Member_ID, Loan_Date, Due_Date) VALUES ({LoanId}, {MemberID}, TO_DATE('{LoanDate:dd-MM-yyyy}', 'DD-MM-YYYY'), TO_DATE('{DueDate:dd-MM-yyyy}', 'DD-MM-YYYY'))";
             Database.ExecuteNonQuery(sqlQuery);
         }

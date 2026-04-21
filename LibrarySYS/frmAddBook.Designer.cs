@@ -240,6 +240,7 @@
             this.Controls.Add(this.mnuAddBook);
             this.MainMenuStrip = this.mnuAddBook;
             this.Name = "frmAddBook";
+            this.ShowIcon = false;
             this.Text = "Books - [Add Book]";
             this.Load += new System.EventHandler(this.frmAddBook_Load);
             this.Shown += new System.EventHandler(this.frmAddBook_Shown);

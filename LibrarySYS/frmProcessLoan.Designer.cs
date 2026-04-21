@@ -61,8 +61,8 @@
             this.txtProcessLoanName = new System.Windows.Forms.TextBox();
             this.txtProcessLoanAddress = new System.Windows.Forms.TextBox();
             this.grpProcessLoanMemberDetails = new System.Windows.Forms.GroupBox();
-            this.lblProcessLoanBooksLoaned = new System.Windows.Forms.Label();
             this.txtProcessLoanBooksLoaned = new System.Windows.Forms.TextBox();
+            this.lblProcessLoanBooksLoaned = new System.Windows.Forms.Label();
             this.mnuProcessLoan.SuspendLayout();
             this.grpProcessLoan.SuspendLayout();
             this.grpProcessLoanMemberDetails.SuspendLayout();
@@ -388,6 +388,13 @@
             this.grpProcessLoanMemberDetails.TabStop = false;
             this.grpProcessLoanMemberDetails.Text = "Member Details";
             // 
+            // txtProcessLoanBooksLoaned
+            // 
+            this.txtProcessLoanBooksLoaned.Location = new System.Drawing.Point(408, 30);
+            this.txtProcessLoanBooksLoaned.Name = "txtProcessLoanBooksLoaned";
+            this.txtProcessLoanBooksLoaned.Size = new System.Drawing.Size(99, 20);
+            this.txtProcessLoanBooksLoaned.TabIndex = 10;
+            // 
             // lblProcessLoanBooksLoaned
             // 
             this.lblProcessLoanBooksLoaned.AutoSize = true;
@@ -396,13 +403,6 @@
             this.lblProcessLoanBooksLoaned.Size = new System.Drawing.Size(82, 13);
             this.lblProcessLoanBooksLoaned.TabIndex = 9;
             this.lblProcessLoanBooksLoaned.Text = "Books on Loan:";
-            // 
-            // txtProcessLoanBooksLoaned
-            // 
-            this.txtProcessLoanBooksLoaned.Location = new System.Drawing.Point(408, 30);
-            this.txtProcessLoanBooksLoaned.Name = "txtProcessLoanBooksLoaned";
-            this.txtProcessLoanBooksLoaned.Size = new System.Drawing.Size(99, 20);
-            this.txtProcessLoanBooksLoaned.TabIndex = 10;
             // 
             // frmProcessLoan
             // 
@@ -417,6 +417,7 @@
             this.Controls.Add(this.mnuProcessLoan);
             this.MainMenuStrip = this.mnuProcessLoan;
             this.Name = "frmProcessLoan";
+            this.ShowIcon = false;
             this.Text = "Loans - [Process Loan]";
             this.Load += new System.EventHandler(this.frmProcessLoan_Load);
             this.mnuProcessLoan.ResumeLayout(false);

@@ -194,6 +194,7 @@
             this.Controls.Add(this.mnuPayFines);
             this.MainMenuStrip = this.mnuPayFines;
             this.Name = "frmPayFines";
+            this.ShowIcon = false;
             this.Text = "Loans - [Pay Fine]";
             this.Load += new System.EventHandler(this.frmPayFines_Load);
             this.mnuPayFines.ResumeLayout(false);

@@ -34,6 +34,7 @@
             this.txtProcessReturnMemberID = new System.Windows.Forms.TextBox();
             this.lblProcessReturnMemberID = new System.Windows.Forms.Label();
             this.grpProcessReturn = new System.Windows.Forms.GroupBox();
+            this.btnProcessReturnCancel = new System.Windows.Forms.Button();
             this.btnProcessReturnReturn = new System.Windows.Forms.Button();
             this.clbProcessReturn = new System.Windows.Forms.CheckedListBox();
             this.txtProcessReturnMemberName = new System.Windows.Forms.TextBox();
@@ -41,7 +42,6 @@
             this.lblProcessReturnMemberName = new System.Windows.Forms.Label();
             this.lblProcessReturnMemberAddress = new System.Windows.Forms.Label();
             this.grpProcessReturnMemberDetails = new System.Windows.Forms.GroupBox();
-            this.btnProcessReturnCancel = new System.Windows.Forms.Button();
             this.mnuProcessReturn.SuspendLayout();
             this.grpProcessReturn.SuspendLayout();
             this.grpProcessReturnMemberDetails.SuspendLayout();
@@ -103,6 +103,16 @@
             this.grpProcessReturn.TabIndex = 25;
             this.grpProcessReturn.TabStop = false;
             this.grpProcessReturn.Text = "Member Loans";
+            // 
+            // btnProcessReturnCancel
+            // 
+            this.btnProcessReturnCancel.Location = new System.Drawing.Point(177, 247);
+            this.btnProcessReturnCancel.Name = "btnProcessReturnCancel";
+            this.btnProcessReturnCancel.Size = new System.Drawing.Size(94, 40);
+            this.btnProcessReturnCancel.TabIndex = 2;
+            this.btnProcessReturnCancel.Text = "Cancel Return";
+            this.btnProcessReturnCancel.UseVisualStyleBackColor = true;
+            this.btnProcessReturnCancel.Click += new System.EventHandler(this.btnProcessReturnCancel_Click);
             // 
             // btnProcessReturnReturn
             // 
@@ -167,16 +177,6 @@
             this.grpProcessReturnMemberDetails.TabStop = false;
             this.grpProcessReturnMemberDetails.Text = "Member Details";
             // 
-            // btnProcessReturnCancel
-            // 
-            this.btnProcessReturnCancel.Location = new System.Drawing.Point(177, 247);
-            this.btnProcessReturnCancel.Name = "btnProcessReturnCancel";
-            this.btnProcessReturnCancel.Size = new System.Drawing.Size(94, 40);
-            this.btnProcessReturnCancel.TabIndex = 2;
-            this.btnProcessReturnCancel.Text = "Cancel Return";
-            this.btnProcessReturnCancel.UseVisualStyleBackColor = true;
-            this.btnProcessReturnCancel.Click += new System.EventHandler(this.btnProcessReturnCancel_Click);
-            // 
             // frmProcessReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,6 +189,7 @@
             this.Controls.Add(this.mnuProcessReturn);
             this.Controls.Add(this.lblProcessReturnMemberID);
             this.Name = "frmProcessReturn";
+            this.ShowIcon = false;
             this.Text = "Loans - [Process Return]";
             this.Load += new System.EventHandler(this.frmProcessReturn_Load);
             this.mnuProcessReturn.ResumeLayout(false);

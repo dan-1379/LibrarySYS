@@ -278,6 +278,7 @@ namespace LibrarySYS
                         txtProcessLoanMemberID.Focus();
                         txtProcessLoanName.Clear();
                         txtProcessLoanAddress.Clear();
+                        grpProcessLoanMemberDetails.Visible = false;
                     }
                     catch (Exception ex)
                     {

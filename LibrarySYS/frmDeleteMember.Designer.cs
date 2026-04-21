@@ -347,6 +347,7 @@
             this.Controls.Add(this.mnuDeleteMember);
             this.MainMenuStrip = this.mnuDeleteMember;
             this.Name = "frmDeleteMember";
+            this.ShowIcon = false;
             this.Text = "Members - [Delete Member]";
             this.Load += new System.EventHandler(this.frmDeleteMember_Load);
             this.mnuDeleteMember.ResumeLayout(false);

@@ -31,6 +31,7 @@
             this.mnuAddMember = new System.Windows.Forms.MenuStrip();
             this.mnuAddMemberExit = new System.Windows.Forms.ToolStripMenuItem();
             this.grpAddMember = new System.Windows.Forms.GroupBox();
+            this.dtpAddMemberDOB = new System.Windows.Forms.DateTimePicker();
             this.txtAddMemberEircode = new System.Windows.Forms.TextBox();
             this.txtAddMemberCounty = new System.Windows.Forms.TextBox();
             this.txtAddMemberTown = new System.Windows.Forms.TextBox();
@@ -51,7 +52,6 @@
             this.lblAddMemberDOB = new System.Windows.Forms.Label();
             this.lblAddMemberLName = new System.Windows.Forms.Label();
             this.lblAddMemberFName = new System.Windows.Forms.Label();
-            this.dtpAddMemberDOB = new System.Windows.Forms.DateTimePicker();
             this.mnuAddMember.SuspendLayout();
             this.grpAddMember.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +105,13 @@
             this.grpAddMember.TabIndex = 1;
             this.grpAddMember.TabStop = false;
             this.grpAddMember.Text = "Add Member";
+            // 
+            // dtpAddMemberDOB
+            // 
+            this.dtpAddMemberDOB.Location = new System.Drawing.Point(107, 102);
+            this.dtpAddMemberDOB.Name = "dtpAddMemberDOB";
+            this.dtpAddMemberDOB.Size = new System.Drawing.Size(190, 20);
+            this.dtpAddMemberDOB.TabIndex = 21;
             // 
             // txtAddMemberEircode
             // 
@@ -269,13 +276,6 @@
             this.lblAddMemberFName.TabIndex = 0;
             this.lblAddMemberFName.Text = "First Name:";
             // 
-            // dtpAddMemberDOB
-            // 
-            this.dtpAddMemberDOB.Location = new System.Drawing.Point(107, 102);
-            this.dtpAddMemberDOB.Name = "dtpAddMemberDOB";
-            this.dtpAddMemberDOB.Size = new System.Drawing.Size(190, 20);
-            this.dtpAddMemberDOB.TabIndex = 21;
-            // 
             // frmAddMember
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -285,6 +285,7 @@
             this.Controls.Add(this.mnuAddMember);
             this.MainMenuStrip = this.mnuAddMember;
             this.Name = "frmAddMember";
+            this.ShowIcon = false;
             this.Text = "Members - [Add Member]";
             this.Load += new System.EventHandler(this.frmAddMember_Load);
             this.Shown += new System.EventHandler(this.frmAddMember_Shown);

@@ -115,6 +115,7 @@
             this.Controls.Add(this.cboProduceYearlyFineReportYear);
             this.Controls.Add(this.mnuProduceYearlyFineReport);
             this.Name = "frmProduceYearlyFineReport";
+            this.ShowIcon = false;
             this.Text = "Admin - [Produce Yearly Fine Report]";
             this.Load += new System.EventHandler(this.frmProduceYearlyFineReport_Load);
             this.mnuProduceYearlyFineReport.ResumeLayout(false);

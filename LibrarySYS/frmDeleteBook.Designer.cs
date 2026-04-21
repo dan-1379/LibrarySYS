@@ -264,6 +264,7 @@
             this.Controls.Add(this.mnuDeleteBook);
             this.MainMenuStrip = this.mnuDeleteBook;
             this.Name = "frmDeleteBook";
+            this.ShowIcon = false;
             this.Text = "Books - [Delete Book]";
             this.Load += new System.EventHandler(this.frmDeleteBook_Load);
             this.mnuDeleteBook.ResumeLayout(false);

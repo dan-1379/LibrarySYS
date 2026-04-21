@@ -74,35 +74,40 @@
             this.mnuDeleteBook,
             this.mnuUpdateBook,
             this.mnuViewBook});
+            this.mnuBooks.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuBooks.Name = "mnuBooks";
             this.mnuBooks.Size = new System.Drawing.Size(51, 20);
             this.mnuBooks.Text = "Books";
             // 
             // mnuAddBook
             // 
+            this.mnuAddBook.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuAddBook.Name = "mnuAddBook";
-            this.mnuAddBook.Size = new System.Drawing.Size(142, 22);
+            this.mnuAddBook.Size = new System.Drawing.Size(180, 22);
             this.mnuAddBook.Text = "Add Book";
             this.mnuAddBook.Click += new System.EventHandler(this.mnuAddBook_Click);
             // 
             // mnuDeleteBook
             // 
+            this.mnuDeleteBook.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuDeleteBook.Name = "mnuDeleteBook";
-            this.mnuDeleteBook.Size = new System.Drawing.Size(142, 22);
+            this.mnuDeleteBook.Size = new System.Drawing.Size(180, 22);
             this.mnuDeleteBook.Text = "Delete Book";
             this.mnuDeleteBook.Click += new System.EventHandler(this.mnuDeleteBook_Click);
             // 
             // mnuUpdateBook
             // 
+            this.mnuUpdateBook.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuUpdateBook.Name = "mnuUpdateBook";
-            this.mnuUpdateBook.Size = new System.Drawing.Size(142, 22);
+            this.mnuUpdateBook.Size = new System.Drawing.Size(180, 22);
             this.mnuUpdateBook.Text = "Update Book";
             this.mnuUpdateBook.Click += new System.EventHandler(this.mnuUpdateBook_Click);
             // 
             // mnuViewBook
             // 
+            this.mnuViewBook.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuViewBook.Name = "mnuViewBook";
-            this.mnuViewBook.Size = new System.Drawing.Size(142, 22);
+            this.mnuViewBook.Size = new System.Drawing.Size(180, 22);
             this.mnuViewBook.Text = "View Book";
             this.mnuViewBook.Click += new System.EventHandler(this.mnuViewBook_Click);
             // 
@@ -113,35 +118,40 @@
             this.mnuDeleteMember,
             this.mnuUpdateMember,
             this.mnuViewMember});
+            this.mnuMembers.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuMembers.Name = "mnuMembers";
             this.mnuMembers.Size = new System.Drawing.Size(69, 20);
             this.mnuMembers.Text = "Members";
             // 
             // mnuAddMember
             // 
+            this.mnuAddMember.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuAddMember.Name = "mnuAddMember";
-            this.mnuAddMember.Size = new System.Drawing.Size(160, 22);
+            this.mnuAddMember.Size = new System.Drawing.Size(180, 22);
             this.mnuAddMember.Text = "Add Member";
             this.mnuAddMember.Click += new System.EventHandler(this.mnuAddMember_Click);
             // 
             // mnuDeleteMember
             // 
+            this.mnuDeleteMember.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuDeleteMember.Name = "mnuDeleteMember";
-            this.mnuDeleteMember.Size = new System.Drawing.Size(160, 22);
+            this.mnuDeleteMember.Size = new System.Drawing.Size(180, 22);
             this.mnuDeleteMember.Text = "Delete Member";
             this.mnuDeleteMember.Click += new System.EventHandler(this.mnuDeleteMember_Click);
             // 
             // mnuUpdateMember
             // 
+            this.mnuUpdateMember.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuUpdateMember.Name = "mnuUpdateMember";
-            this.mnuUpdateMember.Size = new System.Drawing.Size(160, 22);
+            this.mnuUpdateMember.Size = new System.Drawing.Size(180, 22);
             this.mnuUpdateMember.Text = "Update Member";
             this.mnuUpdateMember.Click += new System.EventHandler(this.mnuUpdateMember_Click);
             // 
             // mnuViewMember
             // 
+            this.mnuViewMember.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuViewMember.Name = "mnuViewMember";
-            this.mnuViewMember.Size = new System.Drawing.Size(160, 22);
+            this.mnuViewMember.Size = new System.Drawing.Size(180, 22);
             this.mnuViewMember.Text = "View Member";
             this.mnuViewMember.Click += new System.EventHandler(this.mnuViewMember_Click);
             // 
@@ -150,21 +160,24 @@
             this.mnuLoans.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuProcessLoan,
             this.mnuProcessReturn});
+            this.mnuLoans.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuLoans.Name = "mnuLoans";
             this.mnuLoans.Size = new System.Drawing.Size(50, 20);
             this.mnuLoans.Text = "Loans";
             // 
             // mnuProcessLoan
             // 
+            this.mnuProcessLoan.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuProcessLoan.Name = "mnuProcessLoan";
-            this.mnuProcessLoan.Size = new System.Drawing.Size(152, 22);
+            this.mnuProcessLoan.Size = new System.Drawing.Size(180, 22);
             this.mnuProcessLoan.Text = "Process Loan";
             this.mnuProcessLoan.Click += new System.EventHandler(this.mnuProcessLoan_Click);
             // 
             // mnuProcessReturn
             // 
+            this.mnuProcessReturn.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuProcessReturn.Name = "mnuProcessReturn";
-            this.mnuProcessReturn.Size = new System.Drawing.Size(152, 22);
+            this.mnuProcessReturn.Size = new System.Drawing.Size(180, 22);
             this.mnuProcessReturn.Text = "Process Return";
             this.mnuProcessReturn.Click += new System.EventHandler(this.mnuProcessReturn_Click);
             // 
@@ -173,12 +186,14 @@
             this.mnuAdmin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuProduceFineReport,
             this.mnuProduceGenreReport});
+            this.mnuAdmin.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuAdmin.Name = "mnuAdmin";
             this.mnuAdmin.Size = new System.Drawing.Size(55, 20);
             this.mnuAdmin.Text = "Admin";
             // 
             // mnuProduceFineReport
             // 
+            this.mnuProduceFineReport.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuProduceFineReport.Name = "mnuProduceFineReport";
             this.mnuProduceFineReport.Size = new System.Drawing.Size(190, 22);
             this.mnuProduceFineReport.Text = "Produce Fine Report";
@@ -186,6 +201,7 @@
             // 
             // mnuProduceGenreReport
             // 
+            this.mnuProduceGenreReport.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.mnuProduceGenreReport.Name = "mnuProduceGenreReport";
             this.mnuProduceGenreReport.Size = new System.Drawing.Size(190, 22);
             this.mnuProduceGenreReport.Text = "Produce Genre Report";
@@ -217,6 +233,7 @@
             this.Controls.Add(this.mnuMainMenu);
             this.MainMenuStrip = this.mnuMainMenu;
             this.Name = "frmMainMenu";
+            this.ShowIcon = false;
             this.Text = "LibrarySYS - [Main Menu]";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainMenu_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMainMenu_FormClosed);
