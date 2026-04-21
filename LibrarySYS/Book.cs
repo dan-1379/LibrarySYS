@@ -71,66 +71,105 @@ namespace LibrarySYS
             return nextId;
         }
 
+        /*
+         * Title: How to make a parameterized SELECT query in C#?
+         * Author: Paweł Żelazny
+         * Site: stackoverflow.com
+         * Date: May 4, 2019
+         * Code Version: N/A
+         * Availability: https://stackoverflow.com/questions/55978404/how-to-make-a-parameterized-select-query-in-c
+         * Accessed: 21 April 2026
+         * Modified: Learned how to use parameterized queries.
+        */
         public void AddBook()
         {
-            Debug.WriteLine("Adding book: " + this);
+            string sqlQuery = @"INSERT INTO Books (Book_ID, Title, Author, Description, ISBN, Genre, Publisher, Publication_Date, Status)
+                        VALUES (:bookId, :title, :author, :description, :isbn, :genre, :publisher, :pubDate, :status)";
 
-            string sqlQuery =
-                "INSERT INTO Books (Book_ID, Title, Author, Description, ISBN, Genre, Publisher, Publication_Date, Status) " +
-                "VALUES (" + BookID + ", '" + Title + "', '" + Author + "', '" + Description + "', '" + ISBN + "', '" + Genre + "', '" + 
-                        Publisher + "', TO_DATE('" + Publication.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), '" + Status + "')";
+            using (OracleConnection conn = Database.OpenConnection())
+            using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+            {
+                cmd.Parameters.Add("bookId", OracleDbType.Int32).Value = BookID;
+                cmd.Parameters.Add("title", OracleDbType.Varchar2).Value = Title;
+                cmd.Parameters.Add("author", OracleDbType.Varchar2).Value = Author;
+                cmd.Parameters.Add("description", OracleDbType.Varchar2).Value = Description;
+                cmd.Parameters.Add("isbn", OracleDbType.Varchar2).Value = ISBN;
+                cmd.Parameters.Add("genre", OracleDbType.Varchar2).Value = Genre;
+                cmd.Parameters.Add("publisher", OracleDbType.Varchar2).Value = Publisher;
+                cmd.Parameters.Add("pubDate", OracleDbType.Date).Value = Publication;
+                cmd.Parameters.Add("status", OracleDbType.Char).Value = Status;
 
-
-            Database.ExecuteNonQuery(sqlQuery);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static void UpdateBookStatus(int bookID, char status)
         {
-            string sqlQuery = $"UPDATE Books SET Status = '{status}' WHERE Book_ID = {bookID}";
-            Database.ExecuteNonQuery(sqlQuery);
+            string sqlQuery = @"UPDATE Books SET Status = :status WHERE Book_ID = :bookId";
+
+            using (OracleConnection conn = Database.OpenConnection())
+            using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+            {
+                cmd.Parameters.Add("status", OracleDbType.Char).Value = status;
+                cmd.Parameters.Add("bookId", OracleDbType.Int32).Value = bookID;
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void UpdateBook(string isbn)
         {
-            string sqlQuery =
-                "UPDATE Books SET " +
-                "Title = '" + Title + "', " +
-                "Author = '" + Author + "', " +
-                "Description = '" + Description + "', " +
-                "Genre = '" + Genre + "', " +
-                "Publisher = '" + Publisher + "', " +
-                "Publication_Date = TO_DATE('" + Publication.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), " +
-                "Status = '" + Status + "' " +
-                "WHERE ISBN = '" + isbn + "'";
-            Database.ExecuteNonQuery(sqlQuery);
+            string sqlQuery = @"UPDATE Books SET Title = :title, Author = :author, Description = :description, Genre = :genre, Publisher = :publisher, 
+                                Publication_Date = :pubDate, Status = :status WHERE ISBN = :isbn";
+
+            using (OracleConnection conn = Database.OpenConnection())
+            using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+            {
+                cmd.Parameters.Add("title", OracleDbType.Varchar2).Value = Title;
+                cmd.Parameters.Add("author", OracleDbType.Varchar2).Value = Author;
+                cmd.Parameters.Add("description", OracleDbType.Varchar2).Value = Description;
+                cmd.Parameters.Add("genre", OracleDbType.Varchar2).Value = Genre;
+                cmd.Parameters.Add("publisher", OracleDbType.Varchar2).Value = Publisher;
+                cmd.Parameters.Add("pubDate", OracleDbType.Date).Value = Publication;
+                cmd.Parameters.Add("status", OracleDbType.Char).Value = Status;
+                cmd.Parameters.Add("isbn", OracleDbType.Varchar2).Value = isbn;
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static Book GetBook(string ISBN)
         {
-            string sqlQuery = "SELECT * FROM Books WHERE ISBN = '" + ISBN + "'";
-            OracleDataReader book = Database.ExecuteSingleRowQuery(sqlQuery);
+            string sqlQuery = @"SELECT * FROM Books WHERE ISBN = :isbn";
 
-            if (book == null || !book.Read())
+            OracleDataReader book;
+
+            using (OracleConnection conn = Database.OpenConnection())
+            using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
             {
-                book?.Close();
-                return null;
+                cmd.Parameters.Add("isbn", OracleDbType.Varchar2).Value = ISBN;
+                book = cmd.ExecuteReader();
+
+                if (book == null || !book.Read())
+                {
+                    book?.Close();
+                    return null;
+                }
+
+                Book fetchedBook = new Book(
+                    Convert.ToInt32(book["Book_ID"]),
+                    book["Title"].ToString(),
+                    book["Author"].ToString(),
+                    book["Description"].ToString(),
+                    book["ISBN"].ToString(),
+                    book["Genre"].ToString(),
+                    book["Publisher"].ToString(),
+                    Convert.ToDateTime(book["Publication_Date"]),
+                    Convert.ToChar(book["Status"])
+                );
+
+                return fetchedBook;
             }
-
-            Book fetchedBook = new Book(
-                Convert.ToInt32(book["Book_ID"]),
-                book["Title"].ToString(),
-                book["Author"].ToString(),
-                book["Description"].ToString(),
-                book["ISBN"].ToString(),
-                book["Genre"].ToString(),
-                book["Publisher"].ToString(),
-                Convert.ToDateTime(book["Publication_Date"]),
-                Convert.ToChar(book["Status"])
-            );
-
-            book.Close();
-            return fetchedBook;
         }
+        /* END OF REFERENCED CONTENT */
 
 
         public static Dictionary<string, int> GetBooksByGenre()

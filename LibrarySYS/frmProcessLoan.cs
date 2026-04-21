@@ -47,6 +47,7 @@ namespace LibrarySYS
             Utility.StyleSearchButton(btnProcessLoanSearchID);
             Utility.StyleSearchButton(btnProcessLoanSearchISBN);
             Utility.StyleDeleteButton(btnProcessLoanRemove);
+            Utility.StyleDeleteButton(btnProcessLoanCancel);
 
             Utility.StyleInputBoxesActive(grpProcessLoan);
             Utility.StyleInputBoxes(grpProcessLoanMemberDetails);
@@ -64,7 +65,16 @@ namespace LibrarySYS
                 return;
             }
 
-            Member extracted = Member.GetMemberRecord(ID);
+            Member extracted;
+
+            try
+            {
+                extracted = Member.GetMemberRecord(ID);
+            } catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while fetching member details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (extracted == null) { 
                 MessageBox.Show("No member found with the provided ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -132,7 +142,16 @@ namespace LibrarySYS
                 return;
             }
 
-            Book book = Book.GetBook(ISBN);
+            Book book;
+
+            try
+            {
+                book = Book.GetBook(ISBN);
+            } catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while fetching book details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (book == null)
             {
@@ -192,7 +211,16 @@ namespace LibrarySYS
                 return;
             }
 
-            Book book = Book.GetBook(bookISBN);
+            Book book;
+
+            try
+            {
+                book = Book.GetBook(bookISBN);
+            } catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while fetching book details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (book == null)
             {
@@ -215,6 +243,12 @@ namespace LibrarySYS
 
         private void btnProcessLoanRemove_Click(object sender, EventArgs e)
         {
+            if (clbProcessLoan.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Please select at least one book to remove.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             for (int i = clbProcessLoan.CheckedItems.Count - 1; i >= 0; i--)
             {
                 string titleToRemove = clbProcessLoan.CheckedItems[i].ToString();
@@ -311,6 +345,20 @@ namespace LibrarySYS
         private void txtProcessLoanMemberID_TextChanged(object sender, EventArgs e)
         {
            
+        }
+
+        private void btnProcessLoanCancel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Loan process cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            clbProcessLoan.Items.Clear();
+            bookItems.Clear();
+            grpProcessLoan.Visible = false;
+            txtProcessLoanMemberID.ReadOnly = false;
+            txtProcessLoanMemberID.Clear();
+            txtProcessLoanMemberID.Focus();
+            txtProcessLoanName.Clear();
+            txtProcessLoanAddress.Clear();
+            grpProcessLoanMemberDetails.Visible = false;
         }
     }
 }

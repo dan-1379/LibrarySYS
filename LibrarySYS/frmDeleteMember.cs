@@ -29,7 +29,14 @@ namespace LibrarySYS
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            grdDeleteMember.DataSource = Member.getAllMembers().Tables[0];
+            //grdDeleteMember.DataSource = Member.getAllMembers().Tables[0];
+            loadMembers();
+            if (grdDeleteMember.DataSource == null)
+            {
+                this.Close();
+                parent.Visible = true;
+                return;
+            }
 
             Utility.constructGrid(grdDeleteMember);
             Utility.styleGrid(grdDeleteMember);
@@ -37,6 +44,18 @@ namespace LibrarySYS
             Utility.StyleInputBoxes(grpDeleteMember);
             Utility.StyleButton(btnDeleteMemberDelete);
             Utility.StyleExitButton(mnuDeleteMemberExit);
+        }
+
+        private void loadMembers()
+        {
+            try
+            {
+                grdDeleteMember.DataSource = Member.getAllMembers().Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading members: " + ex.Message, "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void mnuDeleteMemberExit_Click(object sender, EventArgs e)

@@ -141,7 +141,7 @@ namespace LibrarySYS
                 txtAddBookTitle.Focus();
             } catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while adding the book: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while adding the book: \n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

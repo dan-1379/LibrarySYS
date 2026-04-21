@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace LibrarySYS
 {
@@ -103,73 +106,120 @@ namespace LibrarySYS
 
         public static DataSet getAllMembers()
         {
-            string sqlQuery = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status FROM Members ORDER BY Member_ID";
+            string sqlQuery = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, " +
+                              "Status FROM Members ORDER BY Member_ID";
             return Database.ExecuteMultiRowQuery(sqlQuery);
         }
 
+        /*
+         * Title: How to make a parameterized SELECT query in C#?
+         * Author: Paweł Żelazny
+         * Site: stackoverflow.com
+         * Date: May 4, 2019
+         * Code Version: N/A
+         * Availability: https://stackoverflow.com/questions/55978404/how-to-make-a-parameterized-select-query-in-c
+         * Accessed: 21 April 2026
+         * Modified: Learned how to use parameterized queries.
+        */
         public static Member GetMemberRecord(string ID)
         {
-            string sql = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status FROM Members WHERE Member_ID = '" + ID + "'";
-            OracleDataReader member = Database.ExecuteSingleRowQuery(sql);
+            string sqlQuery = @"SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status FROM Members WHERE Member_ID = :MemberID";
 
-            if (member == null || !member.Read())
+            using (OracleConnection conn = Database.OpenConnection())
+            using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
             {
-                member?.Close();
-                return null;
+                cmd.Parameters.Add("MemberID", OracleDbType.Varchar2).Value = ID;
+
+                using (OracleDataReader member = cmd.ExecuteReader())
+                {
+                    if (member == null || !member.Read())
+                    {
+                        member?.Close();
+                        return null;
+                    }
+
+                    Member result = new Member(
+                        Convert.ToInt32(member["Member_ID"]),
+                        member["First_Name"].ToString(),
+                        member["Last_Name"].ToString(),
+                        Convert.ToDateTime(member["DOB"]),
+                        member["Phone"].ToString(),
+                        member["Email"].ToString(),
+                        member["Address_Line1"].ToString(),
+                        member["Address_Line2"].ToString(),
+                        member["City"].ToString(),
+                        member["County"].ToString(),
+                        member["Eircode"].ToString(),
+                        Convert.ToChar(member["Status"])
+                    );
+    
+                    return result;
+                }
             }
-
-            Member result = new Member(
-                Convert.ToInt32(member["Member_ID"]),
-                member["First_Name"].ToString(),
-                member["Last_Name"].ToString(),
-                Convert.ToDateTime(member["DOB"]),
-                member["Phone"].ToString(),
-                member["Email"].ToString(),
-                member["Address_Line1"].ToString(),
-                member["Address_Line2"].ToString(),
-                member["City"].ToString(),
-                member["County"].ToString(),
-                member["Eircode"].ToString(),
-                Convert.ToChar(member["Status"])
-            );
-
-            member.Close();
-            return result;
         }
 
         public void AddMember()
         {
-            string sqlQuery = "INSERT INTO Members (Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status) " +
-                              "VALUES (" + MemberID + ", '" + FirstName + "', '" + LastName + "', TO_DATE('" + DOB.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), '" + Phone + "', '" + Email +
-                              "', '" + AddressLine1 + "', '" + AddressLine2 + "', '" + City + "', '" + County + "', '" + Eircode + "', TO_DATE('" + RegistrationDate.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), '" + Status + "')";
+            string sqlQuery = @"INSERT INTO Members (Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, Status) 
+                                VALUES (:memberId, :firstName, :lastName, :dob, :phone, :email, :addressLine1, :addressLine2, :city, :county, :eircode, :registrationDate, :status)";
 
-            Database.ExecuteMultiRowQuery(sqlQuery);
+            using (OracleConnection conn = Database.OpenConnection())
+            using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+            {
+                cmd.Parameters.Add("memberId", OracleDbType.Int32).Value = MemberID;
+                cmd.Parameters.Add("firstName", OracleDbType.Varchar2).Value = FirstName;
+                cmd.Parameters.Add("lastName", OracleDbType.Varchar2).Value = LastName;
+                cmd.Parameters.Add("dob", OracleDbType.Date).Value = DOB;
+                cmd.Parameters.Add("phone", OracleDbType.Varchar2).Value = Phone;
+                cmd.Parameters.Add("email", OracleDbType.Varchar2).Value = Email;
+                cmd.Parameters.Add("addressLine1", OracleDbType.Varchar2).Value = AddressLine1;
+                cmd.Parameters.Add("addressLine2", OracleDbType.Varchar2).Value = AddressLine2;
+                cmd.Parameters.Add("city", OracleDbType.Varchar2).Value = City;
+                cmd.Parameters.Add("county", OracleDbType.Varchar2).Value = County;
+                cmd.Parameters.Add("eircode", OracleDbType.Varchar2).Value = Eircode;
+                cmd.Parameters.Add("registrationDate", OracleDbType.Date).Value = RegistrationDate;
+                cmd.Parameters.Add("status", OracleDbType.Char).Value = Status;
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static void AlterMemberStatus(string MemberID)
         {
-            string sqlQuery = "UPDATE Members SET Status = 'I' WHERE Member_ID = '" + MemberID + "'";
-            Database.ExecuteSingleRowQuery(sqlQuery);
+            string sqlQuery = @"UPDATE Members SET Status = 'I' WHERE Member_ID = :MemberID";
+
+            using (OracleConnection conn = Database.OpenConnection())
+            using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+            {
+                cmd.Parameters.Add("MemberID", OracleDbType.Varchar2).Value = MemberID;
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public void UpdateMemberDetails(string MemberID)
         {
-            string sqlQuery = "UPDATE Members SET " +
-                              "First_Name = '" + FirstName + "', " +
-                              "Last_Name = '" + LastName + "', " +
-                              "DOB = TO_DATE('" + DOB.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD'), " +
-                              "Phone = '" + Phone + "', " +
-                              "Email = '" + Email + "', " +
-                              "Address_Line1 = '" + AddressLine1 + "', " +
-                              "Address_Line2 = '" + AddressLine2 + "', " +
-                              "City = '" + City + "', " +
-                              "County = '" + County + "', " +
-                              "Eircode = '" + Eircode + "', " +
-                              "Status = '" + Status + "', " +
-                              "Registration_Date = TO_DATE('" + RegistrationDate.ToString("yyyy-MM-dd") + "', 'YYYY-MM-DD') " +
-                              "WHERE Member_ID = " + MemberID;
+            string sqlQuery = @"UPDATE Members SET First_Name = :firstName, Last_Name = :lastName, DOB = :dob, Phone = :phone, Email = :email, Address_Line1 = :addressLine1, 
+                                Address_Line2 = :addressLine2, City = :city, County = :county, Eircode = :eircode, Status = :status, Registration_Date = :registrationDate WHERE Member_ID = :memberId";
 
-            Database.ExecuteMultiRowQuery(sqlQuery);
+            using (OracleConnection conn = Database.OpenConnection())
+            using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+            {
+                cmd.Parameters.Add("firstName", OracleDbType.Varchar2).Value = FirstName;
+                cmd.Parameters.Add("lastName", OracleDbType.Varchar2).Value = LastName;
+                cmd.Parameters.Add("dob", OracleDbType.Date).Value = DOB;
+                cmd.Parameters.Add("phone", OracleDbType.Varchar2).Value = Phone;
+                cmd.Parameters.Add("email", OracleDbType.Varchar2).Value = Email;
+                cmd.Parameters.Add("addressLine1", OracleDbType.Varchar2).Value = AddressLine1;
+                cmd.Parameters.Add("addressLine2", OracleDbType.Varchar2).Value = AddressLine2;
+                cmd.Parameters.Add("city", OracleDbType.Varchar2).Value = City;
+                cmd.Parameters.Add("county", OracleDbType.Varchar2).Value = County;
+                cmd.Parameters.Add("eircode", OracleDbType.Varchar2).Value = Eircode;
+                cmd.Parameters.Add("status", OracleDbType.Char).Value = Status;
+                cmd.Parameters.Add("registrationDate", OracleDbType.Date).Value = RegistrationDate;
+                cmd.Parameters.Add("memberId", OracleDbType.Int32).Value = MemberID;
+
+                cmd.ExecuteNonQuery();
+            }
         }
+        /* END OF REFERENCED CONTENT */
     }
 }

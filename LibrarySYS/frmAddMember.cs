@@ -130,32 +130,38 @@ namespace LibrarySYS
                 return;
             }
 
-            if (MemberValidator.IsExistingMember(firstName, lastName, phone))
+            try
             {
-                MessageBox.Show("A member with the same first name, last name, and phone number already exists.", "Duplicate Member", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                if (MemberValidator.IsExistingMember(firstName, lastName, phone))
+                {
+                    MessageBox.Show("A member with the same first name, last name, and phone number already exists.", "Duplicate Member", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int memberID = Member.GetNextMemberID();
+
+                Member newMember = new Member(memberID, firstName, lastName, dob, phone, email, address1, address2, city, county, eircode);
+                newMember.AddMember();
+
+                MessageBox.Show("Member added successfully!\n" +
+                    $"{firstName} {lastName} is now a registered member", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                txtAddMemberFName.Clear();
+                txtAddMemberLName.Clear();
+                dtpAddMemberDOB.Value = DateTime.Now;
+                txtAddMemberPhone.Clear();
+                txtAddMemberEmail.Clear();
+                txtAddMemberAddress1.Clear();
+                txtAddMemberAddress2.Clear();
+                txtAddMemberTown.Clear();
+                txtAddMemberCounty.Clear();
+                txtAddMemberEircode.Clear();
+                txtAddMemberFName.Focus();
             }
-
-            int memberID = Member.GetNextMemberID();
-            lastName = lastName.Replace("'", "");
-            
-            Member newMember = new Member(memberID, firstName, lastName, dob, phone, email, address1, address2, city, county, eircode);
-            newMember.AddMember();
-
-            MessageBox.Show("Member added successfully!\n" +
-                $"{firstName} {lastName} is now a registered member", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            txtAddMemberFName.Clear();
-            txtAddMemberLName.Clear();
-            dtpAddMemberDOB.Value = DateTime.Now;
-            txtAddMemberPhone.Clear();
-            txtAddMemberEmail.Clear();
-            txtAddMemberAddress1.Clear();
-            txtAddMemberAddress2.Clear();
-            txtAddMemberTown.Clear();
-            txtAddMemberCounty.Clear();
-            txtAddMemberEircode.Clear();
-            txtAddMemberFName.Focus();
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while adding the member: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void frmAddMember_Shown(object sender, EventArgs e)

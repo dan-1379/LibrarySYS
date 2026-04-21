@@ -47,27 +47,36 @@ namespace LibrarySYS
 
         private void cboProduceYearlyFineReportYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            crtProduceYearlyFineReportChart.Visible = false;
-            crtProduceYearlyFineReportChart.Series.Clear();
-            crtProduceYearlyFineReportChart.ChartAreas[0].AxisX.Interval = 1;
-            crtProduceYearlyFineReportChart.ChartAreas[0].AxisX.Title = "Month";
-            crtProduceYearlyFineReportChart.ChartAreas[0].AxisY.Title = "€";
-
-            int selectedYear = Convert.ToInt32(cboProduceYearlyFineReportYear.SelectedItem);
-            double[] monthlyFines = Fine.GetFinesByMonth(selectedYear);
-
-            string[] monthsOfYear = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-
-            crtProduceYearlyFineReportChart.Series.Add("Fines Collected");
-            crtProduceYearlyFineReportChart.Series["Fines Collected"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
-
-            for (int i = 0; i < 12; i++)
+            try
             {
-                crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY(monthsOfYear[i], monthlyFines[i]);
-            }
+                crtProduceYearlyFineReportChart.Visible = false;
+                crtProduceYearlyFineReportChart.Series.Clear();
+                crtProduceYearlyFineReportChart.ChartAreas[0].AxisX.Interval = 1;
+                crtProduceYearlyFineReportChart.ChartAreas[0].AxisX.Title = "Month";
+                crtProduceYearlyFineReportChart.ChartAreas[0].AxisY.Title = "€";
 
-            crtProduceYearlyFineReportChart.Visible = true;
-            crtProduceYearlyFineReportChart.Update();
+                int selectedYear = Convert.ToInt32(cboProduceYearlyFineReportYear.SelectedItem);
+                double[] monthlyFines = Fine.GetFinesByMonth(selectedYear);
+
+                string[] monthsOfYear = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+                crtProduceYearlyFineReportChart.Series.Add("Fines Collected");
+                crtProduceYearlyFineReportChart.Series["Fines Collected"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+
+                for (int i = 0; i < 12; i++)
+                {
+                    crtProduceYearlyFineReportChart.Series["Fines Collected"].Points.AddXY(monthsOfYear[i], monthlyFines[i]);
+                }
+
+                crtProduceYearlyFineReportChart.Visible = true;
+                crtProduceYearlyFineReportChart.Update();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while generating the report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                parent.Visible = true;
+            }
         }
     }
 }

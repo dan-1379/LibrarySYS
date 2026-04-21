@@ -71,6 +71,7 @@
             this.mnuUpdateMember.Size = new System.Drawing.Size(615, 24);
             this.mnuUpdateMember.TabIndex = 0;
             this.mnuUpdateMember.Text = "menuStrip1";
+            this.mnuUpdateMember.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mnuUpdateMember_ItemClicked);
             // 
             // mnuUpdateMemberExit
             // 

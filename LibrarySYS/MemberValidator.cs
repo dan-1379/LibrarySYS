@@ -293,6 +293,16 @@ namespace LibrarySYS
             return "valid";
         }
 
+        /*
+         * Title: How to make a parameterized SELECT query in C#?
+         * Author: Paweł Żelazny
+         * Site: stackoverflow.com
+         * Date: May 4, 2019
+         * Code Version: N/A
+         * Availability: https://stackoverflow.com/questions/55978404/how-to-make-a-parameterized-select-query-in-c
+         * Accessed: 21 April 2026
+         * Modified: Learned how to use parameterized queries.
+        */
         /// <summary>
         /// Determines if a member with the provided first name, last name, and phone number already exists in the database.
         /// </summary>
@@ -302,12 +312,23 @@ namespace LibrarySYS
         /// </returns>
         public static bool IsExistingMember(string firstName, string lastName, string phone)
         {
-            string sqlQuery = $"SELECT COUNT(*) FROM Members WHERE First_Name = '{firstName}' AND Last_Name = '{lastName}' AND Phone = '{phone}'";
-            OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
+            string sqlQuery = @"SELECT COUNT(*) FROM Members WHERE First_Name = :firstName AND Last_Name = :lastName AND Phone = :phone";
 
-            dr.Read();
-            int count = dr.GetInt32(0);
-            return count > 0;
+            using (OracleConnection conn = Database.OpenConnection())
+            using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
+            {
+                cmd.Parameters.Add(new OracleParameter("firstName", firstName));
+                cmd.Parameters.Add(new OracleParameter("lastName", lastName));
+                cmd.Parameters.Add(new OracleParameter("phone", phone));
+
+                using (OracleDataReader dr = cmd.ExecuteReader())
+                {
+                    dr.Read();
+                    int count = dr.GetInt32(0);
+                    return count > 0;
+                }
+            }
         }
+        /* END OF REFERENCED CONTENT */
     }
 }

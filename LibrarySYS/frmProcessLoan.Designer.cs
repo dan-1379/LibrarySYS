@@ -63,6 +63,7 @@
             this.grpProcessLoanMemberDetails = new System.Windows.Forms.GroupBox();
             this.txtProcessLoanBooksLoaned = new System.Windows.Forms.TextBox();
             this.lblProcessLoanBooksLoaned = new System.Windows.Forms.Label();
+            this.btnProcessLoanCancel = new System.Windows.Forms.Button();
             this.mnuProcessLoan.SuspendLayout();
             this.grpProcessLoan.SuspendLayout();
             this.grpProcessLoanMemberDetails.SuspendLayout();
@@ -115,6 +116,7 @@
             // 
             // grpProcessLoan
             // 
+            this.grpProcessLoan.Controls.Add(this.btnProcessLoanCancel);
             this.grpProcessLoan.Controls.Add(this.btnProcessLoanLoanBooks);
             this.grpProcessLoan.Controls.Add(this.btnProcessLoanRemove);
             this.grpProcessLoan.Controls.Add(this.btnProcessLoanSearchISBN);
@@ -404,6 +406,16 @@
             this.lblProcessLoanBooksLoaned.TabIndex = 9;
             this.lblProcessLoanBooksLoaned.Text = "Books on Loan:";
             // 
+            // btnProcessLoanCancel
+            // 
+            this.btnProcessLoanCancel.Location = new System.Drawing.Point(7, 362);
+            this.btnProcessLoanCancel.Name = "btnProcessLoanCancel";
+            this.btnProcessLoanCancel.Size = new System.Drawing.Size(83, 37);
+            this.btnProcessLoanCancel.TabIndex = 22;
+            this.btnProcessLoanCancel.Text = "Cancel Loan";
+            this.btnProcessLoanCancel.UseVisualStyleBackColor = true;
+            this.btnProcessLoanCancel.Click += new System.EventHandler(this.btnProcessLoanCancel_Click);
+            // 
             // frmProcessLoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,5 +480,6 @@
         private System.Windows.Forms.GroupBox grpProcessLoanMemberDetails;
         private System.Windows.Forms.TextBox txtProcessLoanBooksLoaned;
         private System.Windows.Forms.Label lblProcessLoanBooksLoaned;
+        private System.Windows.Forms.Button btnProcessLoanCancel;
     }
 }

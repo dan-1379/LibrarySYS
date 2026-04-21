@@ -42,7 +42,15 @@ namespace LibrarySYS
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            grdUpdateMember.DataSource = Member.getAllMembers().Tables[0];
+            //grdUpdateMember.DataSource = Member.getAllMembers().Tables[0];
+            loadMembers();
+
+            if (grdUpdateMember.DataSource == null)
+            {
+                this.Close();
+                parent.Visible = true;
+                return;
+            }
 
             Utility.constructGrid(grdUpdateMember);
             Utility.styleGrid(grdUpdateMember);
@@ -60,6 +68,18 @@ namespace LibrarySYS
                 {
                     control.Enabled = false;
                 }
+            }
+        }
+
+        private void loadMembers()
+        {
+            try
+            {
+                grdUpdateMember.DataSource = Member.getAllMembers().Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading members: " + ex.Message, "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -237,6 +257,11 @@ namespace LibrarySYS
             cboUpdateMemberStatus.Text = grdUpdateMember.CurrentRow.Cells[12].Value.ToString();
 
             txtUpdateMemberFines.Text = Fine.GetOutstandingFines(Convert.ToInt32(grdUpdateMember.CurrentRow.Cells[0].Value)).ToString("C");
+        }
+
+        private void mnuUpdateMember_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

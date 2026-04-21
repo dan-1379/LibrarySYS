@@ -31,13 +31,34 @@ namespace LibrarySYS
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            grdViewMember.DataSource = Member.getAllMembers().Tables[0];
+            //grdViewMember.DataSource = Member.getAllMembers().Tables[0];
+
+            loadMembers();
+
+            if (grdViewMember.DataSource == null)
+            {
+                this.Close();
+                parent.Visible = true;
+                return;
+            }
 
             Utility.constructGrid(grdViewMember);
             Utility.styleGrid(grdViewMember);
             Utility.ColourRowsByStatus(grdViewMember);
             Utility.StyleSearchButton(btnViewMembersSearch);
             Utility.StyleExitButton(mnuViewMemberExit);
+        }
+
+        private void loadMembers()
+        {
+            try
+            {
+                grdViewMember.DataSource = Member.getAllMembers().Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading members: " + ex.Message, "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnViewMemberSearch_Click(object sender, EventArgs e)

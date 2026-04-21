@@ -38,14 +38,23 @@ namespace LibrarySYS
             crtProduceYearlyGenreReportChart.Series["Genre Popularity"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Label = "#VALX (#VAL)";
 
-            Dictionary<string, int> genreCounts = Book.GetBooksByGenre();
-
-            foreach (KeyValuePair<string, int> value in genreCounts)
+            try
             {
-                crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY(value.Key, value.Value);
+                Dictionary<string, int> genreCounts = Book.GetBooksByGenre();
+
+                foreach (KeyValuePair<string, int> value in genreCounts)
+                {
+                    crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY(value.Key, value.Value);
+                    this.Close();
+                    parent.Visible = true;
+                }
+
+                crtProduceYearlyGenreReportChart.Visible = true;
+            } catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while loading the report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            crtProduceYearlyGenreReportChart.Visible = true;
             Utility.StyleExitButton(mnuProduceYearlyGenreReportExit);
         }
 
