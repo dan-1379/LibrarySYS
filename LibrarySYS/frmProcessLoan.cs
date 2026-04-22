@@ -16,6 +16,7 @@ namespace LibrarySYS
     {
         frmMainMenu parent;
         private List<Book> bookItems = new List<Book>();
+        private Member extracted;
 
         public frmProcessLoan()
         {
@@ -64,8 +65,6 @@ namespace LibrarySYS
                 MessageBox.Show("Invalid ID. Please enter a valid ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            Member extracted;
 
             try
             {
@@ -303,9 +302,16 @@ namespace LibrarySYS
 
                         transaction.Commit();
 
-                        MessageBox.Show("Books loaned successfully!", "Loan Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DialogResult confirm = MessageBox.Show("Books loaned successfully! Does the user want to print a receipt?", "Loan Processed", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                        if (confirm == DialogResult.Yes)
+                        {
+                            LoanReceipt.GenerateReceipt(newLoan.LoanId, extracted, bookItems);
+                        }
+
                         clbProcessLoan.Items.Clear();
                         bookItems.Clear();
+                        extracted = null;
                         grpProcessLoan.Visible = false;
                         txtProcessLoanMemberID.ReadOnly = false;
                         txtProcessLoanMemberID.Clear();
