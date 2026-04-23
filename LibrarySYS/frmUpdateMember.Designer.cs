@@ -31,8 +31,6 @@
             this.mnuUpdateMember = new System.Windows.Forms.MenuStrip();
             this.mnuUpdateMemberExit = new System.Windows.Forms.ToolStripMenuItem();
             this.grpUpdateMember = new System.Windows.Forms.GroupBox();
-            this.txtUpdateMemberFines = new System.Windows.Forms.TextBox();
-            this.lblUpdateMemberFines = new System.Windows.Forms.Label();
             this.cboUpdateMemberStatus = new System.Windows.Forms.ComboBox();
             this.lblUpdateMemberStatus = new System.Windows.Forms.Label();
             this.dtpUpdateMemberDOB = new System.Windows.Forms.DateTimePicker();
@@ -83,8 +81,6 @@
             // 
             // grpUpdateMember
             // 
-            this.grpUpdateMember.Controls.Add(this.txtUpdateMemberFines);
-            this.grpUpdateMember.Controls.Add(this.lblUpdateMemberFines);
             this.grpUpdateMember.Controls.Add(this.cboUpdateMemberStatus);
             this.grpUpdateMember.Controls.Add(this.lblUpdateMemberStatus);
             this.grpUpdateMember.Controls.Add(this.dtpUpdateMemberDOB);
@@ -114,22 +110,6 @@
             this.grpUpdateMember.TabIndex = 4;
             this.grpUpdateMember.TabStop = false;
             this.grpUpdateMember.Text = "Update Member";
-            // 
-            // txtUpdateMemberFines
-            // 
-            this.txtUpdateMemberFines.Location = new System.Drawing.Point(380, 187);
-            this.txtUpdateMemberFines.Name = "txtUpdateMemberFines";
-            this.txtUpdateMemberFines.Size = new System.Drawing.Size(172, 20);
-            this.txtUpdateMemberFines.TabIndex = 25;
-            // 
-            // lblUpdateMemberFines
-            // 
-            this.lblUpdateMemberFines.AutoSize = true;
-            this.lblUpdateMemberFines.Location = new System.Drawing.Point(297, 195);
-            this.lblUpdateMemberFines.Name = "lblUpdateMemberFines";
-            this.lblUpdateMemberFines.Size = new System.Drawing.Size(35, 13);
-            this.lblUpdateMemberFines.TabIndex = 24;
-            this.lblUpdateMemberFines.Text = "Fines:";
             // 
             // cboUpdateMemberStatus
             // 
@@ -380,8 +360,6 @@
         private System.Windows.Forms.TextBox txtUpdateMemberLName;
         private System.Windows.Forms.DateTimePicker dtpUpdateMemberDOB;
         private System.Windows.Forms.Label lblUpdateMemberStatus;
-        private System.Windows.Forms.TextBox txtUpdateMemberFines;
-        private System.Windows.Forms.Label lblUpdateMemberFines;
         private System.Windows.Forms.ComboBox cboUpdateMemberStatus;
         private System.Windows.Forms.DataGridView grdUpdateMember;
     }

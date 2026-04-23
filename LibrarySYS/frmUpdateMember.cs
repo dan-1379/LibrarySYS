@@ -57,6 +57,7 @@ namespace LibrarySYS
             Utility.ColourRowsByStatus(grdUpdateMember);
             Utility.StyleInputBoxesActive(grpUpdateMember);
             Utility.StyleButton(btnUpdateMemberUpdate);
+            Utility.StyleExitButton(mnuUpdateMemberExit);
 
             foreach (Control control in grpUpdateMember.Controls)
             {
@@ -106,12 +107,6 @@ namespace LibrarySYS
 
             if (confirmDelete != DialogResult.Yes)
             {
-                return;
-            }
-
-            if (txtUpdateMemberFines.Text != "€0.00")
-            {
-                MessageBox.Show("Cannot delete member with outstanding fines.", "Deletion Error");
                 return;
             }
 
@@ -197,7 +192,14 @@ namespace LibrarySYS
             }
 
             Member updatedMember = new Member(selectedMemberID, firstName, lastName, Convert.ToDateTime(dob), phone, email, addressLine1, addressLine2, town, county, eircode, status);
-            updatedMember.UpdateMemberDetails(selectedMemberID.ToString());
+
+            try
+            {
+                updatedMember.UpdateMemberDetails(selectedMemberID.ToString());
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Error updating member details: " + ex, "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
             MessageBox.Show("Member updated successfully.", "Deletion Successful");
@@ -255,8 +257,6 @@ namespace LibrarySYS
             txtUpdateMemberCounty.Text = grdUpdateMember.CurrentRow.Cells[9].Value.ToString();
             txtUpdateMemberEircode.Text = grdUpdateMember.CurrentRow.Cells[10].Value.ToString();
             cboUpdateMemberStatus.Text = grdUpdateMember.CurrentRow.Cells[12].Value.ToString();
-
-            txtUpdateMemberFines.Text = Fine.GetOutstandingFines(Convert.ToInt32(grdUpdateMember.CurrentRow.Cells[0].Value)).ToString("C");
         }
 
         private void mnuUpdateMember_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
