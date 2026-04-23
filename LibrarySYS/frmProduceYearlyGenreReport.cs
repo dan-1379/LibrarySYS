@@ -45,14 +45,14 @@ namespace LibrarySYS
                 foreach (KeyValuePair<string, int> value in genreCounts)
                 {
                     crtProduceYearlyGenreReportChart.Series["Genre Popularity"].Points.AddXY(value.Key, value.Value);
-                    this.Close();
-                    parent.Visible = true;
                 }
 
                 crtProduceYearlyGenreReportChart.Visible = true;
             } catch (Exception ex)
             {
                 MessageBox.Show("An error occurred while loading the report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                parent.Visible = true;
             }
 
             Utility.StyleExitButton(mnuProduceYearlyGenreReportExit);
