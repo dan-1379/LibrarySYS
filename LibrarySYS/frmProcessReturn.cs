@@ -77,7 +77,17 @@ namespace LibrarySYS
                 return;
             }
 
-            Member extracted = Member.GetMemberRecord(ID);
+            Member extracted;
+
+            try
+            {
+                extracted = Member.GetMemberRecord(ID);
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while fetching member details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (extracted == null)
             {
