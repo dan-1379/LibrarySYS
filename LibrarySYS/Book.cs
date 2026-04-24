@@ -12,7 +12,7 @@ namespace LibrarySYS
 {
     public class Book
     {
-        public int BookID { get; set; }
+        public int ID { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string Description { get; set; }
@@ -26,7 +26,7 @@ namespace LibrarySYS
                      string isbn, string genre, string publisher,
                      DateTime publication, char status)
         {
-            BookID = bookID;
+            ID = bookID;
             Title = title;
             Author = author;
             Description = description;
@@ -39,7 +39,7 @@ namespace LibrarySYS
 
         public override string ToString()
         {
-          return    "Book ID: " + BookID +
+          return    "Book ID: " + ID +
                     ", Title: " + Title +
                     ", Author: " + Author +
                     ", Description: " + Description +
@@ -89,7 +89,7 @@ namespace LibrarySYS
             using (OracleConnection conn = Database.OpenConnection())
             using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
             {
-                cmd.Parameters.Add("bookId", OracleDbType.Int32).Value = BookID;
+                cmd.Parameters.Add("bookId", OracleDbType.Int32).Value = ID;
                 cmd.Parameters.Add("title", OracleDbType.Varchar2).Value = Title;
                 cmd.Parameters.Add("author", OracleDbType.Varchar2).Value = Author;
                 cmd.Parameters.Add("description", OracleDbType.Varchar2).Value = Description;

@@ -76,7 +76,7 @@ namespace LibrarySYS
                 grpUpdateBook.Visible = true;
                 txtUpdateBookISBN.ReadOnly = true;
 
-                bookID = book.BookID;
+                bookID = book.ID;
 
                 txtUpdateBookTitle.Text = book.Title;
                 txtUpdateBookAuthor.Text = book.Author;

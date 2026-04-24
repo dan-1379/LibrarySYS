@@ -83,6 +83,7 @@
             // txtDeleteBookISBN
             // 
             this.txtDeleteBookISBN.Location = new System.Drawing.Point(82, 35);
+            this.txtDeleteBookISBN.MaxLength = 17;
             this.txtDeleteBookISBN.Name = "txtDeleteBookISBN";
             this.txtDeleteBookISBN.Size = new System.Drawing.Size(124, 20);
             this.txtDeleteBookISBN.TabIndex = 2;
@@ -91,7 +92,7 @@
             // 
             this.btnDeleteBookSearch.Location = new System.Drawing.Point(212, 35);
             this.btnDeleteBookSearch.Name = "btnDeleteBookSearch";
-            this.btnDeleteBookSearch.Size = new System.Drawing.Size(115, 20);
+            this.btnDeleteBookSearch.Size = new System.Drawing.Size(98, 20);
             this.btnDeleteBookSearch.TabIndex = 3;
             this.btnDeleteBookSearch.Text = "Search";
             this.btnDeleteBookSearch.UseVisualStyleBackColor = true;

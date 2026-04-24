@@ -55,7 +55,7 @@ namespace LibrarySYS
 
         private void mnuExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {
@@ -70,7 +70,7 @@ namespace LibrarySYS
 
         private void frmMainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.No)
             {

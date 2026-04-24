@@ -58,7 +58,7 @@ namespace LibrarySYS
 
         private void mnuProcessLoanExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {
@@ -95,7 +95,7 @@ namespace LibrarySYS
                 return;
             }
 
-            int currentLoanCount = LoanItem.fetchCurrentLoanCount(extracted.MemberID);
+            int currentLoanCount = LoanItem.FetchCurrentLoanCount(extracted.ID);
 
             if (currentLoanCount == 0)
             {
@@ -109,7 +109,7 @@ namespace LibrarySYS
             if (fetchFine > 0)
             {
                 DialogResult dr = MessageBox.Show("Member currently has: €" + fetchFine + " in unpaid fines. Does the member wish to pay the fine?",
-                                "Outstanding Fines", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                                "Outstanding Fines", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dr == DialogResult.Yes)
                 {
@@ -146,7 +146,7 @@ namespace LibrarySYS
 
             bookItems.Clear();
             clbProcessReturn.Items.Clear();
-            List<Book> unreturnedBooks = LoanItem.GetUnreturnedBooks(extracted.MemberID);
+            List<Book> unreturnedBooks = LoanItem.GetUnreturnedBooks(extracted.ID);
             
             foreach (Book book in unreturnedBooks)
             {
@@ -168,7 +168,7 @@ namespace LibrarySYS
                 return;
             }
 
-            DialogResult confirmReturn = MessageBox.Show("Are you sure you want to return the selected book(s)?", "Confirm Return", MessageBoxButtons.YesNo);
+            DialogResult confirmReturn = MessageBox.Show("Are you sure you want to return the selected book(s)?", "Confirm Return", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmReturn == DialogResult.Yes)
             {
@@ -179,12 +179,12 @@ namespace LibrarySYS
                     foreach (int checkedIndex in clbProcessReturn.CheckedIndices)
                     {
                         Book book = bookItems[checkedIndex];
-                        int loanID = LoanItem.getLoanID(memberID, book.BookID);
+                        int loanID = LoanItem.GetLoanID(memberID, book.ID);
 
-                        ReturnTransaction returnTransaction = new ReturnTransaction(loanID, book.BookID, memberID);
-                        returnTransaction.processTransaction();
+                        ReturnTransaction returnTransaction = new ReturnTransaction(loanID, book.ID, memberID);
+                        returnTransaction.ProcessTransaction();
 
-                        Book.UpdateBookStatus(book.BookID, 'A');
+                        Book.UpdateBookStatus(book.ID, 'A');
                     }
 
                     MessageBox.Show("Books returned successfully!", "Return Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);

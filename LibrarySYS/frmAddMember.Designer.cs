@@ -109,6 +109,7 @@
             // dtpAddMemberDOB
             // 
             this.dtpAddMemberDOB.Location = new System.Drawing.Point(107, 102);
+            this.dtpAddMemberDOB.MaxDate = new System.DateTime(2026, 12, 31, 0, 0, 0, 0);
             this.dtpAddMemberDOB.Name = "dtpAddMemberDOB";
             this.dtpAddMemberDOB.Size = new System.Drawing.Size(190, 20);
             this.dtpAddMemberDOB.TabIndex = 21;
@@ -116,6 +117,7 @@
             // txtAddMemberEircode
             // 
             this.txtAddMemberEircode.Location = new System.Drawing.Point(107, 364);
+            this.txtAddMemberEircode.MaxLength = 7;
             this.txtAddMemberEircode.Name = "txtAddMemberEircode";
             this.txtAddMemberEircode.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberEircode.TabIndex = 20;
@@ -123,6 +125,7 @@
             // txtAddMemberCounty
             // 
             this.txtAddMemberCounty.Location = new System.Drawing.Point(107, 324);
+            this.txtAddMemberCounty.MaxLength = 10;
             this.txtAddMemberCounty.Name = "txtAddMemberCounty";
             this.txtAddMemberCounty.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberCounty.TabIndex = 19;
@@ -130,6 +133,7 @@
             // txtAddMemberTown
             // 
             this.txtAddMemberTown.Location = new System.Drawing.Point(107, 280);
+            this.txtAddMemberTown.MaxLength = 30;
             this.txtAddMemberTown.Name = "txtAddMemberTown";
             this.txtAddMemberTown.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberTown.TabIndex = 18;
@@ -137,6 +141,7 @@
             // txtAddMemberAddress2
             // 
             this.txtAddMemberAddress2.Location = new System.Drawing.Point(107, 243);
+            this.txtAddMemberAddress2.MaxLength = 30;
             this.txtAddMemberAddress2.Name = "txtAddMemberAddress2";
             this.txtAddMemberAddress2.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberAddress2.TabIndex = 17;
@@ -144,6 +149,7 @@
             // txtAddMemberAddress1
             // 
             this.txtAddMemberAddress1.Location = new System.Drawing.Point(107, 206);
+            this.txtAddMemberAddress1.MaxLength = 30;
             this.txtAddMemberAddress1.Name = "txtAddMemberAddress1";
             this.txtAddMemberAddress1.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberAddress1.TabIndex = 16;
@@ -151,13 +157,15 @@
             // txtAddMemberEmail
             // 
             this.txtAddMemberEmail.Location = new System.Drawing.Point(107, 171);
+            this.txtAddMemberEmail.MaxLength = 40;
             this.txtAddMemberEmail.Name = "txtAddMemberEmail";
             this.txtAddMemberEmail.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberEmail.TabIndex = 15;
             // 
             // txtAddMemberPhone
             // 
-            this.txtAddMemberPhone.Location = new System.Drawing.Point(107, 131);
+            this.txtAddMemberPhone.Location = new System.Drawing.Point(107, 138);
+            this.txtAddMemberPhone.MaxLength = 12;
             this.txtAddMemberPhone.Name = "txtAddMemberPhone";
             this.txtAddMemberPhone.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberPhone.TabIndex = 14;
@@ -165,6 +173,7 @@
             // txtAddMemberLName
             // 
             this.txtAddMemberLName.Location = new System.Drawing.Point(107, 68);
+            this.txtAddMemberLName.MaxLength = 30;
             this.txtAddMemberLName.Name = "txtAddMemberLName";
             this.txtAddMemberLName.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberLName.TabIndex = 12;
@@ -172,6 +181,7 @@
             // txtAddMemberFName
             // 
             this.txtAddMemberFName.Location = new System.Drawing.Point(107, 30);
+            this.txtAddMemberFName.MaxLength = 30;
             this.txtAddMemberFName.Name = "txtAddMemberFName";
             this.txtAddMemberFName.Size = new System.Drawing.Size(190, 20);
             this.txtAddMemberFName.TabIndex = 11;
@@ -243,7 +253,7 @@
             // lblAddMemberPhone
             // 
             this.lblAddMemberPhone.AutoSize = true;
-            this.lblAddMemberPhone.Location = new System.Drawing.Point(6, 134);
+            this.lblAddMemberPhone.Location = new System.Drawing.Point(6, 138);
             this.lblAddMemberPhone.Name = "lblAddMemberPhone";
             this.lblAddMemberPhone.Size = new System.Drawing.Size(41, 13);
             this.lblAddMemberPhone.TabIndex = 3;

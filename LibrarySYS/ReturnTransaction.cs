@@ -12,16 +12,16 @@ namespace LibrarySYS
     {
         public int LoanID { get; set; }
         public int BookID { get; set; }
-        private const double FinePerDay = 0.20;
+        private const double FINE_PER_DAY = 0.20;
 
         public ReturnTransaction(int loanId, int bookID, int memberId) : base(memberId)
         {
             LoanID = loanId;
             BookID = bookID;
         }
-        public override void processTransaction()
+        public override void ProcessTransaction()
         {
-            DateTime dueDate = getDueDate(LoanID);
+            DateTime dueDate = GetDueDate(LoanID);
 
             string updateLoanQuery = $"UPDATE LoanItems SET ReturnDate = SYSDATE WHERE Loan_ID = {LoanID} AND Book_ID = {BookID}";
             Database.ExecuteNonQuery(updateLoanQuery);
@@ -29,16 +29,16 @@ namespace LibrarySYS
             if (dueDate < DateTime.Today)
             {
                 int daysOverdue = (DateTime.Today - dueDate).Days;
-                double fineAmount = daysOverdue * FinePerDay;
+                double fineAmount = daysOverdue * FINE_PER_DAY;
 
                 Fine newFine = new Fine(fineAmount, LoanID, BookID);
-                newFine.insertFine();
+                newFine.InsertFine();
 
-                MessageBox.Show($"Books overdue by: {daysOverdue}. Fine of {fineAmount} recorded.");
+                MessageBox.Show($"Books overdue by: {daysOverdue} days. Fine of {fineAmount} recorded.", "Overdue Book", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        private DateTime getDueDate(int loanID)
+        private DateTime GetDueDate(int loanID)
         {
             string sql = $"SELECT Due_Date FROM Loans WHERE Loan_ID = {LoanID}";
 

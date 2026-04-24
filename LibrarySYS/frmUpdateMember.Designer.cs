@@ -133,7 +133,8 @@
             // 
             // dtpUpdateMemberDOB
             // 
-            this.dtpUpdateMemberDOB.Location = new System.Drawing.Point(79, 88);
+            this.dtpUpdateMemberDOB.Location = new System.Drawing.Point(78, 91);
+            this.dtpUpdateMemberDOB.MaxDate = new System.DateTime(2026, 12, 31, 0, 0, 0, 0);
             this.dtpUpdateMemberDOB.Name = "dtpUpdateMemberDOB";
             this.dtpUpdateMemberDOB.Size = new System.Drawing.Size(193, 20);
             this.dtpUpdateMemberDOB.TabIndex = 21;
@@ -142,6 +143,7 @@
             // txtUpdateMemberEircode
             // 
             this.txtUpdateMemberEircode.Location = new System.Drawing.Point(380, 156);
+            this.txtUpdateMemberEircode.MaxLength = 7;
             this.txtUpdateMemberEircode.Name = "txtUpdateMemberEircode";
             this.txtUpdateMemberEircode.Size = new System.Drawing.Size(172, 20);
             this.txtUpdateMemberEircode.TabIndex = 20;
@@ -149,6 +151,7 @@
             // txtUpdateMemberCounty
             // 
             this.txtUpdateMemberCounty.Location = new System.Drawing.Point(380, 123);
+            this.txtUpdateMemberCounty.MaxLength = 10;
             this.txtUpdateMemberCounty.Name = "txtUpdateMemberCounty";
             this.txtUpdateMemberCounty.Size = new System.Drawing.Size(172, 20);
             this.txtUpdateMemberCounty.TabIndex = 19;
@@ -156,6 +159,7 @@
             // txtUpdateMemberTown
             // 
             this.txtUpdateMemberTown.Location = new System.Drawing.Point(380, 91);
+            this.txtUpdateMemberTown.MaxLength = 30;
             this.txtUpdateMemberTown.Name = "txtUpdateMemberTown";
             this.txtUpdateMemberTown.Size = new System.Drawing.Size(172, 20);
             this.txtUpdateMemberTown.TabIndex = 18;
@@ -163,20 +167,23 @@
             // txtUpdateMemberAddress2
             // 
             this.txtUpdateMemberAddress2.Location = new System.Drawing.Point(380, 60);
+            this.txtUpdateMemberAddress2.MaxLength = 30;
             this.txtUpdateMemberAddress2.Name = "txtUpdateMemberAddress2";
             this.txtUpdateMemberAddress2.Size = new System.Drawing.Size(172, 20);
             this.txtUpdateMemberAddress2.TabIndex = 17;
             // 
             // txtUpdateMemberAddress1
             // 
-            this.txtUpdateMemberAddress1.Location = new System.Drawing.Point(380, 23);
+            this.txtUpdateMemberAddress1.Location = new System.Drawing.Point(380, 27);
+            this.txtUpdateMemberAddress1.MaxLength = 30;
             this.txtUpdateMemberAddress1.Name = "txtUpdateMemberAddress1";
             this.txtUpdateMemberAddress1.Size = new System.Drawing.Size(172, 20);
             this.txtUpdateMemberAddress1.TabIndex = 16;
             // 
             // txtUpdateMemberEmail
             // 
-            this.txtUpdateMemberEmail.Location = new System.Drawing.Point(79, 152);
+            this.txtUpdateMemberEmail.Location = new System.Drawing.Point(78, 156);
+            this.txtUpdateMemberEmail.MaxLength = 40;
             this.txtUpdateMemberEmail.Name = "txtUpdateMemberEmail";
             this.txtUpdateMemberEmail.Size = new System.Drawing.Size(192, 20);
             this.txtUpdateMemberEmail.TabIndex = 15;
@@ -184,6 +191,7 @@
             // txtUpdateMemberPhone
             // 
             this.txtUpdateMemberPhone.Location = new System.Drawing.Point(79, 123);
+            this.txtUpdateMemberPhone.MaxLength = 12;
             this.txtUpdateMemberPhone.Name = "txtUpdateMemberPhone";
             this.txtUpdateMemberPhone.Size = new System.Drawing.Size(192, 20);
             this.txtUpdateMemberPhone.TabIndex = 14;
@@ -191,13 +199,16 @@
             // txtUpdateMemberLName
             // 
             this.txtUpdateMemberLName.Location = new System.Drawing.Point(79, 60);
+            this.txtUpdateMemberLName.MaxLength = 30;
             this.txtUpdateMemberLName.Name = "txtUpdateMemberLName";
             this.txtUpdateMemberLName.Size = new System.Drawing.Size(192, 20);
             this.txtUpdateMemberLName.TabIndex = 12;
             // 
             // txtUpdateMemberFName
             // 
+            this.txtUpdateMemberFName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.txtUpdateMemberFName.Location = new System.Drawing.Point(79, 27);
+            this.txtUpdateMemberFName.MaxLength = 30;
             this.txtUpdateMemberFName.Name = "txtUpdateMemberFName";
             this.txtUpdateMemberFName.Size = new System.Drawing.Size(193, 20);
             this.txtUpdateMemberFName.TabIndex = 11;

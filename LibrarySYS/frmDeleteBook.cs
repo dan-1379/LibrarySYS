@@ -42,7 +42,7 @@ namespace LibrarySYS
 
         private void mnuExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {
@@ -76,7 +76,7 @@ namespace LibrarySYS
 
                 grpDeleteBookDetails.Visible = true;
                 txtDeleteBookISBN.ReadOnly = true;
-                selectedBookID = book.BookID;
+                selectedBookID = book.ID;
                 selectedBookStatus = book.Status;
 
                 txtDeleteBookTitle.Text = book.Title;
@@ -102,7 +102,7 @@ namespace LibrarySYS
 
             DialogResult confirmDelete = MessageBox.Show(
                 $"Are you sure you wish to delete: {txtDeleteBookTitle.Text} by {txtDeleteBookAuthor.Text}?", 
-                "Confirm Deletion", MessageBoxButtons.YesNo
+                "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question
             );
 
             if (confirmDelete == DialogResult.Yes)

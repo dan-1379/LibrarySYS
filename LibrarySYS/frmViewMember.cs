@@ -31,9 +31,8 @@ namespace LibrarySYS
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            //grdViewMember.DataSource = Member.getAllMembers().Tables[0];
 
-            loadMembers();
+            LoadMembers();
 
             if (grdViewMember.DataSource == null)
             {
@@ -42,18 +41,18 @@ namespace LibrarySYS
                 return;
             }
 
-            Utility.constructGrid(grdViewMember);
-            Utility.styleGrid(grdViewMember);
+            Utility.ConstructGrid(grdViewMember);
+            Utility.StyleGrid(grdViewMember);
             Utility.ColourRowsByStatus(grdViewMember);
             Utility.StyleSearchButton(btnViewMembersSearch);
             Utility.StyleExitButton(mnuViewMemberExit);
         }
 
-        private void loadMembers()
+        private void LoadMembers()
         {
             try
             {
-                grdViewMember.DataSource = Member.getAllMembers().Tables[0];
+                grdViewMember.DataSource = Member.GetAllMembers().Tables[0];
             }
             catch (Exception ex)
             {
@@ -68,7 +67,7 @@ namespace LibrarySYS
 
         private void mnuViewMemberExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.OK, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {

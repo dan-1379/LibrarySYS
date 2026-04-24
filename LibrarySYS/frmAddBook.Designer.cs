@@ -96,6 +96,7 @@
             // 
             this.dtpAddBookPublication.CustomFormat = "DD/MM/YYYY";
             this.dtpAddBookPublication.Location = new System.Drawing.Point(78, 288);
+            this.dtpAddBookPublication.MaxDate = new System.DateTime(2026, 12, 31, 0, 0, 0, 0);
             this.dtpAddBookPublication.Name = "dtpAddBookPublication";
             this.dtpAddBookPublication.Size = new System.Drawing.Size(247, 20);
             this.dtpAddBookPublication.TabIndex = 15;
@@ -124,6 +125,7 @@
             // txtAddBookPublisher
             // 
             this.txtAddBookPublisher.Location = new System.Drawing.Point(78, 249);
+            this.txtAddBookPublisher.MaxLength = 25;
             this.txtAddBookPublisher.Name = "txtAddBookPublisher";
             this.txtAddBookPublisher.Size = new System.Drawing.Size(247, 20);
             this.txtAddBookPublisher.TabIndex = 13;
@@ -131,6 +133,7 @@
             // txtAddBookISBN
             // 
             this.txtAddBookISBN.Location = new System.Drawing.Point(78, 170);
+            this.txtAddBookISBN.MaxLength = 17;
             this.txtAddBookISBN.Name = "txtAddBookISBN";
             this.txtAddBookISBN.Size = new System.Drawing.Size(247, 20);
             this.txtAddBookISBN.TabIndex = 11;
@@ -138,6 +141,7 @@
             // txtAddBookDescription
             // 
             this.txtAddBookDescription.Location = new System.Drawing.Point(78, 97);
+            this.txtAddBookDescription.MaxLength = 30;
             this.txtAddBookDescription.Multiline = true;
             this.txtAddBookDescription.Name = "txtAddBookDescription";
             this.txtAddBookDescription.Size = new System.Drawing.Size(247, 57);
@@ -146,6 +150,7 @@
             // txtAddBookAuthor
             // 
             this.txtAddBookAuthor.Location = new System.Drawing.Point(78, 64);
+            this.txtAddBookAuthor.MaxLength = 25;
             this.txtAddBookAuthor.Name = "txtAddBookAuthor";
             this.txtAddBookAuthor.Size = new System.Drawing.Size(247, 20);
             this.txtAddBookAuthor.TabIndex = 9;
@@ -153,6 +158,7 @@
             // txtAddBookTitle
             // 
             this.txtAddBookTitle.Location = new System.Drawing.Point(78, 27);
+            this.txtAddBookTitle.MaxLength = 30;
             this.txtAddBookTitle.Name = "txtAddBookTitle";
             this.txtAddBookTitle.Size = new System.Drawing.Size(247, 20);
             this.txtAddBookTitle.TabIndex = 8;

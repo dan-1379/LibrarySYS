@@ -87,7 +87,7 @@ namespace LibrarySYS
                 return;
             }
 
-            if (LoanItem.fetchOverdueBooksCount(extracted.MemberID) > 0)
+            if (LoanItem.FetchOverdueBooksCount(extracted.ID) > 0)
             {
                 MessageBox.Show("Member has overdue books and cannot loan more until they are returned.", "Overdue Books", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProcessLoanMemberID.Clear();
@@ -99,7 +99,7 @@ namespace LibrarySYS
             if (fetchFine > 0)
             {
                 DialogResult dr = MessageBox.Show("Member currently has: €" + fetchFine + " in unpaid fines. Does the member wish to pay the fine?",
-                                "Outstanding Fines", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                                "Outstanding Fines", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (dr == DialogResult.Yes)
                 {
@@ -123,7 +123,7 @@ namespace LibrarySYS
 
             txtProcessLoanName.Text = extracted.FirstName + " " + extracted.LastName;
             txtProcessLoanAddress.Text = extracted.AddressLine1 + ", " + extracted.AddressLine2 + ", " + extracted.City;
-            txtProcessLoanBooksLoaned.Text = LoanItem.fetchUnreturnedBooks(extracted.MemberID).ToString();
+            txtProcessLoanBooksLoaned.Text = LoanItem.FetchUnreturnedBooks(extracted.ID).ToString();
 
             grpProcessLoan.Visible = true;
             grpProcessLoanMemberDetails.Visible = true;
@@ -269,7 +269,7 @@ namespace LibrarySYS
                 if (dr == DialogResult.Yes)
                 {
                     int memberID = Convert.ToInt32(txtProcessLoanMemberID.Text);
-                    int currentLoanedAmount = LoanItem.fetchUnreturnedBooks(memberID);
+                    int currentLoanedAmount = LoanItem.FetchUnreturnedBooks(memberID);
 
                     if (currentLoanedAmount >= 5)
                     {
@@ -291,13 +291,13 @@ namespace LibrarySYS
                         transaction = con.BeginTransaction();
 
                         LoanTransaction newLoan = new LoanTransaction(1, Convert.ToInt32(txtProcessLoanMemberID.Text));
-                        newLoan.processTransaction();
+                        newLoan.ProcessTransaction();
 
                         foreach (Book book in bookItems)
                         {
-                            LoanItem newItem = new LoanItem(book.BookID, newLoan.LoanId);
+                            LoanItem newItem = new LoanItem(book.ID, newLoan.LoanID);
                             newItem.AddLoanItem();
-                            Book.UpdateBookStatus(book.BookID, 'U');
+                            Book.UpdateBookStatus(book.ID, 'U');
                         }
 
                         transaction.Commit();
@@ -306,7 +306,7 @@ namespace LibrarySYS
 
                         if (confirm == DialogResult.Yes)
                         {
-                            LoanReceipt.GenerateReceipt(newLoan.LoanId, extracted, bookItems);
+                            LoanReceipt.GenerateReceipt(newLoan.LoanID, extracted, bookItems);
                         }
 
                         clbProcessLoan.Items.Clear();
@@ -339,7 +339,7 @@ namespace LibrarySYS
 
         private void mnuProcessLoanExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {

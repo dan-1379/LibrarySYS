@@ -130,9 +130,7 @@
             this.cboUpdateBookStatus.FormattingEnabled = true;
             this.cboUpdateBookStatus.Items.AddRange(new object[] {
             "A",
-            "U",
-            "L",
-            "R"});
+            "U"});
             this.cboUpdateBookStatus.Location = new System.Drawing.Point(78, 314);
             this.cboUpdateBookStatus.Name = "cboUpdateBookStatus";
             this.cboUpdateBookStatus.Size = new System.Drawing.Size(201, 21);
@@ -157,6 +155,7 @@
             // txtUpdateBookPublisher
             // 
             this.txtUpdateBookPublisher.Location = new System.Drawing.Point(78, 232);
+            this.txtUpdateBookPublisher.MaxLength = 25;
             this.txtUpdateBookPublisher.Name = "txtUpdateBookPublisher";
             this.txtUpdateBookPublisher.Size = new System.Drawing.Size(201, 20);
             this.txtUpdateBookPublisher.TabIndex = 11;
@@ -183,6 +182,7 @@
             // txtUpdateBookDescription
             // 
             this.txtUpdateBookDescription.Location = new System.Drawing.Point(78, 105);
+            this.txtUpdateBookDescription.MaxLength = 30;
             this.txtUpdateBookDescription.Multiline = true;
             this.txtUpdateBookDescription.Name = "txtUpdateBookDescription";
             this.txtUpdateBookDescription.Size = new System.Drawing.Size(201, 68);
@@ -191,6 +191,7 @@
             // txtUpdateBookAuthor
             // 
             this.txtUpdateBookAuthor.Location = new System.Drawing.Point(78, 67);
+            this.txtUpdateBookAuthor.MaxLength = 25;
             this.txtUpdateBookAuthor.Name = "txtUpdateBookAuthor";
             this.txtUpdateBookAuthor.Size = new System.Drawing.Size(201, 20);
             this.txtUpdateBookAuthor.TabIndex = 8;
@@ -198,6 +199,7 @@
             // txtUpdateBookTitle
             // 
             this.txtUpdateBookTitle.Location = new System.Drawing.Point(78, 34);
+            this.txtUpdateBookTitle.MaxLength = 30;
             this.txtUpdateBookTitle.Name = "txtUpdateBookTitle";
             this.txtUpdateBookTitle.Size = new System.Drawing.Size(201, 20);
             this.txtUpdateBookTitle.TabIndex = 7;

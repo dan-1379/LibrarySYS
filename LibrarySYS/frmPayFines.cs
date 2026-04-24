@@ -42,7 +42,7 @@ namespace LibrarySYS
 
         private void mnuPayFinesExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {
@@ -90,7 +90,7 @@ namespace LibrarySYS
                 return;
             }
 
-            Fine.alterFineStatus(Convert.ToInt32(txtPayFinesMemberID.Text), 'P');
+            Fine.AlterFineStatus(Convert.ToInt32(txtPayFinesMemberID.Text), 'P');
             MessageBox.Show("Fines Paid Successfully!", "Payment Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
         }

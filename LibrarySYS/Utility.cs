@@ -10,7 +10,17 @@ namespace LibrarySYS
 {
     internal class Utility
     {
-        public static void constructGrid(DataGridView dg)
+        /*
+        * Title: How to: Set Font and Color Styles in the Windows Forms DataGridView Control
+        * Author: Microsoft
+        * Site: learn.microsoft.com
+        * Date: April 24, 2026
+        * Code Version: N/A
+        * Availability: https://learn.microsoft.com/en-us/dotnet/desktop/winforms/controls/how-to-set-font-and-color-styles-in-the-windows-forms-datagridview-control
+        * Accessed: 24 April 2026
+        * Modified: Learned how to set font and color styles to design the UI
+       */
+        public static void ConstructGrid(DataGridView dg)
         {
             dg.Columns["Member_ID"].Width = 100;
             dg.Columns["Member_ID"].DefaultCellStyle.Format = "000";
@@ -74,8 +84,7 @@ namespace LibrarySYS
             dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
-        // https://learn.microsoft.com/en-us/dotnet/desktop/winforms/controls/how-to-set-font-and-color-styles-in-the-windows-forms-datagridview-control
-        public static void styleGrid(DataGridView dg)
+        public static void StyleGrid(DataGridView dg)
         {
             dg.BorderStyle = BorderStyle.None;
             dg.BackgroundColor = Color.White;
@@ -205,5 +214,6 @@ namespace LibrarySYS
             b.BackColor = Color.FromArgb(192, 0, 0);
             b.ForeColor = Color.White;
         }
+        /* END OF REFERENCED CONTENT */
     }
 }

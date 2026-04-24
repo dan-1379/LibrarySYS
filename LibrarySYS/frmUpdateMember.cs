@@ -28,7 +28,7 @@ namespace LibrarySYS
 
         private void mnuUpdateMemberExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {
@@ -42,8 +42,7 @@ namespace LibrarySYS
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            //grdUpdateMember.DataSource = Member.getAllMembers().Tables[0];
-            loadMembers();
+            LoadMembers();
 
             if (grdUpdateMember.DataSource == null)
             {
@@ -52,8 +51,8 @@ namespace LibrarySYS
                 return;
             }
 
-            Utility.constructGrid(grdUpdateMember);
-            Utility.styleGrid(grdUpdateMember);
+            Utility.ConstructGrid(grdUpdateMember);
+            Utility.StyleGrid(grdUpdateMember);
             Utility.ColourRowsByStatus(grdUpdateMember);
             Utility.StyleInputBoxesActive(grpUpdateMember);
             Utility.StyleButton(btnUpdateMemberUpdate);
@@ -72,11 +71,11 @@ namespace LibrarySYS
             }
         }
 
-        private void loadMembers()
+        private void LoadMembers()
         {
             try
             {
-                grdUpdateMember.DataSource = Member.getAllMembers().Tables[0];
+                grdUpdateMember.DataSource = Member.GetAllMembers().Tables[0];
             }
             catch (Exception ex)
             {
@@ -102,7 +101,7 @@ namespace LibrarySYS
 
             DialogResult confirmDelete = MessageBox.Show(
                 $"Are you sure you wish to update member:\n{txtUpdateMemberFName.Text} {txtUpdateMemberLName.Text}",
-                "Confirm Deletion", MessageBoxButtons.YesNo
+                "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question
             );
 
             if (confirmDelete != DialogResult.Yes)
@@ -202,8 +201,8 @@ namespace LibrarySYS
             }
 
 
-            MessageBox.Show("Member updated successfully.", "Deletion Successful");
-            grdUpdateMember.DataSource = Member.getAllMembers().Tables[0];
+            MessageBox.Show("Member updated successfully.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            grdUpdateMember.DataSource = Member.GetAllMembers().Tables[0];
             Utility.ColourRowsByStatus(grdUpdateMember);
 
             foreach (Control control in grpUpdateMember.Controls)

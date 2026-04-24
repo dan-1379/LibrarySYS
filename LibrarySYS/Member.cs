@@ -13,7 +13,7 @@ namespace LibrarySYS
 {
     public class Member
     {
-        public int MemberID { get; set; }
+        public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DOB { get; set; }
@@ -25,14 +25,13 @@ namespace LibrarySYS
         public string County { get; set; }
         public string Eircode { get; set; }
         public DateTime RegistrationDate { get; set; }
-
         public char Status { get; set; }
 
         public Member(int memberID, string firstName, string lastName, DateTime dob,
                       string phone, string email, string addressLine1, string addressLine2,
                       string city, string county, string eircode)
         {
-            MemberID = memberID;
+            ID = memberID;
             FirstName = firstName;
             LastName = lastName;
             DOB = dob;
@@ -51,7 +50,7 @@ namespace LibrarySYS
                       string phone, string email, string addressLine1, string addressLine2,
                       string city, string county, string eircode, char status)
         {
-            MemberID = memberID;
+            ID = memberID;
             FirstName = firstName;
             LastName = lastName;
             DOB = dob;
@@ -69,7 +68,7 @@ namespace LibrarySYS
         public override string ToString()
         {
             return
-                "Member ID: " + MemberID +
+                "Member ID: " + ID +
                 ", First Name: " + FirstName +
                 ", Last Name: " + LastName +
                 ", DOB: " + DOB +
@@ -104,7 +103,7 @@ namespace LibrarySYS
             return nextId;
         }
 
-        public static DataSet getAllMembers()
+        public static DataSet GetAllMembers()
         {
             string sqlQuery = "SELECT Member_ID, First_Name, Last_Name, DOB, Phone, Email, Address_Line1, Address_Line2, City, County, Eircode, Registration_Date, " +
                               "Status FROM Members ORDER BY Member_ID";
@@ -166,7 +165,7 @@ namespace LibrarySYS
             using (OracleConnection conn = Database.OpenConnection())
             using (OracleCommand cmd = new OracleCommand(sqlQuery, conn))
             {
-                cmd.Parameters.Add("memberId", OracleDbType.Int32).Value = MemberID;
+                cmd.Parameters.Add("memberId", OracleDbType.Int32).Value = ID;
                 cmd.Parameters.Add("firstName", OracleDbType.Varchar2).Value = FirstName;
                 cmd.Parameters.Add("lastName", OracleDbType.Varchar2).Value = LastName;
                 cmd.Parameters.Add("dob", OracleDbType.Date).Value = DOB;

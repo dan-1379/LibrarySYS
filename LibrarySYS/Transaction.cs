@@ -16,6 +16,6 @@ namespace LibrarySYS
             MemberID = memberID;
             TransactionDate = DateTime.Now;
         }
-        public abstract void processTransaction();
+        public abstract void ProcessTransaction();
     }
 }

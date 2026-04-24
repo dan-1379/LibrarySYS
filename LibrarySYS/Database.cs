@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace LibrarySYS
 {
-    class Database
+    public class Database
     {
         private static string connectionString = LoadConnectionString();
 

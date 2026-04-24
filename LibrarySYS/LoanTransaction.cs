@@ -9,19 +9,19 @@ namespace LibrarySYS
 {
     public class LoanTransaction : Transaction
     {
-        public int LoanId { get; set; }
+        public int LoanID { get; set; }
         public DateTime LoanDate { get; set; }
         public DateTime DueDate { get; set; }
 
         public LoanTransaction(int loanId, int memberId) : base(memberId)
         {
-            LoanId = GetNextLoanId();
+            LoanID = GetNextLoanId();
             LoanDate = DateTime.Now;
             DueDate = CalculateDueDate(DateTime.Now.AddDays(5));
         }
-        public override void processTransaction()
+        public override void ProcessTransaction()
         {
-            string sqlQuery = $"INSERT INTO Loans (Loan_ID, Member_ID, Loan_Date, Due_Date) VALUES ({LoanId}, {MemberID}, TO_DATE('{LoanDate:dd-MM-yyyy}', 'DD-MM-YYYY'), TO_DATE('{DueDate:dd-MM-yyyy}', 'DD-MM-YYYY'))";
+            string sqlQuery = $"INSERT INTO Loans (Loan_ID, Member_ID, Loan_Date, Due_Date) VALUES ({LoanID}, {MemberID}, TO_DATE('{LoanDate:dd-MM-yyyy}', 'DD-MM-YYYY'), TO_DATE('{DueDate:dd-MM-yyyy}', 'DD-MM-YYYY'))";
             Database.ExecuteNonQuery(sqlQuery);
         }
 

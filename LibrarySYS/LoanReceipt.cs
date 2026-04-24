@@ -25,7 +25,7 @@ namespace LibrarySYS
             {
                 bookRows.Append($@"
                     <tr>
-                        <td>{book.BookID}</td>
+                        <td>{book.ID}</td>
                         <td>{book.Title} / {book.Author}</td>
                         <td>{DateTime.Now.AddDays(5):dd-MMMM-yyyy}</td>
                     </tr>");
@@ -184,7 +184,7 @@ namespace LibrarySYS
 
                         <div class=""memberID"">
                             <p>ID</p>
-                            <span>{member.MemberID}</span>
+                            <span>{member.ID}</span>
                         </div>
                     </div>
 

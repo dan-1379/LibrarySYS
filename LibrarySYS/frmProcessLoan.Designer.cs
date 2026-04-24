@@ -34,6 +34,7 @@
             this.txtProcessLoanMemberID = new System.Windows.Forms.TextBox();
             this.btnProcessLoanSearchID = new System.Windows.Forms.Button();
             this.grpProcessLoan = new System.Windows.Forms.GroupBox();
+            this.btnProcessLoanCancel = new System.Windows.Forms.Button();
             this.btnProcessLoanLoanBooks = new System.Windows.Forms.Button();
             this.btnProcessLoanRemove = new System.Windows.Forms.Button();
             this.btnProcessLoanSearchISBN = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@
             this.grpProcessLoanMemberDetails = new System.Windows.Forms.GroupBox();
             this.txtProcessLoanBooksLoaned = new System.Windows.Forms.TextBox();
             this.lblProcessLoanBooksLoaned = new System.Windows.Forms.Label();
-            this.btnProcessLoanCancel = new System.Windows.Forms.Button();
             this.mnuProcessLoan.SuspendLayout();
             this.grpProcessLoan.SuspendLayout();
             this.grpProcessLoanMemberDetails.SuspendLayout();
@@ -146,6 +146,16 @@
             this.grpProcessLoan.TabStop = false;
             this.grpProcessLoan.Text = "Process Loan";
             // 
+            // btnProcessLoanCancel
+            // 
+            this.btnProcessLoanCancel.Location = new System.Drawing.Point(7, 362);
+            this.btnProcessLoanCancel.Name = "btnProcessLoanCancel";
+            this.btnProcessLoanCancel.Size = new System.Drawing.Size(83, 37);
+            this.btnProcessLoanCancel.TabIndex = 22;
+            this.btnProcessLoanCancel.Text = "Cancel Loan";
+            this.btnProcessLoanCancel.UseVisualStyleBackColor = true;
+            this.btnProcessLoanCancel.Click += new System.EventHandler(this.btnProcessLoanCancel_Click);
+            // 
             // btnProcessLoanLoanBooks
             // 
             this.btnProcessLoanLoanBooks.Location = new System.Drawing.Point(574, 362);
@@ -179,6 +189,7 @@
             // txtProcessLoanISBN
             // 
             this.txtProcessLoanISBN.Location = new System.Drawing.Point(65, 34);
+            this.txtProcessLoanISBN.MaxLength = 17;
             this.txtProcessLoanISBN.Name = "txtProcessLoanISBN";
             this.txtProcessLoanISBN.Size = new System.Drawing.Size(129, 20);
             this.txtProcessLoanISBN.TabIndex = 18;
@@ -405,16 +416,6 @@
             this.lblProcessLoanBooksLoaned.Size = new System.Drawing.Size(82, 13);
             this.lblProcessLoanBooksLoaned.TabIndex = 9;
             this.lblProcessLoanBooksLoaned.Text = "Books on Loan:";
-            // 
-            // btnProcessLoanCancel
-            // 
-            this.btnProcessLoanCancel.Location = new System.Drawing.Point(7, 362);
-            this.btnProcessLoanCancel.Name = "btnProcessLoanCancel";
-            this.btnProcessLoanCancel.Size = new System.Drawing.Size(83, 37);
-            this.btnProcessLoanCancel.TabIndex = 22;
-            this.btnProcessLoanCancel.Text = "Cancel Loan";
-            this.btnProcessLoanCancel.UseVisualStyleBackColor = true;
-            this.btnProcessLoanCancel.Click += new System.EventHandler(this.btnProcessLoanCancel_Click);
             // 
             // frmProcessLoan
             // 

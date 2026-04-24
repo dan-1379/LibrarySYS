@@ -29,8 +29,8 @@ namespace LibrarySYS
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
 
-            //grdDeleteMember.DataSource = Member.getAllMembers().Tables[0];
-            loadMembers();
+            LoadMembers();
+
             if (grdDeleteMember.DataSource == null)
             {
                 this.Close();
@@ -38,19 +38,19 @@ namespace LibrarySYS
                 return;
             }
 
-            Utility.constructGrid(grdDeleteMember);
-            Utility.styleGrid(grdDeleteMember);
+            Utility.ConstructGrid(grdDeleteMember);
+            Utility.StyleGrid(grdDeleteMember);
             Utility.ColourRowsByStatus(grdDeleteMember);
             Utility.StyleInputBoxes(grpDeleteMember);
             Utility.StyleButton(btnDeleteMemberDelete);
             Utility.StyleExitButton(mnuDeleteMemberExit);
         }
 
-        private void loadMembers()
+        private void LoadMembers()
         {
             try
             {
-                grdDeleteMember.DataSource = Member.getAllMembers().Tables[0];
+                grdDeleteMember.DataSource = Member.GetAllMembers().Tables[0];
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace LibrarySYS
 
         private void mnuDeleteMemberExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {
@@ -81,7 +81,7 @@ namespace LibrarySYS
 
             DialogResult confirmDelete = MessageBox.Show(
                 $"Are you sure you wish to delete member:\n{txtDeleteMemberFName.Text} {txtDeleteMemberLName.Text}",
-                "Confirm Deletion", MessageBoxButtons.YesNo
+                "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question
             );
 
 
@@ -90,13 +90,13 @@ namespace LibrarySYS
 
                 if (txtDeleteMemberFines.Text != "€0.00")
                 {
-                    MessageBox.Show("Cannot delete member with outstanding fines.", "Deletion Error");
+                    MessageBox.Show("Cannot delete member with outstanding fines.", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 if (txtDeleteMemberLoans.Text != "0")
                 {
-                    MessageBox.Show("Cannot delete member with outstanding loans.", "Deletion Error");
+                    MessageBox.Show("Cannot delete member with outstanding loans.", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -104,8 +104,8 @@ namespace LibrarySYS
                 Member.AlterMemberStatus(selectedMemberID);
 
 
-                MessageBox.Show("Member deleted successfully.", "Deletion Successful");
-                grdDeleteMember.DataSource = Member.getAllMembers().Tables[0];
+                MessageBox.Show("Member deleted successfully.", "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                grdDeleteMember.DataSource = Member.GetAllMembers().Tables[0];
                 Utility.ColourRowsByStatus(grdDeleteMember);
 
                 foreach (Control control in grpDeleteMember.Controls)

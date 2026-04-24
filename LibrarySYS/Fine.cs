@@ -1,27 +1,21 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LibrarySYS
 {
     public class Fine
     {
-        public int Fine_ID { get; set; }
-        public double Fine_Amount { get; set; }
+        public int ID { get; set; }
+        public double FineAmount { get; set; }
         public char Status { get; set; }
-        public int Loan_ID { get; set; }
-        public int Book_ID { get; set; }
+        public int LoanID { get; set; }
+        public int BookID { get; set; }
 
         public Fine(double fineAmount, int loanID, int bookID)
         {
-            Fine_Amount = fineAmount;
-            Loan_ID = loanID;
-            Book_ID = bookID;
+            FineAmount = fineAmount;
+            LoanID = loanID;
+            BookID = bookID;
             Status = 'U';
         }
 
@@ -60,7 +54,7 @@ namespace LibrarySYS
             return total;
         }
 
-        public static void alterFineStatus(int memberID, char newStatus)
+        public static void AlterFineStatus(int memberID, char newStatus)
         {
             string sqlQuery = $"UPDATE Fines " +
                               $"SET STATUS = '{newStatus}' " +
@@ -68,13 +62,24 @@ namespace LibrarySYS
             Database.ExecuteNonQuery(sqlQuery);
         }
 
-        public void insertFine()
+        public void InsertFine()
         {
             int nextFineID = GetNextFineID();
-            string fine = ((decimal)Fine_Amount).ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
+            /*
+             * Title: System.Globalization.CultureInfo.InvariantCulture property
+             * Author: Microsoft Corporation
+             * Site: learn.microsoft.com
+             * Date: 24 April 2026
+             * Code Version: N/A
+             * Availability: https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-globalization-cultureinfo-invariantculture
+             * Accessed: 24 April 2026
+             * Modified: Using the InvariantCulture property to ensure that the decimal separator is a dot (.) regardless of the system's culture settings, which is important for SQL queries.
+            */
+            string fine = ((decimal)FineAmount).ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
+            /* END OF REFERENCED CONTENT */
 
             string sqlQuery = $"INSERT INTO Fines (Fine_ID, Fine_Amount, Status, Loan_ID, Book_ID) " +
-                              $"VALUES ({nextFineID}, {fine}, '{Status}', {Loan_ID}, {Book_ID})";
+                              $"VALUES ({nextFineID}, {fine}, '{Status}', {LoanID}, {BookID})";
             Database.ExecuteNonQuery(sqlQuery);
         }
 

@@ -42,7 +42,7 @@ namespace LibrarySYS
 
         private void mnuViewBookExit_Click(object sender, EventArgs e)
         {
-            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo);
+            DialogResult confirmExit = MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirmExit == DialogResult.Yes)
             {
@@ -58,7 +58,7 @@ namespace LibrarySYS
 
             if (isValidISBN != "Valid ISBN")
             {
-                MessageBox.Show(isValidISBN, "Invalid ISBN");
+                MessageBox.Show(isValidISBN, "Invalid ISBN", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -68,7 +68,7 @@ namespace LibrarySYS
 
                 if (book == null)
                 {
-                    MessageBox.Show("Book not found.", "Error");
+                    MessageBox.Show("Book not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     grpViewBook.Visible = false;
                     return;
                 }
@@ -84,7 +84,7 @@ namespace LibrarySYS
                 cboViewBookStatus.Text = Convert.ToString(book.Status);
             } catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while retrieving the book: " + ex.Message, "Error");
+                MessageBox.Show("An error occurred while retrieving the book: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }

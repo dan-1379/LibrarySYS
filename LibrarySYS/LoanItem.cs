@@ -9,24 +9,24 @@ namespace LibrarySYS
 {
     public class LoanItem
     {
-        public int Loan_ID { get; set; }
-        public int Book_ID { get; set; }
-        public DateTime? Return_Date { get; set; }
+        public int ID { get; set; }
+        public int BookID { get; set; }
+        public DateTime? ReturnDate { get; set; }
 
         public LoanItem(int bookId, int loanId)
         {
-            Loan_ID = loanId;
-            Book_ID = bookId;
-            Return_Date = null;
+            ID = loanId;
+            BookID = bookId;
+            ReturnDate = null;
         }
 
         public void AddLoanItem()
         {
-            string sqlQuery = $"INSERT INTO LoanItems (Loan_ID, Book_ID) VALUES ({Loan_ID}, {Book_ID})";
+            string sqlQuery = $"INSERT INTO LoanItems (Loan_ID, Book_ID) VALUES ({ID}, {BookID})";
             Database.ExecuteNonQuery(sqlQuery);
         }
 
-        public static int fetchUnreturnedBooks(int memberID)
+        public static int FetchUnreturnedBooks(int memberID)
         {
             string sqlQuery = $"SELECT COUNT(*) " +
                               $"FROM LoanItems li " +
@@ -34,6 +34,7 @@ namespace LibrarySYS
                               $"WHERE l.Member_ID = {memberID} AND li.ReturnDate IS NULL";
            
             OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
+
             int count = 0;
             if (dr.Read())
             {
@@ -43,7 +44,7 @@ namespace LibrarySYS
             return count;
         }
 
-        public static int fetchOverdueBooksCount(int memberID)
+        public static int FetchOverdueBooksCount(int memberID)
         {
             string sqlQuery = $"SELECT COUNT(*) " +
                               $"FROM LoanItems li " +
@@ -51,6 +52,7 @@ namespace LibrarySYS
                               $"WHERE l.Member_ID = {memberID} AND li.ReturnDate IS NULL AND l.Due_Date < SYSDATE";
 
             OracleDataReader dr = Database.ExecuteSingleRowQuery(sqlQuery);
+
             int count = 0;
             if (dr.Read())
             {
@@ -91,7 +93,7 @@ namespace LibrarySYS
             return unreturnedBooks;
         }
 
-        public static int getLoanID(int memberID, int bookID)
+        public static int GetLoanID(int memberID, int bookID)
         {
             string sql = $"SELECT li.Loan_ID " +
                          $"FROM LoanItems li " +
@@ -103,7 +105,7 @@ namespace LibrarySYS
             return Convert.ToInt32(result[0]);
         }
 
-        public static int fetchCurrentLoanCount(int memberID)
+        public static int FetchCurrentLoanCount(int memberID)
         {
             string sql = $"SELECT COUNT(*) " +
                          $"FROM LoanItems li " +
@@ -111,6 +113,7 @@ namespace LibrarySYS
                          $"WHERE l.Member_ID = {memberID} AND li.ReturnDate IS NULL";
             
             OracleDataReader result = Database.ExecuteSingleRowQuery(sql);
+
             int count = 0;
 
             if (result.Read())
